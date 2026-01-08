@@ -5,20 +5,31 @@
   "scripts": {
     "serve": "vue-cli-service serve",
     "build": "vue-cli-service build",
-    "lint": "vue-cli-service lint"
+    "lint": "vue-cli-service lint",
+    "build-watch": "vue-cli-service build-watch"
   },
   "dependencies": {
     "core-js": "^3.8.3",
-    "vue": "^2.6.14"
+    "echarts": "^6.0.0",
+    "element-ui": "^2.15.14",
+    "jquery": "^3.3.1",
+    "lodash": "^4.17.21",
+    "sortablejs": "^1.15.6",
+    "vue": "^2.7.16",
+    "vue-router": "^3.6.5",
+    "vuex": "^3.6.2"
   },
   "devDependencies": {
     "@babel/core": "^7.12.16",
     "@babel/eslint-parser": "^7.12.16",
+    "@types/chrome": "^0.1.32",
     "@vue/cli-plugin-babel": "~5.0.0",
     "@vue/cli-plugin-eslint": "~5.0.0",
     "@vue/cli-service": "~5.0.0",
+    "copy-webpack-plugin": "^4.6.0",
     "eslint": "^7.32.0",
     "eslint-plugin-vue": "^8.0.3",
+    "vue-cli-plugin-chrome-ext": "~0.0.5",
     "vue-template-compiler": "^2.6.14"
   },
   "eslintConfig": {

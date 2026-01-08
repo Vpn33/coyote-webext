@@ -1,0 +1,9066 @@
+[
+  {
+    "id": "127",
+    "doubleChannel": false,
+    "createDate": "2026-01-07T02:23:03.150Z",
+    "updateDate": "2026-01-07T02:23:03.150Z",
+    "name": "127-轻柔",
+    "duration": 5800,
+    "rate": 1,
+    "restTime": 0,
+    "minRuration": 0,
+    "stageList": [
+      {
+        "enabled": true,
+        "hzType": 1,
+        "hzGradient": 1,
+        "hzMin": 30,
+        "hzMax": 38,
+        "hz": [
+          38,
+          30
+        ],
+        "times": 5,
+        "stageTime": 42,
+        "stageTotalTime": 4500,
+        "metas": [
+          {
+            "anchor": 1,
+            "y": 36
+          },
+          {
+            "anchor": 1,
+            "y": 58
+          },
+          {
+            "anchor": 1,
+            "y": 74
+          },
+          {
+            "anchor": 1,
+            "y": 86
+          },
+          {
+            "anchor": 1,
+            "y": 100
+          },
+          {
+            "anchor": 1,
+            "y": 91
+          },
+          {
+            "anchor": 0,
+            "y": 80
+          },
+          {
+            "anchor": 0,
+            "y": 70
+          },
+          {
+            "anchor": 1,
+            "y": 59
+          }
+        ]
+      },
+      {
+        "enabled": true,
+        "hzType": 1,
+        "hzGradient": 0,
+        "hz": [
+          10,
+          30
+        ],
+        "times": 1,
+        "stageTime": 9,
+        "stageTotalTime": 1300,
+        "metas": [
+          {
+            "anchor": 1,
+            "y": 84
+          },
+          {
+            "anchor": 1,
+            "y": 100
+          },
+          {
+            "anchor": 0,
+            "y": 81
+          },
+          {
+            "anchor": 0,
+            "y": 63
+          },
+          {
+            "anchor": 1,
+            "y": 44
+          },
+          {
+            "anchor": 0,
+            "y": 63
+          },
+          {
+            "anchor": 0,
+            "y": 81
+          },
+          {
+            "anchor": 1,
+            "y": 100
+          },
+          {
+            "anchor": 0,
+            "y": 80
+          },
+          {
+            "anchor": 0,
+            "y": 60
+          },
+          {
+            "anchor": 0,
+            "y": 40
+          },
+          {
+            "anchor": 0,
+            "y": 20
+          },
+          {
+            "anchor": 1,
+            "y": 0
+          }
+        ]
+      },
+      {
+        "enabled": false,
+        "hzType": 1,
+        "hzGradient": 0,
+        "hz": [
+          10,
+          30
+        ],
+        "times": 0,
+        "stageTime": 19,
+        "stageTotalTime": 0,
+        "metas": [
+          {
+            "anchor": 1,
+            "y": 0
+          },
+          {
+            "anchor": 1,
+            "y": 100
+          }
+        ]
+      }
+    ],
+    "stageA": [],
+    "stageB": [],
+    "v3ModelList": null
+  },
+  {
+    "id": "128",
+    "doubleChannel": false,
+    "createDate": "2026-01-07T02:23:03.153Z",
+    "updateDate": "2026-01-07T02:23:03.153Z",
+    "name": "128-tan2",
+    "duration": 3000,
+    "rate": 1,
+    "restTime": 0,
+    "minRuration": 0,
+    "stageList": [
+      {
+        "enabled": true,
+        "hzType": 1,
+        "hzGradient": 0,
+        "hz": [
+          10,
+          10
+        ],
+        "times": 2,
+        "stageTime": 28,
+        "stageTotalTime": 3000,
+        "metas": [
+          {
+            "anchor": 1,
+            "y": 1
+          },
+          {
+            "anchor": 0,
+            "y": 10
+          },
+          {
+            "anchor": 0,
+            "y": 19
+          },
+          {
+            "anchor": 0,
+            "y": 28
+          },
+          {
+            "anchor": 0,
+            "y": 37
+          },
+          {
+            "anchor": 0,
+            "y": 46
+          },
+          {
+            "anchor": 0,
+            "y": 55
+          },
+          {
+            "anchor": 0,
+            "y": 64
+          },
+          {
+            "anchor": 0,
+            "y": 73
+          },
+          {
+            "anchor": 0,
+            "y": 82
+          },
+          {
+            "anchor": 0,
+            "y": 91
+          },
+          {
+            "anchor": 1,
+            "y": 100
+          },
+          {
+            "anchor": 0,
+            "y": 100
+          },
+          {
+            "anchor": 0,
+            "y": 100
+          },
+          {
+            "anchor": 1,
+            "y": 100
+          }
+        ]
+      },
+      {
+        "enabled": false,
+        "hzType": 1,
+        "hzGradient": 0,
+        "hz": [
+          10,
+          60
+        ],
+        "times": 0,
+        "stageTime": 34,
+        "stageTotalTime": 0,
+        "metas": [
+          {
+            "anchor": 1,
+            "y": 0
+          },
+          {
+            "anchor": 1,
+            "y": 16
+          },
+          {
+            "anchor": 0,
+            "y": 25
+          },
+          {
+            "anchor": 0,
+            "y": 34
+          },
+          {
+            "anchor": 0,
+            "y": 44
+          },
+          {
+            "anchor": 0,
+            "y": 53
+          },
+          {
+            "anchor": 0,
+            "y": 62
+          },
+          {
+            "anchor": 0,
+            "y": 72
+          },
+          {
+            "anchor": 0,
+            "y": 81
+          },
+          {
+            "anchor": 0,
+            "y": 90
+          },
+          {
+            "anchor": 1,
+            "y": 100
+          }
+        ]
+      },
+      {
+        "enabled": false,
+        "hzType": 1,
+        "hzGradient": 0,
+        "hz": [
+          10,
+          30
+        ],
+        "times": 0,
+        "stageTime": 19,
+        "stageTotalTime": 0,
+        "metas": [
+          {
+            "anchor": 1,
+            "y": 0
+          },
+          {
+            "anchor": 1,
+            "y": 100
+          }
+        ]
+      }
+    ],
+    "stageA": [],
+    "stageB": [],
+    "v3ModelList": null
+  },
+  {
+    "id": "129",
+    "doubleChannel": false,
+    "createDate": "2026-01-07T02:23:03.154Z",
+    "updateDate": "2026-01-07T02:23:03.154Z",
+    "name": "129-tan1",
+    "duration": 5500,
+    "rate": 1,
+    "restTime": 0,
+    "minRuration": 0,
+    "stageList": [
+      {
+        "enabled": true,
+        "hzType": 2,
+        "hzGradient": 0,
+        "hz": [
+          10,
+          10
+        ],
+        "times": 2,
+        "stageTime": 22,
+        "stageTotalTime": 2200,
+        "metas": [
+          {
+            "anchor": 1,
+            "y": 1
+          },
+          {
+            "anchor": 0,
+            "y": 11
+          },
+          {
+            "anchor": 0,
+            "y": 21
+          },
+          {
+            "anchor": 0,
+            "y": 31
+          },
+          {
+            "anchor": 0,
+            "y": 40
+          },
+          {
+            "anchor": 0,
+            "y": 50
+          },
+          {
+            "anchor": 0,
+            "y": 60
+          },
+          {
+            "anchor": 0,
+            "y": 70
+          },
+          {
+            "anchor": 0,
+            "y": 80
+          },
+          {
+            "anchor": 0,
+            "y": 90
+          },
+          {
+            "anchor": 1,
+            "y": 100
+          }
+        ]
+      },
+      {
+        "enabled": true,
+        "hzType": 2,
+        "hzGradient": 0,
+        "hz": [
+          10,
+          60
+        ],
+        "times": 3,
+        "stageTime": 23,
+        "stageTotalTime": 3300,
+        "metas": [
+          {
+            "anchor": 1,
+            "y": 0
+          },
+          {
+            "anchor": 1,
+            "y": 16
+          },
+          {
+            "anchor": 0,
+            "y": 25
+          },
+          {
+            "anchor": 0,
+            "y": 34
+          },
+          {
+            "anchor": 0,
+            "y": 44
+          },
+          {
+            "anchor": 0,
+            "y": 53
+          },
+          {
+            "anchor": 0,
+            "y": 62
+          },
+          {
+            "anchor": 0,
+            "y": 72
+          },
+          {
+            "anchor": 0,
+            "y": 81
+          },
+          {
+            "anchor": 0,
+            "y": 90
+          },
+          {
+            "anchor": 1,
+            "y": 100
+          }
+        ]
+      },
+      {
+        "enabled": false,
+        "hzType": 1,
+        "hzGradient": 0,
+        "hz": [
+          10,
+          30
+        ],
+        "times": 0,
+        "stageTime": 19,
+        "stageTotalTime": 0,
+        "metas": [
+          {
+            "anchor": 1,
+            "y": 0
+          },
+          {
+            "anchor": 1,
+            "y": 100
+          }
+        ]
+      }
+    ],
+    "stageA": [],
+    "stageB": [],
+    "v3ModelList": null
+  },
+  {
+    "id": "130",
+    "doubleChannel": false,
+    "createDate": "2026-01-07T02:23:03.155Z",
+    "updateDate": "2026-01-07T02:23:03.155Z",
+    "name": "130-三阶升HC",
+    "duration": 10600,
+    "rate": 1,
+    "restTime": 0,
+    "minRuration": 0,
+    "stageList": [
+      {
+        "enabled": true,
+        "hzType": 1,
+        "hzGradient": 0,
+        "hz": [
+          70,
+          80
+        ],
+        "times": 2,
+        "stageTime": 45,
+        "stageTotalTime": 6000,
+        "metas": [
+          {
+            "anchor": 1,
+            "y": 49
+          },
+          {
+            "anchor": 0,
+            "y": 50
+          },
+          {
+            "anchor": 0,
+            "y": 50
+          },
+          {
+            "anchor": 0,
+            "y": 50
+          },
+          {
+            "anchor": 0,
+            "y": 50
+          },
+          {
+            "anchor": 0,
+            "y": 50
+          },
+          {
+            "anchor": 0,
+            "y": 50
+          },
+          {
+            "anchor": 0,
+            "y": 51
+          },
+          {
+            "anchor": 0,
+            "y": 51
+          },
+          {
+            "anchor": 1,
+            "y": 51
+          },
+          {
+            "anchor": 1,
+            "y": 89
+          },
+          {
+            "anchor": 0,
+            "y": 89
+          },
+          {
+            "anchor": 0,
+            "y": 89
+          },
+          {
+            "anchor": 0,
+            "y": 89
+          },
+          {
+            "anchor": 0,
+            "y": 88
+          },
+          {
+            "anchor": 0,
+            "y": 88
+          },
+          {
+            "anchor": 0,
+            "y": 88
+          },
+          {
+            "anchor": 0,
+            "y": 88
+          },
+          {
+            "anchor": 0,
+            "y": 88
+          },
+          {
+            "anchor": 1,
+            "y": 88
+          },
+          {
+            "anchor": 1,
+            "y": 100
+          },
+          {
+            "anchor": 0,
+            "y": 100
+          },
+          {
+            "anchor": 0,
+            "y": 100
+          },
+          {
+            "anchor": 0,
+            "y": 100
+          },
+          {
+            "anchor": 0,
+            "y": 100
+          },
+          {
+            "anchor": 0,
+            "y": 100
+          },
+          {
+            "anchor": 0,
+            "y": 100
+          },
+          {
+            "anchor": 0,
+            "y": 100
+          },
+          {
+            "anchor": 0,
+            "y": 100
+          },
+          {
+            "anchor": 1,
+            "y": 100
+          }
+        ]
+      },
+      {
+        "enabled": true,
+        "hzType": 2,
+        "hzGradient": 1,
+        "hzMin": 10,
+        "hzMax": 46,
+        "hz": [
+          46,
+          10
+        ],
+        "times": 23,
+        "stageTime": 45,
+        "stageTotalTime": 4600,
+        "metas": [
+          {
+            "anchor": 1,
+            "y": 100
+          },
+          {
+            "anchor": 1,
+            "y": 100
+          }
+        ]
+      },
+      {
+        "enabled": false,
+        "hzType": 1,
+        "hzGradient": 0,
+        "hz": [
+          10,
+          30
+        ],
+        "times": 0,
+        "stageTime": 19,
+        "stageTotalTime": 0,
+        "metas": [
+          {
+            "anchor": 1,
+            "y": 0
+          },
+          {
+            "anchor": 1,
+            "y": 100
+          }
+        ]
+      }
+    ],
+    "stageA": [],
+    "stageB": [],
+    "v3ModelList": null
+  },
+  {
+    "id": "131",
+    "doubleChannel": false,
+    "createDate": "2026-01-07T02:23:03.157Z",
+    "updateDate": "2026-01-07T02:23:03.157Z",
+    "name": "131-波涛",
+    "duration": 4800,
+    "rate": 1,
+    "restTime": 0,
+    "minRuration": 0,
+    "stageList": [
+      {
+        "enabled": true,
+        "hzType": 2,
+        "hzGradient": 0,
+        "hz": [
+          10,
+          41
+        ],
+        "times": 2,
+        "stageTime": 24,
+        "stageTotalTime": 2400,
+        "metas": [
+          {
+            "anchor": 1,
+            "y": 27
+          },
+          {
+            "anchor": 0,
+            "y": 33
+          },
+          {
+            "anchor": 0,
+            "y": 40
+          },
+          {
+            "anchor": 0,
+            "y": 47
+          },
+          {
+            "anchor": 0,
+            "y": 53
+          },
+          {
+            "anchor": 0,
+            "y": 60
+          },
+          {
+            "anchor": 0,
+            "y": 66
+          },
+          {
+            "anchor": 0,
+            "y": 73
+          },
+          {
+            "anchor": 0,
+            "y": 80
+          },
+          {
+            "anchor": 0,
+            "y": 86
+          },
+          {
+            "anchor": 0,
+            "y": 93
+          },
+          {
+            "anchor": 1,
+            "y": 100
+          }
+        ]
+      },
+      {
+        "enabled": true,
+        "hzType": 2,
+        "hzGradient": 1,
+        "hzMin": 10,
+        "hzMax": 34,
+        "hz": [
+          34,
+          10
+        ],
+        "times": 2,
+        "stageTime": 24,
+        "stageTotalTime": 2400,
+        "metas": [
+          {
+            "anchor": 1,
+            "y": 100
+          },
+          {
+            "anchor": 0,
+            "y": 90
+          },
+          {
+            "anchor": 0,
+            "y": 81
+          },
+          {
+            "anchor": 0,
+            "y": 72
+          },
+          {
+            "anchor": 0,
+            "y": 63
+          },
+          {
+            "anchor": 0,
+            "y": 54
+          },
+          {
+            "anchor": 0,
+            "y": 45
+          },
+          {
+            "anchor": 0,
+            "y": 36
+          },
+          {
+            "anchor": 0,
+            "y": 27
+          },
+          {
+            "anchor": 0,
+            "y": 18
+          },
+          {
+            "anchor": 0,
+            "y": 9
+          },
+          {
+            "anchor": 1,
+            "y": 0
+          }
+        ]
+      },
+      {
+        "enabled": false,
+        "hzType": 1,
+        "hzGradient": 0,
+        "hz": [
+          10,
+          30
+        ],
+        "times": 0,
+        "stageTime": 19,
+        "stageTotalTime": 0,
+        "metas": [
+          {
+            "anchor": 1,
+            "y": 0
+          },
+          {
+            "anchor": 1,
+            "y": 100
+          }
+        ]
+      }
+    ],
+    "stageA": [],
+    "stageB": [],
+    "v3ModelList": null
+  },
+  {
+    "id": "132",
+    "doubleChannel": false,
+    "createDate": "2026-01-07T02:23:03.158Z",
+    "updateDate": "2026-01-07T02:23:03.158Z",
+    "name": "132-点射",
+    "duration": 2400,
+    "rate": 1,
+    "restTime": 0,
+    "minRuration": 0,
+    "stageList": [
+      {
+        "enabled": true,
+        "hzType": 1,
+        "hzGradient": 1,
+        "hzMin": 35,
+        "hzMax": 120,
+        "hz": [
+          120,
+          35
+        ],
+        "times": 8,
+        "stageTime": 24,
+        "stageTotalTime": 2400,
+        "metas": [
+          {
+            "anchor": 1,
+            "y": 100
+          },
+          {
+            "anchor": 1,
+            "y": 49
+          },
+          {
+            "anchor": 1,
+            "y": 100
+          }
+        ]
+      },
+      {
+        "enabled": false,
+        "hzType": 1,
+        "hzGradient": 0,
+        "hz": [
+          10,
+          30
+        ],
+        "times": 0,
+        "stageTime": 19,
+        "stageTotalTime": 0,
+        "metas": [
+          {
+            "anchor": 1,
+            "y": 0
+          },
+          {
+            "anchor": 1,
+            "y": 100
+          }
+        ]
+      },
+      {
+        "enabled": false,
+        "hzType": 1,
+        "hzGradient": 0,
+        "hz": [
+          10,
+          30
+        ],
+        "times": 0,
+        "stageTime": 19,
+        "stageTotalTime": 0,
+        "metas": [
+          {
+            "anchor": 1,
+            "y": 0
+          },
+          {
+            "anchor": 1,
+            "y": 100
+          }
+        ]
+      }
+    ],
+    "stageA": [],
+    "stageB": [],
+    "v3ModelList": null
+  },
+  {
+    "id": "133",
+    "doubleChannel": false,
+    "createDate": "2026-01-07T02:23:03.158Z",
+    "updateDate": "2026-01-07T02:23:03.158Z",
+    "name": "133-月神",
+    "duration": 11700,
+    "rate": 1,
+    "restTime": 0,
+    "minRuration": 0,
+    "stageList": [
+      {
+        "enabled": true,
+        "hzType": 1,
+        "hzGradient": 1,
+        "hzMin": 30,
+        "hzMax": 38,
+        "hz": [
+          38,
+          30
+        ],
+        "times": 4,
+        "stageTime": 36,
+        "stageTotalTime": 3600,
+        "metas": [
+          {
+            "anchor": 1,
+            "y": 36
+          },
+          {
+            "anchor": 1,
+            "y": 58
+          },
+          {
+            "anchor": 1,
+            "y": 74
+          },
+          {
+            "anchor": 1,
+            "y": 86
+          },
+          {
+            "anchor": 1,
+            "y": 100
+          },
+          {
+            "anchor": 1,
+            "y": 91
+          },
+          {
+            "anchor": 0,
+            "y": 79
+          },
+          {
+            "anchor": 0,
+            "y": 66
+          },
+          {
+            "anchor": 1,
+            "y": 54
+          }
+        ]
+      },
+      {
+        "enabled": true,
+        "hzType": 2,
+        "hzGradient": 0,
+        "hz": [
+          28,
+          41
+        ],
+        "times": 18,
+        "stageTime": 35,
+        "stageTotalTime": 3600,
+        "metas": [
+          {
+            "anchor": 1,
+            "y": 35
+          },
+          {
+            "anchor": 1,
+            "y": 100
+          }
+        ]
+      },
+      {
+        "enabled": true,
+        "hzType": 1,
+        "hzGradient": 1,
+        "hzMin": 30,
+        "hzMax": 140,
+        "hz": [
+          140,
+          30
+        ],
+        "times": 5,
+        "stageTime": 44,
+        "stageTotalTime": 4500,
+        "metas": [
+          {
+            "anchor": 1,
+            "y": 40
+          },
+          {
+            "anchor": 0,
+            "y": 55
+          },
+          {
+            "anchor": 0,
+            "y": 70
+          },
+          {
+            "anchor": 0,
+            "y": 85
+          },
+          {
+            "anchor": 1,
+            "y": 100
+          },
+          {
+            "anchor": 0,
+            "y": 88
+          },
+          {
+            "anchor": 0,
+            "y": 76
+          },
+          {
+            "anchor": 0,
+            "y": 64
+          },
+          {
+            "anchor": 1,
+            "y": 53
+          }
+        ]
+      }
+    ],
+    "stageA": [],
+    "stageB": [],
+    "v3ModelList": null
+  },
+  {
+    "id": "134",
+    "doubleChannel": false,
+    "createDate": "2026-01-07T02:23:03.159Z",
+    "updateDate": "2026-01-07T02:23:03.159Z",
+    "name": "134-持续",
+    "duration": 1500,
+    "rate": 1,
+    "restTime": 0,
+    "minRuration": 0,
+    "stageList": [
+      {
+        "enabled": true,
+        "hzType": 1,
+        "hzGradient": 0,
+        "hz": [
+          43,
+          140
+        ],
+        "times": 3,
+        "stageTime": 12,
+        "stageTotalTime": 1500,
+        "metas": [
+          {
+            "anchor": 1,
+            "y": 100
+          },
+          {
+            "anchor": 0,
+            "y": 100
+          },
+          {
+            "anchor": 0,
+            "y": 100
+          },
+          {
+            "anchor": 0,
+            "y": 100
+          },
+          {
+            "anchor": 1,
+            "y": 100
+          }
+        ]
+      },
+      {
+        "enabled": false,
+        "hzType": 2,
+        "hzGradient": 1,
+        "hzMin": 10,
+        "hzMax": 34,
+        "hz": [
+          34,
+          10
+        ],
+        "times": 0,
+        "stageTime": 24,
+        "stageTotalTime": 0,
+        "metas": [
+          {
+            "anchor": 1,
+            "y": 100
+          },
+          {
+            "anchor": 0,
+            "y": 90
+          },
+          {
+            "anchor": 0,
+            "y": 81
+          },
+          {
+            "anchor": 0,
+            "y": 72
+          },
+          {
+            "anchor": 0,
+            "y": 63
+          },
+          {
+            "anchor": 0,
+            "y": 54
+          },
+          {
+            "anchor": 0,
+            "y": 45
+          },
+          {
+            "anchor": 0,
+            "y": 36
+          },
+          {
+            "anchor": 0,
+            "y": 27
+          },
+          {
+            "anchor": 0,
+            "y": 18
+          },
+          {
+            "anchor": 0,
+            "y": 9
+          },
+          {
+            "anchor": 1,
+            "y": 0
+          }
+        ]
+      },
+      {
+        "enabled": false,
+        "hzType": 1,
+        "hzGradient": 0,
+        "hz": [
+          10,
+          30
+        ],
+        "times": 0,
+        "stageTime": 19,
+        "stageTotalTime": 0,
+        "metas": [
+          {
+            "anchor": 1,
+            "y": 0
+          },
+          {
+            "anchor": 1,
+            "y": 100
+          }
+        ]
+      }
+    ],
+    "stageA": [],
+    "stageB": [],
+    "v3ModelList": null
+  },
+  {
+    "id": "135",
+    "doubleChannel": false,
+    "createDate": "2026-01-07T02:23:03.160Z",
+    "updateDate": "2026-01-07T02:23:03.160Z",
+    "name": "135-弹簧持续",
+    "duration": 3300,
+    "rate": 1,
+    "restTime": 0,
+    "minRuration": 0,
+    "stageList": [
+      {
+        "enabled": true,
+        "hzType": 2,
+        "hzGradient": 1,
+        "hzMin": 26,
+        "hzMax": 74,
+        "hz": [
+          74,
+          26
+        ],
+        "times": 1,
+        "stageTime": 0,
+        "stageTotalTime": 1100,
+        "metas": [
+          {
+            "anchor": 1,
+            "y": 100
+          },
+          {
+            "anchor": 0,
+            "y": 100
+          },
+          {
+            "anchor": 0,
+            "y": 100
+          },
+          {
+            "anchor": 0,
+            "y": 100
+          },
+          {
+            "anchor": 0,
+            "y": 100
+          },
+          {
+            "anchor": 0,
+            "y": 100
+          },
+          {
+            "anchor": 0,
+            "y": 100
+          },
+          {
+            "anchor": 0,
+            "y": 100
+          },
+          {
+            "anchor": 0,
+            "y": 100
+          },
+          {
+            "anchor": 0,
+            "y": 100
+          },
+          {
+            "anchor": 1,
+            "y": 100
+          }
+        ]
+      },
+      {
+        "enabled": true,
+        "hzType": 1,
+        "hzGradient": 0,
+        "hz": [
+          10,
+          30
+        ],
+        "times": 1,
+        "stageTime": 0,
+        "stageTotalTime": 1100,
+        "metas": [
+          {
+            "anchor": 1,
+            "y": 100
+          },
+          {
+            "anchor": 0,
+            "y": 100
+          },
+          {
+            "anchor": 0,
+            "y": 100
+          },
+          {
+            "anchor": 0,
+            "y": 100
+          },
+          {
+            "anchor": 0,
+            "y": 100
+          },
+          {
+            "anchor": 1,
+            "y": 100
+          },
+          {
+            "anchor": 0,
+            "y": 100
+          },
+          {
+            "anchor": 0,
+            "y": 100
+          },
+          {
+            "anchor": 0,
+            "y": 100
+          },
+          {
+            "anchor": 0,
+            "y": 100
+          },
+          {
+            "anchor": 1,
+            "y": 100
+          }
+        ]
+      },
+      {
+        "enabled": true,
+        "hzType": 2,
+        "hzGradient": 0,
+        "hz": [
+          34,
+          95
+        ],
+        "times": 1,
+        "stageTime": 0,
+        "stageTotalTime": 1100,
+        "metas": [
+          {
+            "anchor": 1,
+            "y": 100
+          },
+          {
+            "anchor": 0,
+            "y": 100
+          },
+          {
+            "anchor": 0,
+            "y": 100
+          },
+          {
+            "anchor": 0,
+            "y": 100
+          },
+          {
+            "anchor": 0,
+            "y": 100
+          },
+          {
+            "anchor": 0,
+            "y": 100
+          },
+          {
+            "anchor": 0,
+            "y": 100
+          },
+          {
+            "anchor": 0,
+            "y": 100
+          },
+          {
+            "anchor": 0,
+            "y": 100
+          },
+          {
+            "anchor": 0,
+            "y": 100
+          },
+          {
+            "anchor": 1,
+            "y": 100
+          }
+        ]
+      }
+    ],
+    "stageA": [],
+    "stageB": [],
+    "v3ModelList": null
+  },
+  {
+    "id": "136",
+    "doubleChannel": false,
+    "createDate": "2026-01-07T02:23:03.161Z",
+    "updateDate": "2026-01-07T02:23:03.161Z",
+    "name": "136-攀登",
+    "duration": 1800,
+    "rate": 1,
+    "restTime": 0,
+    "minRuration": 0,
+    "stageList": [
+      {
+        "enabled": true,
+        "hzType": 3,
+        "hzGradient": 1,
+        "hzMin": 10,
+        "hzMax": 49,
+        "hz": [
+          49,
+          10
+        ],
+        "times": 3,
+        "stageTime": 13,
+        "stageTotalTime": 1800,
+        "metas": [
+          {
+            "anchor": 1,
+            "y": 53
+          },
+          {
+            "anchor": 0,
+            "y": 62
+          },
+          {
+            "anchor": 0,
+            "y": 71
+          },
+          {
+            "anchor": 0,
+            "y": 81
+          },
+          {
+            "anchor": 0,
+            "y": 90
+          },
+          {
+            "anchor": 1,
+            "y": 100
+          }
+        ]
+      },
+      {
+        "enabled": false,
+        "hzType": 1,
+        "hzGradient": 0,
+        "hz": [
+          10,
+          30
+        ],
+        "times": 0,
+        "stageTime": 19,
+        "stageTotalTime": 0,
+        "metas": [
+          {
+            "anchor": 1,
+            "y": 0
+          },
+          {
+            "anchor": 1,
+            "y": 100
+          }
+        ]
+      },
+      {
+        "enabled": false,
+        "hzType": 1,
+        "hzGradient": 0,
+        "hz": [
+          10,
+          30
+        ],
+        "times": 0,
+        "stageTime": 19,
+        "stageTotalTime": 0,
+        "metas": [
+          {
+            "anchor": 1,
+            "y": 0
+          },
+          {
+            "anchor": 1,
+            "y": 100
+          }
+        ]
+      }
+    ],
+    "stageA": [],
+    "stageB": [],
+    "v3ModelList": null
+  },
+  {
+    "id": "137",
+    "doubleChannel": false,
+    "createDate": "2026-01-07T02:23:03.162Z",
+    "updateDate": "2026-01-07T02:23:03.162Z",
+    "name": "137-气泡",
+    "duration": 4400,
+    "rate": 1,
+    "restTime": 0,
+    "minRuration": 0,
+    "stageList": [
+      {
+        "enabled": true,
+        "hzType": 1,
+        "hzGradient": 1,
+        "hzMin": 17,
+        "hzMax": 50,
+        "hz": [
+          50,
+          17
+        ],
+        "times": 4,
+        "stageTime": 16,
+        "stageTotalTime": 1600,
+        "metas": [
+          {
+            "anchor": 1,
+            "y": 82
+          },
+          {
+            "anchor": 1,
+            "y": 100
+          },
+          {
+            "anchor": 1,
+            "y": 64
+          },
+          {
+            "anchor": 1,
+            "y": 21
+          }
+        ]
+      },
+      {
+        "enabled": true,
+        "hzType": 1,
+        "hzGradient": 1,
+        "hzMin": 38,
+        "hzMax": 50,
+        "hz": [
+          50,
+          38
+        ],
+        "times": 4,
+        "stageTime": 27,
+        "stageTotalTime": 2800,
+        "metas": [
+          {
+            "anchor": 1,
+            "y": 16
+          },
+          {
+            "anchor": 1,
+            "y": 74
+          },
+          {
+            "anchor": 1,
+            "y": 100
+          },
+          {
+            "anchor": 1,
+            "y": 17
+          },
+          {
+            "anchor": 1,
+            "y": 100
+          },
+          {
+            "anchor": 1,
+            "y": 63
+          },
+          {
+            "anchor": 1,
+            "y": 34
+          }
+        ]
+      },
+      {
+        "enabled": false,
+        "hzType": 1,
+        "hzGradient": 0,
+        "hz": [
+          10,
+          30
+        ],
+        "times": 0,
+        "stageTime": 19,
+        "stageTotalTime": 0,
+        "metas": [
+          {
+            "anchor": 1,
+            "y": 0
+          },
+          {
+            "anchor": 1,
+            "y": 100
+          }
+        ]
+      }
+    ],
+    "stageA": [],
+    "stageB": [],
+    "v3ModelList": null
+  },
+  {
+    "id": "138",
+    "doubleChannel": false,
+    "createDate": "2026-01-07T02:23:03.162Z",
+    "updateDate": "2026-01-07T02:23:03.162Z",
+    "name": "138-真空",
+    "duration": 200,
+    "rate": 1,
+    "restTime": 0,
+    "minRuration": 0,
+    "stageList": [
+      {
+        "enabled": true,
+        "hzType": 1,
+        "hzGradient": 1,
+        "hzMin": 17,
+        "hzMax": 32,
+        "hz": [
+          32,
+          17
+        ],
+        "times": 1,
+        "stageTime": 0,
+        "stageTotalTime": 200,
+        "metas": [
+          {
+            "anchor": 1,
+            "y": 100
+          },
+          {
+            "anchor": 1,
+            "y": 100
+          }
+        ]
+      },
+      {
+        "enabled": false,
+        "hzType": 1,
+        "hzGradient": 1,
+        "hzMin": 38,
+        "hzMax": 50,
+        "hz": [
+          50,
+          38
+        ],
+        "times": 0,
+        "stageTime": 27,
+        "stageTotalTime": 0,
+        "metas": [
+          {
+            "anchor": 1,
+            "y": 16
+          },
+          {
+            "anchor": 1,
+            "y": 74
+          },
+          {
+            "anchor": 1,
+            "y": 100
+          },
+          {
+            "anchor": 1,
+            "y": 17
+          },
+          {
+            "anchor": 1,
+            "y": 100
+          },
+          {
+            "anchor": 1,
+            "y": 63
+          },
+          {
+            "anchor": 1,
+            "y": 34
+          }
+        ]
+      },
+      {
+        "enabled": false,
+        "hzType": 1,
+        "hzGradient": 0,
+        "hz": [
+          10,
+          30
+        ],
+        "times": 0,
+        "stageTime": 19,
+        "stageTotalTime": 0,
+        "metas": [
+          {
+            "anchor": 1,
+            "y": 0
+          },
+          {
+            "anchor": 1,
+            "y": 100
+          }
+        ]
+      }
+    ],
+    "stageA": [],
+    "stageB": [],
+    "v3ModelList": null
+  },
+  {
+    "id": "139",
+    "doubleChannel": false,
+    "createDate": "2026-01-07T02:23:03.163Z",
+    "updateDate": "2026-01-07T02:23:03.163Z",
+    "name": "139-吸吮",
+    "duration": 4200,
+    "rate": 1,
+    "restTime": 0,
+    "minRuration": 0,
+    "stageList": [
+      {
+        "enabled": true,
+        "hzType": 1,
+        "hzGradient": 1,
+        "hzMin": 17,
+        "hzMax": 47,
+        "hz": [
+          47,
+          17
+        ],
+        "times": 12,
+        "stageTime": 24,
+        "stageTotalTime": 2400,
+        "metas": [
+          {
+            "anchor": 1,
+            "y": 100
+          },
+          {
+            "anchor": 1,
+            "y": 100
+          }
+        ]
+      },
+      {
+        "enabled": true,
+        "hzType": 1,
+        "hzGradient": 0,
+        "hz": [
+          18,
+          38
+        ],
+        "times": 9,
+        "stageTime": 17,
+        "stageTotalTime": 1800,
+        "metas": [
+          {
+            "anchor": 1,
+            "y": 100
+          },
+          {
+            "anchor": 1,
+            "y": 100
+          }
+        ]
+      },
+      {
+        "enabled": false,
+        "hzType": 1,
+        "hzGradient": 0,
+        "hz": [
+          10,
+          30
+        ],
+        "times": 0,
+        "stageTime": 19,
+        "stageTotalTime": 0,
+        "metas": [
+          {
+            "anchor": 1,
+            "y": 0
+          },
+          {
+            "anchor": 1,
+            "y": 100
+          }
+        ]
+      }
+    ],
+    "stageA": [],
+    "stageB": [],
+    "v3ModelList": null
+  },
+  {
+    "id": "140",
+    "doubleChannel": false,
+    "createDate": "2026-01-07T02:23:03.163Z",
+    "updateDate": "2026-01-07T02:23:03.163Z",
+    "name": "140-按捏渐强改",
+    "duration": 2200,
+    "rate": 1,
+    "restTime": 0,
+    "minRuration": 0,
+    "stageList": [
+      {
+        "enabled": true,
+        "hzType": 2,
+        "hzGradient": 1,
+        "hzMin": 24,
+        "hzMax": 48,
+        "hz": [
+          48,
+          24
+        ],
+        "times": 2,
+        "stageTime": 19,
+        "stageTotalTime": 2200,
+        "metas": [
+          {
+            "anchor": 1,
+            "y": 0
+          },
+          {
+            "anchor": 1,
+            "y": 28
+          },
+          {
+            "anchor": 1,
+            "y": 0
+          },
+          {
+            "anchor": 1,
+            "y": 52
+          },
+          {
+            "anchor": 1,
+            "y": 1
+          },
+          {
+            "anchor": 1,
+            "y": 73
+          },
+          {
+            "anchor": 1,
+            "y": 0
+          },
+          {
+            "anchor": 1,
+            "y": 87
+          },
+          {
+            "anchor": 1,
+            "y": 0
+          },
+          {
+            "anchor": 1,
+            "y": 100
+          },
+          {
+            "anchor": 1,
+            "y": 0
+          }
+        ]
+      },
+      {
+        "enabled": false,
+        "hzType": 1,
+        "hzGradient": 0,
+        "hz": [
+          10,
+          30
+        ],
+        "times": 0,
+        "stageTime": 19,
+        "stageTotalTime": 0,
+        "metas": [
+          {
+            "anchor": 1,
+            "y": 0
+          },
+          {
+            "anchor": 1,
+            "y": 100
+          }
+        ]
+      },
+      {
+        "enabled": false,
+        "hzType": 1,
+        "hzGradient": 0,
+        "hz": [
+          10,
+          30
+        ],
+        "times": 0,
+        "stageTime": 19,
+        "stageTotalTime": 0,
+        "metas": [
+          {
+            "anchor": 1,
+            "y": 0
+          },
+          {
+            "anchor": 1,
+            "y": 100
+          }
+        ]
+      }
+    ],
+    "stageA": [],
+    "stageB": [],
+    "v3ModelList": null
+  },
+  {
+    "id": "141",
+    "doubleChannel": false,
+    "createDate": "2026-01-07T02:23:03.164Z",
+    "updateDate": "2026-01-07T02:23:03.164Z",
+    "name": "141-快速捏按",
+    "duration": 4400,
+    "rate": 1,
+    "restTime": 0,
+    "minRuration": 0,
+    "stageList": [
+      {
+        "enabled": true,
+        "hzType": 1,
+        "hzGradient": 0,
+        "hz": [
+          16,
+          39
+        ],
+        "times": 22,
+        "stageTime": 43,
+        "stageTotalTime": 4400,
+        "metas": [
+          {
+            "anchor": 1,
+            "y": 0
+          },
+          {
+            "anchor": 1,
+            "y": 100
+          }
+        ]
+      },
+      {
+        "enabled": false,
+        "hzType": 1,
+        "hzGradient": 0,
+        "hz": [
+          10,
+          30
+        ],
+        "times": 0,
+        "stageTime": 19,
+        "stageTotalTime": 0,
+        "metas": [
+          {
+            "anchor": 1,
+            "y": 0
+          },
+          {
+            "anchor": 1,
+            "y": 100
+          }
+        ]
+      },
+      {
+        "enabled": false,
+        "hzType": 1,
+        "hzGradient": 0,
+        "hz": [
+          10,
+          30
+        ],
+        "times": 0,
+        "stageTime": 19,
+        "stageTotalTime": 0,
+        "metas": [
+          {
+            "anchor": 1,
+            "y": 0
+          },
+          {
+            "anchor": 1,
+            "y": 100
+          }
+        ]
+      }
+    ],
+    "stageA": [],
+    "stageB": [],
+    "v3ModelList": null
+  },
+  {
+    "id": "142",
+    "doubleChannel": false,
+    "createDate": "2026-01-07T02:23:03.165Z",
+    "updateDate": "2026-01-07T02:23:03.165Z",
+    "name": "142-快速捏按改",
+    "duration": 4400,
+    "rate": 1,
+    "restTime": 0,
+    "minRuration": 0,
+    "stageList": [
+      {
+        "enabled": true,
+        "hzType": 1,
+        "hzGradient": 0,
+        "hz": [
+          10,
+          39
+        ],
+        "times": 22,
+        "stageTime": 43,
+        "stageTotalTime": 4400,
+        "metas": [
+          {
+            "anchor": 1,
+            "y": 11
+          },
+          {
+            "anchor": 1,
+            "y": 86
+          }
+        ]
+      },
+      {
+        "enabled": false,
+        "hzType": 1,
+        "hzGradient": 0,
+        "hz": [
+          10,
+          30
+        ],
+        "times": 0,
+        "stageTime": 19,
+        "stageTotalTime": 0,
+        "metas": [
+          {
+            "anchor": 1,
+            "y": 0
+          },
+          {
+            "anchor": 1,
+            "y": 100
+          }
+        ]
+      },
+      {
+        "enabled": false,
+        "hzType": 1,
+        "hzGradient": 0,
+        "hz": [
+          10,
+          30
+        ],
+        "times": 0,
+        "stageTime": 19,
+        "stageTotalTime": 0,
+        "metas": [
+          {
+            "anchor": 1,
+            "y": 0
+          },
+          {
+            "anchor": 1,
+            "y": 100
+          }
+        ]
+      }
+    ],
+    "stageA": [],
+    "stageB": [],
+    "v3ModelList": null
+  },
+  {
+    "id": "143",
+    "doubleChannel": false,
+    "createDate": "2026-01-07T02:23:03.165Z",
+    "updateDate": "2026-01-07T02:23:03.165Z",
+    "name": "143-连击改",
+    "duration": 2400,
+    "rate": 1,
+    "restTime": 0,
+    "minRuration": 0,
+    "stageList": [
+      {
+        "enabled": true,
+        "hzType": 1,
+        "hzGradient": 0,
+        "hz": [
+          17,
+          44
+        ],
+        "times": 3,
+        "stageTime": 19,
+        "stageTotalTime": 2400,
+        "metas": [
+          {
+            "anchor": 1,
+            "y": 100
+          },
+          {
+            "anchor": 1,
+            "y": 0
+          },
+          {
+            "anchor": 1,
+            "y": 100
+          },
+          {
+            "anchor": 0,
+            "y": 66
+          },
+          {
+            "anchor": 0,
+            "y": 33
+          },
+          {
+            "anchor": 1,
+            "y": 0
+          },
+          {
+            "anchor": 0,
+            "y": 1
+          },
+          {
+            "anchor": 1,
+            "y": 2
+          }
+        ]
+      },
+      {
+        "enabled": false,
+        "hzType": 1,
+        "hzGradient": 0,
+        "hz": [
+          10,
+          30
+        ],
+        "times": 0,
+        "stageTime": 19,
+        "stageTotalTime": 0,
+        "metas": [
+          {
+            "anchor": 1,
+            "y": 0
+          },
+          {
+            "anchor": 1,
+            "y": 100
+          }
+        ]
+      },
+      {
+        "enabled": false,
+        "hzType": 1,
+        "hzGradient": 0,
+        "hz": [
+          10,
+          30
+        ],
+        "times": 0,
+        "stageTime": 19,
+        "stageTotalTime": 0,
+        "metas": [
+          {
+            "anchor": 1,
+            "y": 0
+          },
+          {
+            "anchor": 1,
+            "y": 100
+          }
+        ]
+      }
+    ],
+    "stageA": [],
+    "stageB": [],
+    "v3ModelList": null
+  },
+  {
+    "id": "144",
+    "doubleChannel": false,
+    "createDate": "2026-01-07T02:23:03.166Z",
+    "updateDate": "2026-01-07T02:23:03.166Z",
+    "name": "144-擀皮",
+    "duration": 3000,
+    "rate": 1,
+    "restTime": 0,
+    "minRuration": 0,
+    "stageList": [
+      {
+        "enabled": true,
+        "hzType": 1,
+        "hzGradient": 1,
+        "hzMin": 35,
+        "hzMax": 44,
+        "hz": [
+          44,
+          35
+        ],
+        "times": 1,
+        "stageTime": 17,
+        "stageTotalTime": 3000,
+        "metas": [
+          {
+            "anchor": 1,
+            "y": 30
+          },
+          {
+            "anchor": 0,
+            "y": 34
+          },
+          {
+            "anchor": 0,
+            "y": 38
+          },
+          {
+            "anchor": 0,
+            "y": 42
+          },
+          {
+            "anchor": 0,
+            "y": 45
+          },
+          {
+            "anchor": 0,
+            "y": 49
+          },
+          {
+            "anchor": 0,
+            "y": 53
+          },
+          {
+            "anchor": 0,
+            "y": 57
+          },
+          {
+            "anchor": 0,
+            "y": 61
+          },
+          {
+            "anchor": 0,
+            "y": 65
+          },
+          {
+            "anchor": 0,
+            "y": 69
+          },
+          {
+            "anchor": 0,
+            "y": 72
+          },
+          {
+            "anchor": 0,
+            "y": 76
+          },
+          {
+            "anchor": 0,
+            "y": 80
+          },
+          {
+            "anchor": 0,
+            "y": 84
+          },
+          {
+            "anchor": 0,
+            "y": 88
+          },
+          {
+            "anchor": 0,
+            "y": 92
+          },
+          {
+            "anchor": 0,
+            "y": 96
+          },
+          {
+            "anchor": 1,
+            "y": 100
+          },
+          {
+            "anchor": 0,
+            "y": 100
+          },
+          {
+            "anchor": 1,
+            "y": 100
+          },
+          {
+            "anchor": 0,
+            "y": 71
+          },
+          {
+            "anchor": 1,
+            "y": 43
+          },
+          {
+            "anchor": 0,
+            "y": 62
+          },
+          {
+            "anchor": 0,
+            "y": 81
+          },
+          {
+            "anchor": 1,
+            "y": 100
+          },
+          {
+            "anchor": 0,
+            "y": 91
+          },
+          {
+            "anchor": 1,
+            "y": 82
+          },
+          {
+            "anchor": 1,
+            "y": 100
+          },
+          {
+            "anchor": 1,
+            "y": 100
+          }
+        ]
+      },
+      {
+        "enabled": false,
+        "hzType": 1,
+        "hzGradient": 0,
+        "hz": [
+          21,
+          30
+        ],
+        "times": 0,
+        "stageTime": 0,
+        "stageTotalTime": 0,
+        "metas": [
+          {
+            "anchor": 1,
+            "y": 100
+          },
+          {
+            "anchor": 0,
+            "y": 100
+          },
+          {
+            "anchor": 0,
+            "y": 100
+          },
+          {
+            "anchor": 0,
+            "y": 100
+          },
+          {
+            "anchor": 0,
+            "y": 100
+          },
+          {
+            "anchor": 0,
+            "y": 100
+          },
+          {
+            "anchor": 0,
+            "y": 100
+          },
+          {
+            "anchor": 0,
+            "y": 100
+          },
+          {
+            "anchor": 0,
+            "y": 100
+          },
+          {
+            "anchor": 1,
+            "y": 100
+          }
+        ]
+      },
+      {
+        "enabled": false,
+        "hzType": 1,
+        "hzGradient": 0,
+        "hz": [
+          10,
+          30
+        ],
+        "times": 0,
+        "stageTime": 19,
+        "stageTotalTime": 0,
+        "metas": [
+          {
+            "anchor": 1,
+            "y": 0
+          },
+          {
+            "anchor": 1,
+            "y": 100
+          }
+        ]
+      }
+    ],
+    "stageA": [],
+    "stageB": [],
+    "v3ModelList": null
+  },
+  {
+    "id": "145",
+    "doubleChannel": false,
+    "createDate": "2026-01-07T02:23:03.167Z",
+    "updateDate": "2026-01-07T02:23:03.167Z",
+    "name": "145-收紧",
+    "duration": 1200,
+    "rate": 1,
+    "restTime": 0,
+    "minRuration": 0,
+    "stageList": [
+      {
+        "enabled": true,
+        "hzType": 3,
+        "hzGradient": 0,
+        "hz": [
+          33,
+          70
+        ],
+        "times": 1,
+        "stageTime": 0,
+        "stageTotalTime": 1200,
+        "metas": [
+          {
+            "anchor": 1,
+            "y": 100
+          },
+          {
+            "anchor": 0,
+            "y": 100
+          },
+          {
+            "anchor": 0,
+            "y": 100
+          },
+          {
+            "anchor": 0,
+            "y": 100
+          },
+          {
+            "anchor": 0,
+            "y": 100
+          },
+          {
+            "anchor": 0,
+            "y": 100
+          },
+          {
+            "anchor": 0,
+            "y": 100
+          },
+          {
+            "anchor": 0,
+            "y": 100
+          },
+          {
+            "anchor": 0,
+            "y": 100
+          },
+          {
+            "anchor": 0,
+            "y": 100
+          },
+          {
+            "anchor": 0,
+            "y": 100
+          },
+          {
+            "anchor": 1,
+            "y": 100
+          }
+        ]
+      },
+      {
+        "enabled": false,
+        "hzType": 1,
+        "hzGradient": 0,
+        "hz": [
+          10,
+          30
+        ],
+        "times": 0,
+        "stageTime": 0,
+        "stageTotalTime": 0,
+        "metas": [
+          {
+            "anchor": 1,
+            "y": 100
+          },
+          {
+            "anchor": 0,
+            "y": 100
+          },
+          {
+            "anchor": 0,
+            "y": 100
+          },
+          {
+            "anchor": 0,
+            "y": 100
+          },
+          {
+            "anchor": 0,
+            "y": 100
+          },
+          {
+            "anchor": 0,
+            "y": 100
+          },
+          {
+            "anchor": 0,
+            "y": 100
+          },
+          {
+            "anchor": 0,
+            "y": 100
+          },
+          {
+            "anchor": 0,
+            "y": 100
+          },
+          {
+            "anchor": 1,
+            "y": 100
+          }
+        ]
+      },
+      {
+        "enabled": false,
+        "hzType": 1,
+        "hzGradient": 0,
+        "hz": [
+          10,
+          30
+        ],
+        "times": 0,
+        "stageTime": 19,
+        "stageTotalTime": 0,
+        "metas": [
+          {
+            "anchor": 1,
+            "y": 0
+          },
+          {
+            "anchor": 1,
+            "y": 100
+          }
+        ]
+      }
+    ],
+    "stageA": [],
+    "stageB": [],
+    "v3ModelList": null
+  },
+  {
+    "id": "146",
+    "doubleChannel": false,
+    "createDate": "2026-01-07T02:23:03.168Z",
+    "updateDate": "2026-01-07T02:23:03.168Z",
+    "name": "146-节奏",
+    "duration": 2400,
+    "rate": 1,
+    "restTime": 0,
+    "minRuration": 0,
+    "stageList": [
+      {
+        "enabled": true,
+        "hzType": 4,
+        "hzGradient": 1,
+        "hzMin": 19,
+        "hzMax": 56,
+        "hz": [
+          56,
+          19
+        ],
+        "times": 4,
+        "stageTime": 23,
+        "stageTotalTime": 2400,
+        "metas": [
+          {
+            "anchor": 1,
+            "y": 100
+          },
+          {
+            "anchor": 0,
+            "y": 100
+          },
+          {
+            "anchor": 0,
+            "y": 100
+          },
+          {
+            "anchor": 1,
+            "y": 100
+          },
+          {
+            "anchor": 1,
+            "y": 0
+          },
+          {
+            "anchor": 1,
+            "y": 0
+          }
+        ]
+      },
+      {
+        "enabled": false,
+        "hzType": 1,
+        "hzGradient": 0,
+        "hz": [
+          10,
+          30
+        ],
+        "times": 0,
+        "stageTime": 19,
+        "stageTotalTime": 0,
+        "metas": [
+          {
+            "anchor": 1,
+            "y": 0
+          },
+          {
+            "anchor": 1,
+            "y": 100
+          }
+        ]
+      },
+      {
+        "enabled": false,
+        "hzType": 1,
+        "hzGradient": 0,
+        "hz": [
+          10,
+          30
+        ],
+        "times": 0,
+        "stageTime": 19,
+        "stageTotalTime": 0,
+        "metas": [
+          {
+            "anchor": 1,
+            "y": 0
+          },
+          {
+            "anchor": 1,
+            "y": 100
+          }
+        ]
+      }
+    ],
+    "stageA": [],
+    "stageB": [],
+    "v3ModelList": null
+  },
+  {
+    "id": "147",
+    "doubleChannel": false,
+    "createDate": "2026-01-07T02:23:03.169Z",
+    "updateDate": "2026-01-07T02:23:03.169Z",
+    "name": "147-战栗",
+    "duration": 2400,
+    "rate": 1,
+    "restTime": 0,
+    "minRuration": 0,
+    "stageList": [
+      {
+        "enabled": true,
+        "hzType": 1,
+        "hzGradient": 1,
+        "hzMin": 17,
+        "hzMax": 47,
+        "hz": [
+          47,
+          17
+        ],
+        "times": 12,
+        "stageTime": 24,
+        "stageTotalTime": 2400,
+        "metas": [
+          {
+            "anchor": 1,
+            "y": 100
+          },
+          {
+            "anchor": 1,
+            "y": 100
+          }
+        ]
+      },
+      {
+        "enabled": false,
+        "hzType": 1,
+        "hzGradient": 0,
+        "hz": [
+          18,
+          38
+        ],
+        "times": 0,
+        "stageTime": 17,
+        "stageTotalTime": 0,
+        "metas": [
+          {
+            "anchor": 1,
+            "y": 100
+          },
+          {
+            "anchor": 1,
+            "y": 100
+          }
+        ]
+      },
+      {
+        "enabled": false,
+        "hzType": 1,
+        "hzGradient": 0,
+        "hz": [
+          10,
+          30
+        ],
+        "times": 0,
+        "stageTime": 19,
+        "stageTotalTime": 0,
+        "metas": [
+          {
+            "anchor": 1,
+            "y": 0
+          },
+          {
+            "anchor": 1,
+            "y": 100
+          }
+        ]
+      }
+    ],
+    "stageA": [],
+    "stageB": [],
+    "v3ModelList": null
+  },
+  {
+    "id": "148",
+    "doubleChannel": false,
+    "createDate": "2026-01-07T02:23:03.169Z",
+    "updateDate": "2026-01-07T02:23:03.169Z",
+    "name": "148-渐入佳境",
+    "duration": 20000,
+    "rate": 1,
+    "restTime": 0,
+    "minRuration": 0,
+    "stageList": [
+      {
+        "enabled": true,
+        "hzType": 1,
+        "hzGradient": 0,
+        "hz": [
+          17,
+          60
+        ],
+        "times": 3,
+        "stageTime": 47,
+        "stageTotalTime": 6000,
+        "metas": [
+          {
+            "anchor": 1,
+            "y": 0
+          },
+          {
+            "anchor": 0,
+            "y": 20
+          },
+          {
+            "anchor": 0,
+            "y": 40
+          },
+          {
+            "anchor": 0,
+            "y": 60
+          },
+          {
+            "anchor": 0,
+            "y": 80
+          },
+          {
+            "anchor": 1,
+            "y": 100
+          },
+          {
+            "anchor": 1,
+            "y": 100
+          },
+          {
+            "anchor": 0,
+            "y": 100
+          },
+          {
+            "anchor": 0,
+            "y": 100
+          },
+          {
+            "anchor": 0,
+            "y": 100
+          },
+          {
+            "anchor": 0,
+            "y": 100
+          },
+          {
+            "anchor": 0,
+            "y": 100
+          },
+          {
+            "anchor": 0,
+            "y": 100
+          },
+          {
+            "anchor": 0,
+            "y": 100
+          },
+          {
+            "anchor": 1,
+            "y": 100
+          },
+          {
+            "anchor": 0,
+            "y": 80
+          },
+          {
+            "anchor": 0,
+            "y": 60
+          },
+          {
+            "anchor": 0,
+            "y": 40
+          },
+          {
+            "anchor": 0,
+            "y": 20
+          },
+          {
+            "anchor": 1,
+            "y": 0
+          }
+        ]
+      },
+      {
+        "enabled": true,
+        "hzType": 1,
+        "hzGradient": 1,
+        "hzMin": 30,
+        "hzMax": 35,
+        "hz": [
+          35,
+          30
+        ],
+        "times": 3,
+        "stageTime": 53,
+        "stageTotalTime": 6000,
+        "metas": [
+          {
+            "anchor": 1,
+            "y": 0
+          },
+          {
+            "anchor": 0,
+            "y": 20
+          },
+          {
+            "anchor": 0,
+            "y": 40
+          },
+          {
+            "anchor": 0,
+            "y": 60
+          },
+          {
+            "anchor": 0,
+            "y": 80
+          },
+          {
+            "anchor": 1,
+            "y": 100
+          },
+          {
+            "anchor": 0,
+            "y": 100
+          },
+          {
+            "anchor": 0,
+            "y": 100
+          },
+          {
+            "anchor": 0,
+            "y": 100
+          },
+          {
+            "anchor": 0,
+            "y": 100
+          },
+          {
+            "anchor": 0,
+            "y": 100
+          },
+          {
+            "anchor": 0,
+            "y": 100
+          },
+          {
+            "anchor": 0,
+            "y": 100
+          },
+          {
+            "anchor": 0,
+            "y": 100
+          },
+          {
+            "anchor": 1,
+            "y": 100
+          },
+          {
+            "anchor": 0,
+            "y": 80
+          },
+          {
+            "anchor": 0,
+            "y": 60
+          },
+          {
+            "anchor": 0,
+            "y": 40
+          },
+          {
+            "anchor": 0,
+            "y": 20
+          },
+          {
+            "anchor": 1,
+            "y": 0
+          }
+        ]
+      },
+      {
+        "enabled": true,
+        "hzType": 1,
+        "hzGradient": 1,
+        "hzMin": 30,
+        "hzMax": 70,
+        "hz": [
+          70,
+          30
+        ],
+        "times": 4,
+        "stageTime": 64,
+        "stageTotalTime": 8000,
+        "metas": [
+          {
+            "anchor": 1,
+            "y": 0
+          },
+          {
+            "anchor": 0,
+            "y": 20
+          },
+          {
+            "anchor": 0,
+            "y": 40
+          },
+          {
+            "anchor": 0,
+            "y": 60
+          },
+          {
+            "anchor": 0,
+            "y": 80
+          },
+          {
+            "anchor": 1,
+            "y": 100
+          },
+          {
+            "anchor": 0,
+            "y": 100
+          },
+          {
+            "anchor": 0,
+            "y": 100
+          },
+          {
+            "anchor": 0,
+            "y": 100
+          },
+          {
+            "anchor": 0,
+            "y": 100
+          },
+          {
+            "anchor": 0,
+            "y": 100
+          },
+          {
+            "anchor": 0,
+            "y": 100
+          },
+          {
+            "anchor": 0,
+            "y": 100
+          },
+          {
+            "anchor": 0,
+            "y": 100
+          },
+          {
+            "anchor": 1,
+            "y": 100
+          },
+          {
+            "anchor": 0,
+            "y": 80
+          },
+          {
+            "anchor": 0,
+            "y": 60
+          },
+          {
+            "anchor": 0,
+            "y": 40
+          },
+          {
+            "anchor": 0,
+            "y": 20
+          },
+          {
+            "anchor": 1,
+            "y": 0
+          }
+        ]
+      }
+    ],
+    "stageA": [],
+    "stageB": [],
+    "v3ModelList": null
+  },
+  {
+    "id": "149",
+    "doubleChannel": false,
+    "createDate": "2026-01-07T02:23:03.171Z",
+    "updateDate": "2026-01-07T02:23:03.171Z",
+    "name": "149-震颤",
+    "duration": 8400,
+    "rate": 1,
+    "restTime": 0,
+    "minRuration": 0,
+    "stageList": [
+      {
+        "enabled": true,
+        "hzType": 4,
+        "hzGradient": 0,
+        "hz": [
+          32,
+          62
+        ],
+        "times": 4,
+        "stageTime": 57,
+        "stageTotalTime": 8400,
+        "metas": [
+          {
+            "anchor": 1,
+            "y": 57
+          },
+          {
+            "anchor": 0,
+            "y": 78
+          },
+          {
+            "anchor": 1,
+            "y": 100
+          },
+          {
+            "anchor": 0,
+            "y": 77
+          },
+          {
+            "anchor": 1,
+            "y": 54
+          },
+          {
+            "anchor": 0,
+            "y": 77
+          },
+          {
+            "anchor": 1,
+            "y": 100
+          },
+          {
+            "anchor": 0,
+            "y": 77
+          },
+          {
+            "anchor": 1,
+            "y": 55
+          },
+          {
+            "anchor": 0,
+            "y": 77
+          },
+          {
+            "anchor": 1,
+            "y": 100
+          },
+          {
+            "anchor": 0,
+            "y": 75
+          },
+          {
+            "anchor": 1,
+            "y": 51
+          },
+          {
+            "anchor": 0,
+            "y": 75
+          },
+          {
+            "anchor": 1,
+            "y": 100
+          },
+          {
+            "anchor": 0,
+            "y": 73
+          },
+          {
+            "anchor": 1,
+            "y": 46
+          },
+          {
+            "anchor": 0,
+            "y": 73
+          },
+          {
+            "anchor": 1,
+            "y": 100
+          },
+          {
+            "anchor": 0,
+            "y": 72
+          },
+          {
+            "anchor": 1,
+            "y": 45
+          }
+        ]
+      },
+      {
+        "enabled": false,
+        "hzType": 1,
+        "hzGradient": 0,
+        "hz": [
+          10,
+          30
+        ],
+        "times": 0,
+        "stageTime": 19,
+        "stageTotalTime": 0,
+        "metas": [
+          {
+            "anchor": 1,
+            "y": 0
+          },
+          {
+            "anchor": 1,
+            "y": 100
+          }
+        ]
+      },
+      {
+        "enabled": false,
+        "hzType": 1,
+        "hzGradient": 0,
+        "hz": [
+          10,
+          30
+        ],
+        "times": 0,
+        "stageTime": 19,
+        "stageTotalTime": 0,
+        "metas": [
+          {
+            "anchor": 1,
+            "y": 0
+          },
+          {
+            "anchor": 1,
+            "y": 100
+          }
+        ]
+      }
+    ],
+    "stageA": [],
+    "stageB": [],
+    "v3ModelList": null
+  },
+  {
+    "id": "150",
+    "doubleChannel": false,
+    "createDate": "2026-01-07T02:23:03.172Z",
+    "updateDate": "2026-01-07T02:23:03.172Z",
+    "name": "150-磁吸",
+    "duration": 28800,
+    "rate": 1,
+    "restTime": 0,
+    "minRuration": 0,
+    "stageList": [
+      {
+        "enabled": true,
+        "hzType": 1,
+        "hzGradient": 1,
+        "hzMin": 17,
+        "hzMax": 68,
+        "hz": [
+          68,
+          17
+        ],
+        "times": 48,
+        "stageTime": 68,
+        "stageTotalTime": 9600,
+        "metas": [
+          {
+            "anchor": 1,
+            "y": 100
+          },
+          {
+            "anchor": 1,
+            "y": 100
+          }
+        ]
+      },
+      {
+        "enabled": true,
+        "hzType": 1,
+        "hzGradient": 1,
+        "hzMin": 38,
+        "hzMax": 44,
+        "hz": [
+          44,
+          38
+        ],
+        "times": 48,
+        "stageTime": 68,
+        "stageTotalTime": 9600,
+        "metas": [
+          {
+            "anchor": 1,
+            "y": 100
+          },
+          {
+            "anchor": 1,
+            "y": 100
+          }
+        ]
+      },
+      {
+        "enabled": true,
+        "hzType": 1,
+        "hzGradient": 0,
+        "hz": [
+          30,
+          30
+        ],
+        "times": 48,
+        "stageTime": 68,
+        "stageTotalTime": 9600,
+        "metas": [
+          {
+            "anchor": 1,
+            "y": 100
+          },
+          {
+            "anchor": 1,
+            "y": 100
+          }
+        ]
+      }
+    ],
+    "stageA": [],
+    "stageB": [],
+    "v3ModelList": null
+  },
+  {
+    "id": "151",
+    "doubleChannel": false,
+    "createDate": "2026-01-07T02:23:03.173Z",
+    "updateDate": "2026-01-07T02:23:03.173Z",
+    "name": "151-三连冲击",
+    "duration": 9300,
+    "rate": 1,
+    "restTime": 0,
+    "minRuration": 0,
+    "stageList": [
+      {
+        "enabled": true,
+        "hzType": 1,
+        "hzGradient": 1,
+        "hzMin": 17,
+        "hzMax": 27,
+        "hz": [
+          27,
+          17
+        ],
+        "times": 5,
+        "stageTime": 29,
+        "stageTotalTime": 3000,
+        "metas": [
+          {
+            "anchor": 1,
+            "y": 100
+          },
+          {
+            "anchor": 0,
+            "y": 100
+          },
+          {
+            "anchor": 1,
+            "y": 100
+          },
+          {
+            "anchor": 1,
+            "y": 0
+          },
+          {
+            "anchor": 0,
+            "y": 0
+          },
+          {
+            "anchor": 1,
+            "y": 0
+          }
+        ]
+      },
+      {
+        "enabled": true,
+        "hzType": 1,
+        "hzGradient": 0,
+        "hz": [
+          31,
+          38
+        ],
+        "times": 5,
+        "stageTime": 27,
+        "stageTotalTime": 3000,
+        "metas": [
+          {
+            "anchor": 1,
+            "y": 0
+          },
+          {
+            "anchor": 1,
+            "y": 0
+          },
+          {
+            "anchor": 1,
+            "y": 100
+          },
+          {
+            "anchor": 0,
+            "y": 100
+          },
+          {
+            "anchor": 1,
+            "y": 100
+          },
+          {
+            "anchor": 1,
+            "y": 0
+          }
+        ]
+      },
+      {
+        "enabled": true,
+        "hzType": 1,
+        "hzGradient": 0,
+        "hz": [
+          27,
+          30
+        ],
+        "times": 11,
+        "stageTime": 33,
+        "stageTotalTime": 3300,
+        "metas": [
+          {
+            "anchor": 1,
+            "y": 0
+          },
+          {
+            "anchor": 1,
+            "y": 100
+          },
+          {
+            "anchor": 1,
+            "y": 100
+          }
+        ]
+      }
+    ],
+    "stageA": [],
+    "stageB": [],
+    "v3ModelList": null
+  },
+  {
+    "id": "152",
+    "doubleChannel": false,
+    "createDate": "2026-01-07T02:23:03.174Z",
+    "updateDate": "2026-01-07T02:23:03.174Z",
+    "name": "152-大气泡",
+    "duration": 3700,
+    "rate": 1,
+    "restTime": 0,
+    "minRuration": 0,
+    "stageList": [
+      {
+        "enabled": true,
+        "hzType": 3,
+        "hzGradient": 1,
+        "hzMin": 10,
+        "hzMax": 49,
+        "hz": [
+          49,
+          10
+        ],
+        "times": 4,
+        "stageTime": 13,
+        "stageTotalTime": 1600,
+        "metas": [
+          {
+            "anchor": 1,
+            "y": 76
+          },
+          {
+            "anchor": 1,
+            "y": 100
+          },
+          {
+            "anchor": 0,
+            "y": 61
+          },
+          {
+            "anchor": 1,
+            "y": 23
+          }
+        ]
+      },
+      {
+        "enabled": true,
+        "hzType": 1,
+        "hzGradient": 1,
+        "hzMin": 30,
+        "hzMax": 56,
+        "hz": [
+          56,
+          30
+        ],
+        "times": 3,
+        "stageTime": 19,
+        "stageTotalTime": 2100,
+        "metas": [
+          {
+            "anchor": 1,
+            "y": 31
+          },
+          {
+            "anchor": 1,
+            "y": 78
+          },
+          {
+            "anchor": 1,
+            "y": 100
+          },
+          {
+            "anchor": 1,
+            "y": 26
+          },
+          {
+            "anchor": 1,
+            "y": 100
+          },
+          {
+            "anchor": 0,
+            "y": 76
+          },
+          {
+            "anchor": 1,
+            "y": 53
+          }
+        ]
+      },
+      {
+        "enabled": false,
+        "hzType": 1,
+        "hzGradient": 0,
+        "hz": [
+          10,
+          30
+        ],
+        "times": 0,
+        "stageTime": 19,
+        "stageTotalTime": 0,
+        "metas": [
+          {
+            "anchor": 1,
+            "y": 0
+          },
+          {
+            "anchor": 1,
+            "y": 100
+          }
+        ]
+      }
+    ],
+    "stageA": [],
+    "stageB": [],
+    "v3ModelList": null
+  },
+  {
+    "id": "153",
+    "doubleChannel": false,
+    "createDate": "2026-01-07T02:23:03.175Z",
+    "updateDate": "2026-01-07T02:23:03.175Z",
+    "name": "153-正撸",
+    "duration": 1800,
+    "rate": 1,
+    "restTime": 0,
+    "minRuration": 0,
+    "stageList": [
+      {
+        "enabled": true,
+        "hzType": 2,
+        "hzGradient": 0,
+        "hz": [
+          37,
+          62
+        ],
+        "times": 2,
+        "stageTime": 13,
+        "stageTotalTime": 1800,
+        "metas": [
+          {
+            "anchor": 1,
+            "y": 100
+          },
+          {
+            "anchor": 0,
+            "y": 100
+          },
+          {
+            "anchor": 1,
+            "y": 100
+          },
+          {
+            "anchor": 1,
+            "y": 49
+          },
+          {
+            "anchor": 1,
+            "y": 0
+          },
+          {
+            "anchor": 1,
+            "y": 48
+          },
+          {
+            "anchor": 1,
+            "y": 100
+          },
+          {
+            "anchor": 0,
+            "y": 100
+          },
+          {
+            "anchor": 1,
+            "y": 100
+          }
+        ]
+      },
+      {
+        "enabled": false,
+        "hzType": 1,
+        "hzGradient": 1,
+        "hzMin": 30,
+        "hzMax": 56,
+        "hz": [
+          56,
+          30
+        ],
+        "times": 0,
+        "stageTime": 19,
+        "stageTotalTime": 0,
+        "metas": [
+          {
+            "anchor": 1,
+            "y": 31
+          },
+          {
+            "anchor": 1,
+            "y": 78
+          },
+          {
+            "anchor": 1,
+            "y": 100
+          },
+          {
+            "anchor": 1,
+            "y": 26
+          },
+          {
+            "anchor": 1,
+            "y": 100
+          },
+          {
+            "anchor": 0,
+            "y": 76
+          },
+          {
+            "anchor": 1,
+            "y": 53
+          }
+        ]
+      },
+      {
+        "enabled": false,
+        "hzType": 1,
+        "hzGradient": 0,
+        "hz": [
+          10,
+          30
+        ],
+        "times": 0,
+        "stageTime": 19,
+        "stageTotalTime": 0,
+        "metas": [
+          {
+            "anchor": 1,
+            "y": 0
+          },
+          {
+            "anchor": 1,
+            "y": 100
+          }
+        ]
+      }
+    ],
+    "stageA": [],
+    "stageB": [],
+    "v3ModelList": null
+  },
+  {
+    "id": "154",
+    "doubleChannel": false,
+    "createDate": "2026-01-07T02:23:03.176Z",
+    "updateDate": "2026-01-07T02:23:03.176Z",
+    "name": "154-反撸",
+    "duration": 1800,
+    "rate": 1,
+    "restTime": 0,
+    "minRuration": 0,
+    "stageList": [
+      {
+        "enabled": true,
+        "hzType": 2,
+        "hzGradient": 0,
+        "hz": [
+          33,
+          74
+        ],
+        "times": 2,
+        "stageTime": 12,
+        "stageTotalTime": 1800,
+        "metas": [
+          {
+            "anchor": 1,
+            "y": 0
+          },
+          {
+            "anchor": 0,
+            "y": 25
+          },
+          {
+            "anchor": 0,
+            "y": 50
+          },
+          {
+            "anchor": 0,
+            "y": 75
+          },
+          {
+            "anchor": 1,
+            "y": 100
+          },
+          {
+            "anchor": 1,
+            "y": 100
+          },
+          {
+            "anchor": 0,
+            "y": 66
+          },
+          {
+            "anchor": 0,
+            "y": 33
+          },
+          {
+            "anchor": 1,
+            "y": 0
+          }
+        ]
+      },
+      {
+        "enabled": false,
+        "hzType": 2,
+        "hzGradient": 1,
+        "hzMin": 10,
+        "hzMax": 34,
+        "hz": [
+          34,
+          10
+        ],
+        "times": 0,
+        "stageTime": 24,
+        "stageTotalTime": 0,
+        "metas": [
+          {
+            "anchor": 1,
+            "y": 100
+          },
+          {
+            "anchor": 0,
+            "y": 90
+          },
+          {
+            "anchor": 0,
+            "y": 81
+          },
+          {
+            "anchor": 0,
+            "y": 72
+          },
+          {
+            "anchor": 0,
+            "y": 63
+          },
+          {
+            "anchor": 0,
+            "y": 54
+          },
+          {
+            "anchor": 0,
+            "y": 45
+          },
+          {
+            "anchor": 0,
+            "y": 36
+          },
+          {
+            "anchor": 0,
+            "y": 27
+          },
+          {
+            "anchor": 0,
+            "y": 18
+          },
+          {
+            "anchor": 0,
+            "y": 9
+          },
+          {
+            "anchor": 1,
+            "y": 0
+          }
+        ]
+      },
+      {
+        "enabled": false,
+        "hzType": 1,
+        "hzGradient": 0,
+        "hz": [
+          10,
+          30
+        ],
+        "times": 0,
+        "stageTime": 19,
+        "stageTotalTime": 0,
+        "metas": [
+          {
+            "anchor": 1,
+            "y": 0
+          },
+          {
+            "anchor": 1,
+            "y": 100
+          }
+        ]
+      }
+    ],
+    "stageA": [],
+    "stageB": [],
+    "v3ModelList": null
+  },
+  {
+    "id": "155",
+    "doubleChannel": false,
+    "createDate": "2026-01-07T02:23:03.177Z",
+    "updateDate": "2026-01-07T02:23:03.177Z",
+    "name": "155-泡泡浴",
+    "duration": 4000,
+    "rate": 1,
+    "restTime": 0,
+    "minRuration": 0,
+    "stageList": [
+      {
+        "enabled": true,
+        "hzType": 1,
+        "hzGradient": 0,
+        "hz": [
+          33,
+          74
+        ],
+        "times": 4,
+        "stageTime": 32,
+        "stageTotalTime": 4000,
+        "metas": [
+          {
+            "anchor": 1,
+            "y": 0
+          },
+          {
+            "anchor": 1,
+            "y": 100
+          },
+          {
+            "anchor": 1,
+            "y": 0
+          },
+          {
+            "anchor": 1,
+            "y": 100
+          },
+          {
+            "anchor": 1,
+            "y": 0
+          },
+          {
+            "anchor": 1,
+            "y": 100
+          },
+          {
+            "anchor": 1,
+            "y": 0
+          },
+          {
+            "anchor": 1,
+            "y": 100
+          },
+          {
+            "anchor": 1,
+            "y": 0
+          },
+          {
+            "anchor": 1,
+            "y": 100
+          }
+        ]
+      },
+      {
+        "enabled": false,
+        "hzType": 2,
+        "hzGradient": 1,
+        "hzMin": 10,
+        "hzMax": 34,
+        "hz": [
+          34,
+          10
+        ],
+        "times": 0,
+        "stageTime": 24,
+        "stageTotalTime": 0,
+        "metas": [
+          {
+            "anchor": 1,
+            "y": 100
+          },
+          {
+            "anchor": 0,
+            "y": 90
+          },
+          {
+            "anchor": 0,
+            "y": 81
+          },
+          {
+            "anchor": 0,
+            "y": 72
+          },
+          {
+            "anchor": 0,
+            "y": 63
+          },
+          {
+            "anchor": 0,
+            "y": 54
+          },
+          {
+            "anchor": 0,
+            "y": 45
+          },
+          {
+            "anchor": 0,
+            "y": 36
+          },
+          {
+            "anchor": 0,
+            "y": 27
+          },
+          {
+            "anchor": 0,
+            "y": 18
+          },
+          {
+            "anchor": 0,
+            "y": 9
+          },
+          {
+            "anchor": 1,
+            "y": 0
+          }
+        ]
+      },
+      {
+        "enabled": false,
+        "hzType": 1,
+        "hzGradient": 0,
+        "hz": [
+          10,
+          30
+        ],
+        "times": 0,
+        "stageTime": 19,
+        "stageTotalTime": 0,
+        "metas": [
+          {
+            "anchor": 1,
+            "y": 0
+          },
+          {
+            "anchor": 1,
+            "y": 100
+          }
+        ]
+      }
+    ],
+    "stageA": [],
+    "stageB": [],
+    "v3ModelList": null
+  },
+  {
+    "id": "156",
+    "doubleChannel": false,
+    "createDate": "2026-01-07T02:23:03.178Z",
+    "updateDate": "2026-01-07T02:23:03.178Z",
+    "name": "156-推拿",
+    "duration": 3600,
+    "rate": 1,
+    "restTime": 0,
+    "minRuration": 0,
+    "stageList": [
+      {
+        "enabled": true,
+        "hzType": 1,
+        "hzGradient": 0,
+        "hz": [
+          28,
+          62
+        ],
+        "times": 2,
+        "stageTime": 13,
+        "stageTotalTime": 1400,
+        "metas": [
+          {
+            "anchor": 1,
+            "y": 0
+          },
+          {
+            "anchor": 0,
+            "y": 20
+          },
+          {
+            "anchor": 0,
+            "y": 40
+          },
+          {
+            "anchor": 0,
+            "y": 60
+          },
+          {
+            "anchor": 0,
+            "y": 80
+          },
+          {
+            "anchor": 1,
+            "y": 100
+          },
+          {
+            "anchor": 1,
+            "y": 100
+          }
+        ]
+      },
+      {
+        "enabled": true,
+        "hzType": 1,
+        "hzGradient": 1,
+        "hzMin": 36,
+        "hzMax": 43,
+        "hz": [
+          43,
+          36
+        ],
+        "times": 11,
+        "stageTime": 22,
+        "stageTotalTime": 2200,
+        "metas": [
+          {
+            "anchor": 1,
+            "y": 100
+          },
+          {
+            "anchor": 1,
+            "y": 100
+          }
+        ]
+      },
+      {
+        "enabled": false,
+        "hzType": 1,
+        "hzGradient": 0,
+        "hz": [
+          10,
+          30
+        ],
+        "times": 0,
+        "stageTime": 19,
+        "stageTotalTime": 0,
+        "metas": [
+          {
+            "anchor": 1,
+            "y": 0
+          },
+          {
+            "anchor": 1,
+            "y": 100
+          }
+        ]
+      }
+    ],
+    "stageA": [],
+    "stageB": [],
+    "v3ModelList": null
+  },
+  {
+    "id": "157",
+    "doubleChannel": false,
+    "createDate": "2026-01-07T02:23:03.178Z",
+    "updateDate": "2026-01-07T02:23:03.178Z",
+    "name": "157-活塞",
+    "duration": 4300,
+    "rate": 1,
+    "restTime": 0,
+    "minRuration": 0,
+    "stageList": [
+      {
+        "enabled": true,
+        "hzType": 2,
+        "hzGradient": 1,
+        "hzMin": 10,
+        "hzMax": 47,
+        "hz": [
+          47,
+          10
+        ],
+        "times": 1,
+        "stageTime": 0,
+        "stageTotalTime": 1300,
+        "metas": [
+          {
+            "anchor": 1,
+            "y": 0
+          },
+          {
+            "anchor": 0,
+            "y": 18
+          },
+          {
+            "anchor": 0,
+            "y": 36
+          },
+          {
+            "anchor": 1,
+            "y": 55
+          },
+          {
+            "anchor": 0,
+            "y": 70
+          },
+          {
+            "anchor": 0,
+            "y": 85
+          },
+          {
+            "anchor": 1,
+            "y": 100
+          },
+          {
+            "anchor": 0,
+            "y": 93
+          },
+          {
+            "anchor": 0,
+            "y": 87
+          },
+          {
+            "anchor": 0,
+            "y": 81
+          },
+          {
+            "anchor": 0,
+            "y": 74
+          },
+          {
+            "anchor": 0,
+            "y": 68
+          },
+          {
+            "anchor": 1,
+            "y": 62
+          }
+        ]
+      },
+      {
+        "enabled": true,
+        "hzType": 2,
+        "hzGradient": 0,
+        "hz": [
+          35,
+          78
+        ],
+        "times": 15,
+        "stageTime": 29,
+        "stageTotalTime": 3000,
+        "metas": [
+          {
+            "anchor": 1,
+            "y": 79
+          },
+          {
+            "anchor": 1,
+            "y": 78
+          }
+        ]
+      },
+      {
+        "enabled": false,
+        "hzType": 2,
+        "hzGradient": 0,
+        "hz": [
+          34,
+          66
+        ],
+        "times": 0,
+        "stageTime": 28,
+        "stageTotalTime": 0,
+        "metas": [
+          {
+            "anchor": 1,
+            "y": 73
+          },
+          {
+            "anchor": 1,
+            "y": 73
+          }
+        ]
+      }
+    ],
+    "stageA": [],
+    "stageB": [],
+    "v3ModelList": null
+  },
+  {
+    "id": "158",
+    "doubleChannel": false,
+    "createDate": "2026-01-07T02:23:03.179Z",
+    "updateDate": "2026-01-07T02:23:03.179Z",
+    "name": "158-马蹄",
+    "duration": 1000,
+    "rate": 1,
+    "restTime": 0,
+    "minRuration": 0,
+    "stageList": [
+      {
+        "enabled": true,
+        "hzType": 1,
+        "hzGradient": 1,
+        "hzMin": 10,
+        "hzMax": 72,
+        "hz": [
+          72,
+          10
+        ],
+        "times": 1,
+        "stageTime": 0,
+        "stageTotalTime": 1000,
+        "metas": [
+          {
+            "anchor": 1,
+            "y": 0
+          },
+          {
+            "anchor": 0,
+            "y": 50
+          },
+          {
+            "anchor": 1,
+            "y": 100
+          },
+          {
+            "anchor": 0,
+            "y": 100
+          },
+          {
+            "anchor": 1,
+            "y": 100
+          },
+          {
+            "anchor": 1,
+            "y": 0
+          },
+          {
+            "anchor": 0,
+            "y": 50
+          },
+          {
+            "anchor": 1,
+            "y": 100
+          },
+          {
+            "anchor": 0,
+            "y": 100
+          },
+          {
+            "anchor": 1,
+            "y": 100
+          }
+        ]
+      },
+      {
+        "enabled": false,
+        "hzType": 2,
+        "hzGradient": 0,
+        "hz": [
+          35,
+          78
+        ],
+        "times": 0,
+        "stageTime": 29,
+        "stageTotalTime": 0,
+        "metas": [
+          {
+            "anchor": 1,
+            "y": 79
+          },
+          {
+            "anchor": 1,
+            "y": 78
+          }
+        ]
+      },
+      {
+        "enabled": false,
+        "hzType": 2,
+        "hzGradient": 0,
+        "hz": [
+          34,
+          66
+        ],
+        "times": 0,
+        "stageTime": 28,
+        "stageTotalTime": 0,
+        "metas": [
+          {
+            "anchor": 1,
+            "y": 73
+          },
+          {
+            "anchor": 1,
+            "y": 73
+          }
+        ]
+      }
+    ],
+    "stageA": [],
+    "stageB": [],
+    "v3ModelList": null
+  },
+  {
+    "id": "159",
+    "doubleChannel": false,
+    "createDate": "2026-01-07T02:23:03.180Z",
+    "updateDate": "2026-01-07T02:23:03.180Z",
+    "name": "159-螺旋缠绕",
+    "duration": 4500,
+    "rate": 1,
+    "restTime": 0,
+    "minRuration": 0,
+    "stageList": [
+      {
+        "enabled": true,
+        "hzType": 2,
+        "hzGradient": 1,
+        "hzMin": 30,
+        "hzMax": 72,
+        "hz": [
+          72,
+          30
+        ],
+        "times": 5,
+        "stageTime": 45,
+        "stageTotalTime": 4500,
+        "metas": [
+          {
+            "anchor": 1,
+            "y": 0
+          },
+          {
+            "anchor": 1,
+            "y": 11
+          },
+          {
+            "anchor": 1,
+            "y": 26
+          },
+          {
+            "anchor": 1,
+            "y": 42
+          },
+          {
+            "anchor": 1,
+            "y": 57
+          },
+          {
+            "anchor": 1,
+            "y": 100
+          },
+          {
+            "anchor": 0,
+            "y": 100
+          },
+          {
+            "anchor": 1,
+            "y": 100
+          },
+          {
+            "anchor": 1,
+            "y": 0
+          }
+        ]
+      },
+      {
+        "enabled": false,
+        "hzType": 2,
+        "hzGradient": 0,
+        "hz": [
+          35,
+          78
+        ],
+        "times": 0,
+        "stageTime": 29,
+        "stageTotalTime": 0,
+        "metas": [
+          {
+            "anchor": 1,
+            "y": 79
+          },
+          {
+            "anchor": 1,
+            "y": 78
+          }
+        ]
+      },
+      {
+        "enabled": false,
+        "hzType": 2,
+        "hzGradient": 0,
+        "hz": [
+          34,
+          66
+        ],
+        "times": 0,
+        "stageTime": 28,
+        "stageTotalTime": 0,
+        "metas": [
+          {
+            "anchor": 1,
+            "y": 73
+          },
+          {
+            "anchor": 1,
+            "y": 73
+          }
+        ]
+      }
+    ],
+    "stageA": [],
+    "stageB": [],
+    "v3ModelList": null
+  },
+  {
+    "id": "160",
+    "doubleChannel": false,
+    "createDate": "2026-01-07T02:23:03.181Z",
+    "updateDate": "2026-01-07T02:23:03.181Z",
+    "name": "160-左右踩踏",
+    "duration": 2400,
+    "rate": 1,
+    "restTime": 0,
+    "minRuration": 0,
+    "stageList": [
+      {
+        "enabled": true,
+        "hzType": 1,
+        "hzGradient": 1,
+        "hzMin": 14,
+        "hzMax": 29,
+        "hz": [
+          29,
+          14
+        ],
+        "times": 2,
+        "stageTime": 24,
+        "stageTotalTime": 2400,
+        "metas": [
+          {
+            "anchor": 1,
+            "y": 100
+          },
+          {
+            "anchor": 0,
+            "y": 100
+          },
+          {
+            "anchor": 1,
+            "y": 100
+          },
+          {
+            "anchor": 1,
+            "y": 0
+          },
+          {
+            "anchor": 1,
+            "y": 45
+          },
+          {
+            "anchor": 1,
+            "y": 46
+          },
+          {
+            "anchor": 1,
+            "y": 46
+          },
+          {
+            "anchor": 1,
+            "y": 45
+          },
+          {
+            "anchor": 1,
+            "y": 0
+          },
+          {
+            "anchor": 1,
+            "y": 100
+          },
+          {
+            "anchor": 0,
+            "y": 100
+          },
+          {
+            "anchor": 1,
+            "y": 100
+          }
+        ]
+      },
+      {
+        "enabled": false,
+        "hzType": 2,
+        "hzGradient": 0,
+        "hz": [
+          35,
+          78
+        ],
+        "times": 0,
+        "stageTime": 29,
+        "stageTotalTime": 0,
+        "metas": [
+          {
+            "anchor": 1,
+            "y": 79
+          },
+          {
+            "anchor": 1,
+            "y": 78
+          }
+        ]
+      },
+      {
+        "enabled": false,
+        "hzType": 2,
+        "hzGradient": 0,
+        "hz": [
+          34,
+          66
+        ],
+        "times": 0,
+        "stageTime": 28,
+        "stageTotalTime": 0,
+        "metas": [
+          {
+            "anchor": 1,
+            "y": 73
+          },
+          {
+            "anchor": 1,
+            "y": 73
+          }
+        ]
+      }
+    ],
+    "stageA": [],
+    "stageB": [],
+    "v3ModelList": null
+  },
+  {
+    "id": "161",
+    "doubleChannel": false,
+    "createDate": "2026-01-07T02:23:03.182Z",
+    "updateDate": "2026-01-07T02:23:03.182Z",
+    "name": "161-反复摩擦",
+    "duration": 4000,
+    "rate": 1,
+    "restTime": 0,
+    "minRuration": 0,
+    "stageList": [
+      {
+        "enabled": true,
+        "hzType": 3,
+        "hzGradient": 1,
+        "hzMin": 27,
+        "hzMax": 90,
+        "hz": [
+          90,
+          27
+        ],
+        "times": 4,
+        "stageTime": 39,
+        "stageTotalTime": 4000,
+        "metas": [
+          {
+            "anchor": 1,
+            "y": 100
+          },
+          {
+            "anchor": 1,
+            "y": 100
+          },
+          {
+            "anchor": 1,
+            "y": 100
+          },
+          {
+            "anchor": 1,
+            "y": 100
+          },
+          {
+            "anchor": 1,
+            "y": 0
+          },
+          {
+            "anchor": 1,
+            "y": 100
+          },
+          {
+            "anchor": 1,
+            "y": 100
+          },
+          {
+            "anchor": 1,
+            "y": 100
+          },
+          {
+            "anchor": 1,
+            "y": 100
+          },
+          {
+            "anchor": 1,
+            "y": 0
+          }
+        ]
+      },
+      {
+        "enabled": false,
+        "hzType": 2,
+        "hzGradient": 0,
+        "hz": [
+          35,
+          78
+        ],
+        "times": 0,
+        "stageTime": 29,
+        "stageTotalTime": 0,
+        "metas": [
+          {
+            "anchor": 1,
+            "y": 79
+          },
+          {
+            "anchor": 1,
+            "y": 78
+          }
+        ]
+      },
+      {
+        "enabled": false,
+        "hzType": 2,
+        "hzGradient": 0,
+        "hz": [
+          34,
+          66
+        ],
+        "times": 0,
+        "stageTime": 28,
+        "stageTotalTime": 0,
+        "metas": [
+          {
+            "anchor": 1,
+            "y": 73
+          },
+          {
+            "anchor": 1,
+            "y": 73
+          }
+        ]
+      }
+    ],
+    "stageA": [],
+    "stageB": [],
+    "v3ModelList": null
+  },
+  {
+    "id": "162",
+    "doubleChannel": false,
+    "createDate": "2026-01-07T02:23:03.183Z",
+    "updateDate": "2026-01-07T02:23:03.183Z",
+    "name": "162-走马灯",
+    "duration": 4400,
+    "rate": 1,
+    "restTime": 0,
+    "minRuration": 0,
+    "stageList": [
+      {
+        "enabled": true,
+        "hzType": 2,
+        "hzGradient": 0,
+        "hz": [
+          25,
+          62
+        ],
+        "times": 11,
+        "stageTime": 44,
+        "stageTotalTime": 4400,
+        "metas": [
+          {
+            "anchor": 1,
+            "y": 0
+          },
+          {
+            "anchor": 0,
+            "y": 50
+          },
+          {
+            "anchor": 1,
+            "y": 100
+          },
+          {
+            "anchor": 1,
+            "y": 77
+          }
+        ]
+      },
+      {
+        "enabled": false,
+        "hzType": 1,
+        "hzGradient": 0,
+        "hz": [
+          10,
+          30
+        ],
+        "times": 0,
+        "stageTime": 19,
+        "stageTotalTime": 0,
+        "metas": [
+          {
+            "anchor": 1,
+            "y": 0
+          },
+          {
+            "anchor": 1,
+            "y": 100
+          }
+        ]
+      },
+      {
+        "enabled": false,
+        "hzType": 1,
+        "hzGradient": 0,
+        "hz": [
+          10,
+          30
+        ],
+        "times": 0,
+        "stageTime": 19,
+        "stageTotalTime": 0,
+        "metas": [
+          {
+            "anchor": 1,
+            "y": 0
+          },
+          {
+            "anchor": 1,
+            "y": 100
+          }
+        ]
+      }
+    ],
+    "stageA": [],
+    "stageB": [],
+    "v3ModelList": null
+  },
+  {
+    "id": "163",
+    "doubleChannel": false,
+    "createDate": "2026-01-07T02:23:03.184Z",
+    "updateDate": "2026-01-07T02:23:03.184Z",
+    "name": "163-钢珠掉落",
+    "duration": 3600,
+    "rate": 1,
+    "restTime": 0,
+    "minRuration": 0,
+    "stageList": [
+      {
+        "enabled": true,
+        "hzType": 1,
+        "hzGradient": 0,
+        "hz": [
+          28,
+          62
+        ],
+        "times": 2,
+        "stageTime": 13,
+        "stageTotalTime": 1400,
+        "metas": [
+          {
+            "anchor": 1,
+            "y": 0
+          },
+          {
+            "anchor": 0,
+            "y": 20
+          },
+          {
+            "anchor": 0,
+            "y": 40
+          },
+          {
+            "anchor": 0,
+            "y": 60
+          },
+          {
+            "anchor": 0,
+            "y": 80
+          },
+          {
+            "anchor": 1,
+            "y": 100
+          },
+          {
+            "anchor": 1,
+            "y": 100
+          }
+        ]
+      },
+      {
+        "enabled": true,
+        "hzType": 4,
+        "hzGradient": 1,
+        "hzMin": 36,
+        "hzMax": 120,
+        "hz": [
+          120,
+          36
+        ],
+        "times": 11,
+        "stageTime": 22,
+        "stageTotalTime": 2200,
+        "metas": [
+          {
+            "anchor": 1,
+            "y": 100
+          },
+          {
+            "anchor": 1,
+            "y": 100
+          }
+        ]
+      },
+      {
+        "enabled": false,
+        "hzType": 1,
+        "hzGradient": 0,
+        "hz": [
+          10,
+          30
+        ],
+        "times": 0,
+        "stageTime": 19,
+        "stageTotalTime": 0,
+        "metas": [
+          {
+            "anchor": 1,
+            "y": 0
+          },
+          {
+            "anchor": 1,
+            "y": 100
+          }
+        ]
+      }
+    ],
+    "stageA": [],
+    "stageB": [],
+    "v3ModelList": null
+  },
+  {
+    "id": "164",
+    "doubleChannel": false,
+    "createDate": "2026-01-07T02:23:03.184Z",
+    "updateDate": "2026-01-07T02:23:03.184Z",
+    "name": "164-抽拉",
+    "duration": 2700,
+    "rate": 1,
+    "restTime": 0,
+    "minRuration": 0,
+    "stageList": [
+      {
+        "enabled": true,
+        "hzType": 1,
+        "hzGradient": 0,
+        "hz": [
+          37,
+          62
+        ],
+        "times": 3,
+        "stageTime": 20,
+        "stageTotalTime": 2700,
+        "metas": [
+          {
+            "anchor": 1,
+            "y": 100
+          },
+          {
+            "anchor": 1,
+            "y": 3
+          },
+          {
+            "anchor": 0,
+            "y": 19
+          },
+          {
+            "anchor": 0,
+            "y": 35
+          },
+          {
+            "anchor": 0,
+            "y": 51
+          },
+          {
+            "anchor": 0,
+            "y": 67
+          },
+          {
+            "anchor": 0,
+            "y": 83
+          },
+          {
+            "anchor": 1,
+            "y": 100
+          },
+          {
+            "anchor": 1,
+            "y": 100
+          }
+        ]
+      },
+      {
+        "enabled": false,
+        "hzType": 1,
+        "hzGradient": 1,
+        "hzMin": 30,
+        "hzMax": 56,
+        "hz": [
+          56,
+          30
+        ],
+        "times": 0,
+        "stageTime": 19,
+        "stageTotalTime": 0,
+        "metas": [
+          {
+            "anchor": 1,
+            "y": 31
+          },
+          {
+            "anchor": 1,
+            "y": 78
+          },
+          {
+            "anchor": 1,
+            "y": 100
+          },
+          {
+            "anchor": 1,
+            "y": 26
+          },
+          {
+            "anchor": 1,
+            "y": 100
+          },
+          {
+            "anchor": 0,
+            "y": 76
+          },
+          {
+            "anchor": 1,
+            "y": 53
+          }
+        ]
+      },
+      {
+        "enabled": false,
+        "hzType": 1,
+        "hzGradient": 0,
+        "hz": [
+          10,
+          30
+        ],
+        "times": 0,
+        "stageTime": 19,
+        "stageTotalTime": 0,
+        "metas": [
+          {
+            "anchor": 1,
+            "y": 0
+          },
+          {
+            "anchor": 1,
+            "y": 100
+          }
+        ]
+      }
+    ],
+    "stageA": [],
+    "stageB": [],
+    "v3ModelList": null
+  },
+  {
+    "id": "165",
+    "doubleChannel": false,
+    "createDate": "2026-01-07T02:23:03.186Z",
+    "updateDate": "2026-01-07T02:23:03.186Z",
+    "name": "165-颗粒摩擦改",
+    "duration": 2400,
+    "rate": 1,
+    "restTime": 0,
+    "minRuration": 0,
+    "stageList": [
+      {
+        "enabled": true,
+        "hzType": 2,
+        "hzGradient": 0,
+        "hz": [
+          23,
+          48
+        ],
+        "times": 6,
+        "stageTime": 24,
+        "stageTotalTime": 2400,
+        "metas": [
+          {
+            "anchor": 1,
+            "y": 100
+          },
+          {
+            "anchor": 0,
+            "y": 100
+          },
+          {
+            "anchor": 1,
+            "y": 100
+          },
+          {
+            "anchor": 1,
+            "y": 0
+          }
+        ]
+      },
+      {
+        "enabled": false,
+        "hzType": 1,
+        "hzGradient": 0,
+        "hz": [
+          10,
+          30
+        ],
+        "times": 0,
+        "stageTime": 19,
+        "stageTotalTime": 0,
+        "metas": [
+          {
+            "anchor": 1,
+            "y": 0
+          },
+          {
+            "anchor": 1,
+            "y": 100
+          }
+        ]
+      },
+      {
+        "enabled": false,
+        "hzType": 1,
+        "hzGradient": 0,
+        "hz": [
+          10,
+          30
+        ],
+        "times": 0,
+        "stageTime": 19,
+        "stageTotalTime": 0,
+        "metas": [
+          {
+            "anchor": 1,
+            "y": 0
+          },
+          {
+            "anchor": 1,
+            "y": 100
+          }
+        ]
+      }
+    ],
+    "stageA": [],
+    "stageB": [],
+    "v3ModelList": null
+  },
+  {
+    "id": "166",
+    "doubleChannel": false,
+    "createDate": "2026-01-07T02:23:03.186Z",
+    "updateDate": "2026-01-07T02:23:03.186Z",
+    "name": "166-三连击改",
+    "duration": 6600,
+    "rate": 1,
+    "restTime": 0,
+    "minRuration": 0,
+    "stageList": [
+      {
+        "enabled": true,
+        "hzType": 1,
+        "hzGradient": 0,
+        "hz": [
+          49,
+          64
+        ],
+        "times": 5,
+        "stageTime": 30,
+        "stageTotalTime": 3000,
+        "metas": [
+          {
+            "anchor": 1,
+            "y": 100
+          },
+          {
+            "anchor": 0,
+            "y": 100
+          },
+          {
+            "anchor": 1,
+            "y": 100
+          },
+          {
+            "anchor": 1,
+            "y": 0
+          },
+          {
+            "anchor": 0,
+            "y": 0
+          },
+          {
+            "anchor": 1,
+            "y": 0
+          }
+        ]
+      },
+      {
+        "enabled": true,
+        "hzType": 3,
+        "hzGradient": 0,
+        "hz": [
+          38,
+          54
+        ],
+        "times": 6,
+        "stageTime": 32,
+        "stageTotalTime": 3600,
+        "metas": [
+          {
+            "anchor": 1,
+            "y": 100
+          },
+          {
+            "anchor": 1,
+            "y": 100
+          },
+          {
+            "anchor": 1,
+            "y": 100
+          },
+          {
+            "anchor": 1,
+            "y": 0
+          },
+          {
+            "anchor": 1,
+            "y": 0
+          },
+          {
+            "anchor": 1,
+            "y": 0
+          }
+        ]
+      },
+      {
+        "enabled": false,
+        "hzType": 1,
+        "hzGradient": 0,
+        "hz": [
+          27,
+          30
+        ],
+        "times": 0,
+        "stageTime": 33,
+        "stageTotalTime": 0,
+        "metas": [
+          {
+            "anchor": 1,
+            "y": 0
+          },
+          {
+            "anchor": 1,
+            "y": 100
+          },
+          {
+            "anchor": 1,
+            "y": 100
+          }
+        ]
+      }
+    ],
+    "stageA": [],
+    "stageB": [],
+    "v3ModelList": null
+  },
+  {
+    "id": "167",
+    "doubleChannel": false,
+    "createDate": "2026-01-07T02:23:03.187Z",
+    "updateDate": "2026-01-07T02:23:03.187Z",
+    "name": "167-渐进三连击",
+    "duration": 10300,
+    "rate": 1,
+    "restTime": 0,
+    "minRuration": 0,
+    "stageList": [
+      {
+        "enabled": true,
+        "hzType": 1,
+        "hzGradient": 0,
+        "hz": [
+          49,
+          64
+        ],
+        "times": 6,
+        "stageTime": 36,
+        "stageTotalTime": 4200,
+        "metas": [
+          {
+            "anchor": 1,
+            "y": 100
+          },
+          {
+            "anchor": 0,
+            "y": 100
+          },
+          {
+            "anchor": 1,
+            "y": 100
+          },
+          {
+            "anchor": 1,
+            "y": 0
+          },
+          {
+            "anchor": 0,
+            "y": 0
+          },
+          {
+            "anchor": 0,
+            "y": 0
+          },
+          {
+            "anchor": 1,
+            "y": 0
+          }
+        ]
+      },
+      {
+        "enabled": true,
+        "hzType": 1,
+        "hzGradient": 0,
+        "hz": [
+          38,
+          54
+        ],
+        "times": 6,
+        "stageTime": 32,
+        "stageTotalTime": 3600,
+        "metas": [
+          {
+            "anchor": 1,
+            "y": 100
+          },
+          {
+            "anchor": 1,
+            "y": 100
+          },
+          {
+            "anchor": 1,
+            "y": 100
+          },
+          {
+            "anchor": 1,
+            "y": 0
+          },
+          {
+            "anchor": 1,
+            "y": 0
+          },
+          {
+            "anchor": 1,
+            "y": 0
+          }
+        ]
+      },
+      {
+        "enabled": true,
+        "hzType": 1,
+        "hzGradient": 1,
+        "hzMin": 30,
+        "hzMax": 34,
+        "hz": [
+          34,
+          30
+        ],
+        "times": 5,
+        "stageTime": 24,
+        "stageTotalTime": 2500,
+        "metas": [
+          {
+            "anchor": 1,
+            "y": 100
+          },
+          {
+            "anchor": 1,
+            "y": 100
+          },
+          {
+            "anchor": 1,
+            "y": 100
+          },
+          {
+            "anchor": 1,
+            "y": 0
+          },
+          {
+            "anchor": 1,
+            "y": 0
+          }
+        ]
+      }
+    ],
+    "stageA": [],
+    "stageB": [],
+    "v3ModelList": null
+  },
+  {
+    "id": "168",
+    "doubleChannel": false,
+    "createDate": "2026-01-07T02:23:03.188Z",
+    "updateDate": "2026-01-07T02:23:03.188Z",
+    "name": "168-触摸气泡",
+    "duration": 3000,
+    "rate": 1,
+    "restTime": 0,
+    "minRuration": 0,
+    "stageList": [
+      {
+        "enabled": true,
+        "hzType": 1,
+        "hzGradient": 1,
+        "hzMin": 10,
+        "hzMax": 45,
+        "hz": [
+          45,
+          10
+        ],
+        "times": 2,
+        "stageTime": 28,
+        "stageTotalTime": 3000,
+        "metas": [
+          {
+            "anchor": 1,
+            "y": 0
+          },
+          {
+            "anchor": 1,
+            "y": 69
+          },
+          {
+            "anchor": 1,
+            "y": 100
+          },
+          {
+            "anchor": 1,
+            "y": 37
+          },
+          {
+            "anchor": 1,
+            "y": 100
+          },
+          {
+            "anchor": 1,
+            "y": 0
+          },
+          {
+            "anchor": 1,
+            "y": 100
+          },
+          {
+            "anchor": 1,
+            "y": 25
+          },
+          {
+            "anchor": 1,
+            "y": 100
+          },
+          {
+            "anchor": 1,
+            "y": 0
+          },
+          {
+            "anchor": 1,
+            "y": 100
+          },
+          {
+            "anchor": 1,
+            "y": 46
+          },
+          {
+            "anchor": 1,
+            "y": 100
+          },
+          {
+            "anchor": 1,
+            "y": 73
+          },
+          {
+            "anchor": 1,
+            "y": 100
+          }
+        ]
+      },
+      {
+        "enabled": false,
+        "hzType": 1,
+        "hzGradient": 1,
+        "hzMin": 30,
+        "hzMax": 56,
+        "hz": [
+          56,
+          30
+        ],
+        "times": 0,
+        "stageTime": 0,
+        "stageTotalTime": 0,
+        "metas": [
+          {
+            "anchor": 1,
+            "y": 31
+          },
+          {
+            "anchor": 0,
+            "y": 65
+          },
+          {
+            "anchor": 1,
+            "y": 100
+          },
+          {
+            "anchor": 1,
+            "y": 47
+          },
+          {
+            "anchor": 1,
+            "y": 83
+          }
+        ]
+      },
+      {
+        "enabled": false,
+        "hzType": 1,
+        "hzGradient": 0,
+        "hz": [
+          10,
+          30
+        ],
+        "times": 0,
+        "stageTime": 19,
+        "stageTotalTime": 0,
+        "metas": [
+          {
+            "anchor": 1,
+            "y": 0
+          },
+          {
+            "anchor": 1,
+            "y": 100
+          }
+        ]
+      }
+    ],
+    "stageA": [],
+    "stageB": [],
+    "v3ModelList": null
+  },
+  {
+    "id": "169",
+    "doubleChannel": false,
+    "createDate": "2026-01-07T02:23:03.189Z",
+    "updateDate": "2026-01-07T02:23:03.189Z",
+    "name": "169-真触摸气泡",
+    "duration": 3400,
+    "rate": 1,
+    "restTime": 0,
+    "minRuration": 0,
+    "stageList": [
+      {
+        "enabled": true,
+        "hzType": 1,
+        "hzGradient": 1,
+        "hzMin": 17,
+        "hzMax": 43,
+        "hz": [
+          43,
+          17
+        ],
+        "times": 17,
+        "stageTime": 33,
+        "stageTotalTime": 3400,
+        "metas": [
+          {
+            "anchor": 1,
+            "y": 0
+          },
+          {
+            "anchor": 1,
+            "y": 100
+          }
+        ]
+      },
+      {
+        "enabled": false,
+        "hzType": 1,
+        "hzGradient": 1,
+        "hzMin": 38,
+        "hzMax": 50,
+        "hz": [
+          50,
+          38
+        ],
+        "times": 0,
+        "stageTime": 27,
+        "stageTotalTime": 0,
+        "metas": [
+          {
+            "anchor": 1,
+            "y": 16
+          },
+          {
+            "anchor": 1,
+            "y": 74
+          },
+          {
+            "anchor": 1,
+            "y": 100
+          },
+          {
+            "anchor": 1,
+            "y": 17
+          },
+          {
+            "anchor": 1,
+            "y": 100
+          },
+          {
+            "anchor": 1,
+            "y": 63
+          },
+          {
+            "anchor": 1,
+            "y": 34
+          }
+        ]
+      },
+      {
+        "enabled": false,
+        "hzType": 1,
+        "hzGradient": 0,
+        "hz": [
+          10,
+          30
+        ],
+        "times": 0,
+        "stageTime": 19,
+        "stageTotalTime": 0,
+        "metas": [
+          {
+            "anchor": 1,
+            "y": 0
+          },
+          {
+            "anchor": 1,
+            "y": 100
+          }
+        ]
+      }
+    ],
+    "stageA": [],
+    "stageB": [],
+    "v3ModelList": null
+  },
+  {
+    "id": "170",
+    "doubleChannel": false,
+    "createDate": "2026-01-07T02:23:03.189Z",
+    "updateDate": "2026-01-07T02:23:03.189Z",
+    "name": "170-逐漸增大",
+    "duration": 9600,
+    "rate": 1,
+    "restTime": 0,
+    "minRuration": 0,
+    "stageList": [
+      {
+        "enabled": true,
+        "hzType": 4,
+        "hzGradient": 1,
+        "hzMin": 23,
+        "hzMax": 46,
+        "hz": [
+          46,
+          23
+        ],
+        "times": 12,
+        "stageTime": 68,
+        "stageTotalTime": 9600,
+        "metas": [
+          {
+            "anchor": 1,
+            "y": 100
+          },
+          {
+            "anchor": 0,
+            "y": 100
+          },
+          {
+            "anchor": 0,
+            "y": 100
+          },
+          {
+            "anchor": 1,
+            "y": 100
+          },
+          {
+            "anchor": 1,
+            "y": 48
+          },
+          {
+            "anchor": 0,
+            "y": 48
+          },
+          {
+            "anchor": 0,
+            "y": 47
+          },
+          {
+            "anchor": 1,
+            "y": 47
+          }
+        ]
+      },
+      {
+        "enabled": false,
+        "hzType": 2,
+        "hzGradient": 1,
+        "hzMin": 38,
+        "hzMax": 39,
+        "hz": [
+          39,
+          38
+        ],
+        "times": 0,
+        "stageTime": 48,
+        "stageTotalTime": 0,
+        "metas": [
+          {
+            "anchor": 1,
+            "y": 100
+          },
+          {
+            "anchor": 1,
+            "y": 100
+          },
+          {
+            "anchor": 1,
+            "y": 59
+          },
+          {
+            "anchor": 1,
+            "y": 59
+          }
+        ]
+      },
+      {
+        "enabled": false,
+        "hzType": 1,
+        "hzGradient": 0,
+        "hz": [
+          10,
+          30
+        ],
+        "times": 0,
+        "stageTime": 19,
+        "stageTotalTime": 0,
+        "metas": [
+          {
+            "anchor": 1,
+            "y": 0
+          },
+          {
+            "anchor": 1,
+            "y": 100
+          }
+        ]
+      }
+    ],
+    "stageA": [],
+    "stageB": [],
+    "v3ModelList": null
+  },
+  {
+    "id": "171",
+    "doubleChannel": false,
+    "createDate": "2026-01-07T02:23:03.190Z",
+    "updateDate": "2026-01-07T02:23:03.190Z",
+    "name": "171-反復橫跳",
+    "duration": 4000,
+    "rate": 1,
+    "restTime": 0,
+    "minRuration": 0,
+    "stageList": [
+      {
+        "enabled": true,
+        "hzType": 1,
+        "hzGradient": 1,
+        "hzMin": 41,
+        "hzMax": 68,
+        "hz": [
+          68,
+          41
+        ],
+        "times": 2,
+        "stageTime": 28,
+        "stageTotalTime": 4000,
+        "metas": [
+          {
+            "anchor": 1,
+            "y": 0
+          },
+          {
+            "anchor": 0,
+            "y": 20
+          },
+          {
+            "anchor": 0,
+            "y": 40
+          },
+          {
+            "anchor": 0,
+            "y": 60
+          },
+          {
+            "anchor": 0,
+            "y": 80
+          },
+          {
+            "anchor": 1,
+            "y": 100
+          },
+          {
+            "anchor": 0,
+            "y": 100
+          },
+          {
+            "anchor": 0,
+            "y": 100
+          },
+          {
+            "anchor": 0,
+            "y": 100
+          },
+          {
+            "anchor": 0,
+            "y": 100
+          },
+          {
+            "anchor": 0,
+            "y": 100
+          },
+          {
+            "anchor": 0,
+            "y": 100
+          },
+          {
+            "anchor": 0,
+            "y": 100
+          },
+          {
+            "anchor": 0,
+            "y": 100
+          },
+          {
+            "anchor": 0,
+            "y": 100
+          },
+          {
+            "anchor": 0,
+            "y": 100
+          },
+          {
+            "anchor": 0,
+            "y": 100
+          },
+          {
+            "anchor": 0,
+            "y": 100
+          },
+          {
+            "anchor": 0,
+            "y": 100
+          },
+          {
+            "anchor": 1,
+            "y": 100
+          }
+        ]
+      },
+      {
+        "enabled": false,
+        "hzType": 2,
+        "hzGradient": 1,
+        "hzMin": 10,
+        "hzMax": 34,
+        "hz": [
+          34,
+          10
+        ],
+        "times": 0,
+        "stageTime": 24,
+        "stageTotalTime": 0,
+        "metas": [
+          {
+            "anchor": 1,
+            "y": 100
+          },
+          {
+            "anchor": 0,
+            "y": 90
+          },
+          {
+            "anchor": 0,
+            "y": 81
+          },
+          {
+            "anchor": 0,
+            "y": 72
+          },
+          {
+            "anchor": 0,
+            "y": 63
+          },
+          {
+            "anchor": 0,
+            "y": 54
+          },
+          {
+            "anchor": 0,
+            "y": 45
+          },
+          {
+            "anchor": 0,
+            "y": 36
+          },
+          {
+            "anchor": 0,
+            "y": 27
+          },
+          {
+            "anchor": 0,
+            "y": 18
+          },
+          {
+            "anchor": 0,
+            "y": 9
+          },
+          {
+            "anchor": 1,
+            "y": 0
+          }
+        ]
+      },
+      {
+        "enabled": false,
+        "hzType": 1,
+        "hzGradient": 0,
+        "hz": [
+          10,
+          30
+        ],
+        "times": 0,
+        "stageTime": 19,
+        "stageTotalTime": 0,
+        "metas": [
+          {
+            "anchor": 1,
+            "y": 0
+          },
+          {
+            "anchor": 1,
+            "y": 100
+          }
+        ]
+      }
+    ],
+    "stageA": [],
+    "stageB": [],
+    "v3ModelList": null
+  },
+  {
+    "id": "172",
+    "doubleChannel": false,
+    "createDate": "2026-01-07T02:23:03.192Z",
+    "updateDate": "2026-01-07T02:23:03.192Z",
+    "name": "172-持續橫跳",
+    "duration": 600,
+    "rate": 1,
+    "restTime": 0,
+    "minRuration": 0,
+    "stageList": [
+      {
+        "enabled": true,
+        "hzType": 1,
+        "hzGradient": 1,
+        "hzMin": 41,
+        "hzMax": 78,
+        "hz": [
+          78,
+          41
+        ],
+        "times": 3,
+        "stageTime": 5,
+        "stageTotalTime": 600,
+        "metas": [
+          {
+            "anchor": 1,
+            "y": 100
+          },
+          {
+            "anchor": 1,
+            "y": 100
+          }
+        ]
+      },
+      {
+        "enabled": false,
+        "hzType": 2,
+        "hzGradient": 1,
+        "hzMin": 10,
+        "hzMax": 34,
+        "hz": [
+          34,
+          10
+        ],
+        "times": 0,
+        "stageTime": 24,
+        "stageTotalTime": 0,
+        "metas": [
+          {
+            "anchor": 1,
+            "y": 100
+          },
+          {
+            "anchor": 0,
+            "y": 90
+          },
+          {
+            "anchor": 0,
+            "y": 81
+          },
+          {
+            "anchor": 0,
+            "y": 72
+          },
+          {
+            "anchor": 0,
+            "y": 63
+          },
+          {
+            "anchor": 0,
+            "y": 54
+          },
+          {
+            "anchor": 0,
+            "y": 45
+          },
+          {
+            "anchor": 0,
+            "y": 36
+          },
+          {
+            "anchor": 0,
+            "y": 27
+          },
+          {
+            "anchor": 0,
+            "y": 18
+          },
+          {
+            "anchor": 0,
+            "y": 9
+          },
+          {
+            "anchor": 1,
+            "y": 0
+          }
+        ]
+      },
+      {
+        "enabled": false,
+        "hzType": 1,
+        "hzGradient": 0,
+        "hz": [
+          10,
+          30
+        ],
+        "times": 0,
+        "stageTime": 19,
+        "stageTotalTime": 0,
+        "metas": [
+          {
+            "anchor": 1,
+            "y": 0
+          },
+          {
+            "anchor": 1,
+            "y": 100
+          }
+        ]
+      }
+    ],
+    "stageA": [],
+    "stageB": [],
+    "v3ModelList": null
+  },
+  {
+    "id": "173",
+    "doubleChannel": false,
+    "createDate": "2026-01-07T02:23:03.193Z",
+    "updateDate": "2026-01-07T02:23:03.193Z",
+    "name": "173-漸進多段",
+    "duration": 12400,
+    "rate": 1,
+    "restTime": 0,
+    "minRuration": 0,
+    "stageList": [
+      {
+        "enabled": true,
+        "hzType": 4,
+        "hzGradient": 1,
+        "hzMin": 31,
+        "hzMax": 90,
+        "hz": [
+          90,
+          31
+        ],
+        "times": 6,
+        "stageTime": 57,
+        "stageTotalTime": 7200,
+        "metas": [
+          {
+            "anchor": 1,
+            "y": 49
+          },
+          {
+            "anchor": 0,
+            "y": 54
+          },
+          {
+            "anchor": 0,
+            "y": 58
+          },
+          {
+            "anchor": 0,
+            "y": 63
+          },
+          {
+            "anchor": 0,
+            "y": 67
+          },
+          {
+            "anchor": 0,
+            "y": 72
+          },
+          {
+            "anchor": 0,
+            "y": 77
+          },
+          {
+            "anchor": 0,
+            "y": 81
+          },
+          {
+            "anchor": 0,
+            "y": 86
+          },
+          {
+            "anchor": 0,
+            "y": 90
+          },
+          {
+            "anchor": 0,
+            "y": 95
+          },
+          {
+            "anchor": 1,
+            "y": 100
+          }
+        ]
+      },
+      {
+        "enabled": true,
+        "hzType": 1,
+        "hzGradient": 0,
+        "hz": [
+          28,
+          30
+        ],
+        "times": 26,
+        "stageTime": 51,
+        "stageTotalTime": 5200,
+        "metas": [
+          {
+            "anchor": 1,
+            "y": 100
+          },
+          {
+            "anchor": 1,
+            "y": 100
+          }
+        ]
+      },
+      {
+        "enabled": false,
+        "hzType": 1,
+        "hzGradient": 0,
+        "hz": [
+          10,
+          30
+        ],
+        "times": 0,
+        "stageTime": 19,
+        "stageTotalTime": 0,
+        "metas": [
+          {
+            "anchor": 1,
+            "y": 0
+          },
+          {
+            "anchor": 1,
+            "y": 100
+          }
+        ]
+      }
+    ],
+    "stageA": [],
+    "stageB": [],
+    "v3ModelList": null
+  },
+  {
+    "id": "174",
+    "doubleChannel": false,
+    "createDate": "2026-01-07T02:23:03.194Z",
+    "updateDate": "2026-01-07T02:23:03.194Z",
+    "name": "174-三點式",
+    "duration": 500,
+    "rate": 1,
+    "restTime": 0,
+    "minRuration": 0,
+    "stageList": [
+      {
+        "enabled": true,
+        "hzType": 1,
+        "hzGradient": 0,
+        "hz": [
+          40,
+          62
+        ],
+        "times": 1,
+        "stageTime": 0,
+        "stageTotalTime": 500,
+        "metas": [
+          {
+            "anchor": 1,
+            "y": 100
+          },
+          {
+            "anchor": 1,
+            "y": 23
+          },
+          {
+            "anchor": 1,
+            "y": 100
+          },
+          {
+            "anchor": 1,
+            "y": 57
+          },
+          {
+            "anchor": 1,
+            "y": 100
+          }
+        ]
+      },
+      {
+        "enabled": false,
+        "hzType": 1,
+        "hzGradient": 1,
+        "hzMin": 30,
+        "hzMax": 56,
+        "hz": [
+          56,
+          30
+        ],
+        "times": 0,
+        "stageTime": 19,
+        "stageTotalTime": 0,
+        "metas": [
+          {
+            "anchor": 1,
+            "y": 31
+          },
+          {
+            "anchor": 1,
+            "y": 78
+          },
+          {
+            "anchor": 1,
+            "y": 100
+          },
+          {
+            "anchor": 1,
+            "y": 26
+          },
+          {
+            "anchor": 1,
+            "y": 100
+          },
+          {
+            "anchor": 0,
+            "y": 76
+          },
+          {
+            "anchor": 1,
+            "y": 53
+          }
+        ]
+      },
+      {
+        "enabled": false,
+        "hzType": 1,
+        "hzGradient": 0,
+        "hz": [
+          10,
+          30
+        ],
+        "times": 0,
+        "stageTime": 19,
+        "stageTotalTime": 0,
+        "metas": [
+          {
+            "anchor": 1,
+            "y": 0
+          },
+          {
+            "anchor": 1,
+            "y": 100
+          }
+        ]
+      }
+    ],
+    "stageA": [],
+    "stageB": [],
+    "v3ModelList": null
+  },
+  {
+    "id": "175",
+    "doubleChannel": false,
+    "createDate": "2026-01-07T02:23:03.195Z",
+    "updateDate": "2026-01-07T02:23:03.195Z",
+    "name": "175-間歇酥麻",
+    "duration": 11500,
+    "rate": 1,
+    "restTime": 0,
+    "minRuration": 0,
+    "stageList": [
+      {
+        "enabled": true,
+        "hzType": 1,
+        "hzGradient": 1,
+        "hzMin": 23,
+        "hzMax": 45,
+        "hz": [
+          45,
+          23
+        ],
+        "times": 5,
+        "stageTime": 68,
+        "stageTotalTime": 11500,
+        "metas": [
+          {
+            "anchor": 1,
+            "y": 100
+          },
+          {
+            "anchor": 0,
+            "y": 100
+          },
+          {
+            "anchor": 1,
+            "y": 100
+          },
+          {
+            "anchor": 0,
+            "y": 100
+          },
+          {
+            "anchor": 0,
+            "y": 100
+          },
+          {
+            "anchor": 1,
+            "y": 100
+          },
+          {
+            "anchor": 0,
+            "y": 83
+          },
+          {
+            "anchor": 0,
+            "y": 66
+          },
+          {
+            "anchor": 0,
+            "y": 50
+          },
+          {
+            "anchor": 0,
+            "y": 33
+          },
+          {
+            "anchor": 0,
+            "y": 16
+          },
+          {
+            "anchor": 1,
+            "y": 0
+          },
+          {
+            "anchor": 0,
+            "y": 16
+          },
+          {
+            "anchor": 0,
+            "y": 33
+          },
+          {
+            "anchor": 0,
+            "y": 50
+          },
+          {
+            "anchor": 0,
+            "y": 66
+          },
+          {
+            "anchor": 0,
+            "y": 83
+          },
+          {
+            "anchor": 1,
+            "y": 100
+          },
+          {
+            "anchor": 0,
+            "y": 100
+          },
+          {
+            "anchor": 0,
+            "y": 100
+          },
+          {
+            "anchor": 1,
+            "y": 100
+          },
+          {
+            "anchor": 0,
+            "y": 100
+          },
+          {
+            "anchor": 1,
+            "y": 100
+          }
+        ]
+      },
+      {
+        "enabled": false,
+        "hzType": 2,
+        "hzGradient": 1,
+        "hzMin": 38,
+        "hzMax": 39,
+        "hz": [
+          39,
+          38
+        ],
+        "times": 0,
+        "stageTime": 48,
+        "stageTotalTime": 0,
+        "metas": [
+          {
+            "anchor": 1,
+            "y": 100
+          },
+          {
+            "anchor": 1,
+            "y": 100
+          },
+          {
+            "anchor": 1,
+            "y": 59
+          },
+          {
+            "anchor": 1,
+            "y": 59
+          }
+        ]
+      },
+      {
+        "enabled": false,
+        "hzType": 1,
+        "hzGradient": 0,
+        "hz": [
+          10,
+          30
+        ],
+        "times": 0,
+        "stageTime": 19,
+        "stageTotalTime": 0,
+        "metas": [
+          {
+            "anchor": 1,
+            "y": 0
+          },
+          {
+            "anchor": 1,
+            "y": 100
+          }
+        ]
+      }
+    ],
+    "stageA": [],
+    "stageB": [],
+    "v3ModelList": null
+  },
+  {
+    "id": "176",
+    "doubleChannel": false,
+    "createDate": "2026-01-07T02:23:03.196Z",
+    "updateDate": "2026-01-07T02:23:03.196Z",
+    "name": "176-双击式",
+    "duration": 3000,
+    "rate": 1,
+    "restTime": 0,
+    "minRuration": 0,
+    "stageList": [
+      {
+        "enabled": true,
+        "hzType": 2,
+        "hzGradient": 0,
+        "hz": [
+          30,
+          70
+        ],
+        "times": 3,
+        "stageTime": 30,
+        "stageTotalTime": 3000,
+        "metas": [
+          {
+            "anchor": 1,
+            "y": 26
+          },
+          {
+            "anchor": 0,
+            "y": 50
+          },
+          {
+            "anchor": 0,
+            "y": 75
+          },
+          {
+            "anchor": 1,
+            "y": 100
+          },
+          {
+            "anchor": 1,
+            "y": 0
+          },
+          {
+            "anchor": 1,
+            "y": 31
+          },
+          {
+            "anchor": 1,
+            "y": 31
+          },
+          {
+            "anchor": 1,
+            "y": 100
+          },
+          {
+            "anchor": 1,
+            "y": 67
+          },
+          {
+            "anchor": 1,
+            "y": 100
+          }
+        ]
+      },
+      {
+        "enabled": false,
+        "hzType": 1,
+        "hzGradient": 1,
+        "hzMin": 30,
+        "hzMax": 56,
+        "hz": [
+          56,
+          30
+        ],
+        "times": 0,
+        "stageTime": 19,
+        "stageTotalTime": 0,
+        "metas": [
+          {
+            "anchor": 1,
+            "y": 31
+          },
+          {
+            "anchor": 1,
+            "y": 78
+          },
+          {
+            "anchor": 1,
+            "y": 100
+          },
+          {
+            "anchor": 1,
+            "y": 26
+          },
+          {
+            "anchor": 1,
+            "y": 100
+          },
+          {
+            "anchor": 0,
+            "y": 76
+          },
+          {
+            "anchor": 1,
+            "y": 53
+          }
+        ]
+      },
+      {
+        "enabled": false,
+        "hzType": 1,
+        "hzGradient": 0,
+        "hz": [
+          10,
+          30
+        ],
+        "times": 0,
+        "stageTime": 19,
+        "stageTotalTime": 0,
+        "metas": [
+          {
+            "anchor": 1,
+            "y": 0
+          },
+          {
+            "anchor": 1,
+            "y": 100
+          }
+        ]
+      }
+    ],
+    "stageA": [],
+    "stageB": [],
+    "v3ModelList": null
+  },
+  {
+    "id": "177",
+    "doubleChannel": false,
+    "createDate": "2026-01-07T02:23:03.197Z",
+    "updateDate": "2026-01-07T02:23:03.197Z",
+    "name": "177-强推",
+    "duration": 8200,
+    "rate": 1,
+    "restTime": 0,
+    "minRuration": 0,
+    "stageList": [
+      {
+        "enabled": true,
+        "hzType": 2,
+        "hzGradient": 1,
+        "hzMin": 20,
+        "hzMax": 40,
+        "hz": [
+          40,
+          20
+        ],
+        "times": 1,
+        "stageTime": 16,
+        "stageTotalTime": 2000,
+        "metas": [
+          {
+            "anchor": 1,
+            "y": 0
+          },
+          {
+            "anchor": 0,
+            "y": 5
+          },
+          {
+            "anchor": 0,
+            "y": 10
+          },
+          {
+            "anchor": 0,
+            "y": 15
+          },
+          {
+            "anchor": 0,
+            "y": 21
+          },
+          {
+            "anchor": 0,
+            "y": 26
+          },
+          {
+            "anchor": 0,
+            "y": 31
+          },
+          {
+            "anchor": 0,
+            "y": 36
+          },
+          {
+            "anchor": 0,
+            "y": 42
+          },
+          {
+            "anchor": 0,
+            "y": 47
+          },
+          {
+            "anchor": 0,
+            "y": 52
+          },
+          {
+            "anchor": 0,
+            "y": 57
+          },
+          {
+            "anchor": 0,
+            "y": 63
+          },
+          {
+            "anchor": 0,
+            "y": 68
+          },
+          {
+            "anchor": 0,
+            "y": 73
+          },
+          {
+            "anchor": 0,
+            "y": 78
+          },
+          {
+            "anchor": 0,
+            "y": 84
+          },
+          {
+            "anchor": 0,
+            "y": 89
+          },
+          {
+            "anchor": 0,
+            "y": 94
+          },
+          {
+            "anchor": 1,
+            "y": 100
+          }
+        ]
+      },
+      {
+        "enabled": true,
+        "hzType": 1,
+        "hzGradient": 0,
+        "hz": [
+          20,
+          60
+        ],
+        "times": 31,
+        "stageTime": 56,
+        "stageTotalTime": 6200,
+        "metas": [
+          {
+            "anchor": 1,
+            "y": 100
+          },
+          {
+            "anchor": 1,
+            "y": 100
+          }
+        ]
+      },
+      {
+        "enabled": false,
+        "hzType": 1,
+        "hzGradient": 0,
+        "hz": [
+          10,
+          30
+        ],
+        "times": 0,
+        "stageTime": 21,
+        "stageTotalTime": 0,
+        "metas": [
+          {
+            "anchor": 1,
+            "y": 64
+          },
+          {
+            "anchor": 0,
+            "y": 68
+          },
+          {
+            "anchor": 0,
+            "y": 72
+          },
+          {
+            "anchor": 0,
+            "y": 76
+          },
+          {
+            "anchor": 0,
+            "y": 80
+          },
+          {
+            "anchor": 0,
+            "y": 84
+          },
+          {
+            "anchor": 0,
+            "y": 88
+          },
+          {
+            "anchor": 0,
+            "y": 92
+          },
+          {
+            "anchor": 0,
+            "y": 96
+          },
+          {
+            "anchor": 1,
+            "y": 100
+          }
+        ]
+      }
+    ],
+    "stageA": [],
+    "stageB": [],
+    "v3ModelList": null
+  },
+  {
+    "id": "178",
+    "doubleChannel": false,
+    "createDate": "2026-01-07T02:23:03.198Z",
+    "updateDate": "2026-01-07T02:23:03.198Z",
+    "name": "178-足交",
+    "duration": 5000,
+    "rate": 1,
+    "restTime": 0,
+    "minRuration": 0,
+    "stageList": [
+      {
+        "enabled": true,
+        "hzType": 2,
+        "hzGradient": 0,
+        "hz": [
+          20,
+          52
+        ],
+        "times": 2,
+        "stageTime": 26,
+        "stageTotalTime": 5000,
+        "metas": [
+          {
+            "anchor": 1,
+            "y": 0
+          },
+          {
+            "anchor": 0,
+            "y": 16
+          },
+          {
+            "anchor": 0,
+            "y": 33
+          },
+          {
+            "anchor": 0,
+            "y": 50
+          },
+          {
+            "anchor": 0,
+            "y": 66
+          },
+          {
+            "anchor": 0,
+            "y": 83
+          },
+          {
+            "anchor": 1,
+            "y": 100
+          },
+          {
+            "anchor": 0,
+            "y": 77
+          },
+          {
+            "anchor": 1,
+            "y": 55
+          },
+          {
+            "anchor": 1,
+            "y": 0
+          },
+          {
+            "anchor": 1,
+            "y": 0
+          },
+          {
+            "anchor": 1,
+            "y": 100
+          },
+          {
+            "anchor": 0,
+            "y": 100
+          },
+          {
+            "anchor": 0,
+            "y": 100
+          },
+          {
+            "anchor": 0,
+            "y": 100
+          },
+          {
+            "anchor": 0,
+            "y": 100
+          },
+          {
+            "anchor": 0,
+            "y": 100
+          },
+          {
+            "anchor": 0,
+            "y": 100
+          },
+          {
+            "anchor": 0,
+            "y": 100
+          },
+          {
+            "anchor": 0,
+            "y": 100
+          },
+          {
+            "anchor": 0,
+            "y": 100
+          },
+          {
+            "anchor": 0,
+            "y": 100
+          },
+          {
+            "anchor": 0,
+            "y": 100
+          },
+          {
+            "anchor": 0,
+            "y": 100
+          },
+          {
+            "anchor": 1,
+            "y": 100
+          }
+        ]
+      },
+      {
+        "enabled": false,
+        "hzType": 1,
+        "hzGradient": 0,
+        "hz": [
+          24,
+          90
+        ],
+        "times": 0,
+        "stageTime": 37,
+        "stageTotalTime": 0,
+        "metas": [
+          {
+            "anchor": 1,
+            "y": 0
+          },
+          {
+            "anchor": 1,
+            "y": 0
+          },
+          {
+            "anchor": 1,
+            "y": 100
+          },
+          {
+            "anchor": 1,
+            "y": 100
+          },
+          {
+            "anchor": 0,
+            "y": 100
+          },
+          {
+            "anchor": 0,
+            "y": 100
+          },
+          {
+            "anchor": 0,
+            "y": 100
+          },
+          {
+            "anchor": 1,
+            "y": 100
+          }
+        ]
+      },
+      {
+        "enabled": false,
+        "hzType": 1,
+        "hzGradient": 0,
+        "hz": [
+          10,
+          30
+        ],
+        "times": 0,
+        "stageTime": 19,
+        "stageTotalTime": 0,
+        "metas": [
+          {
+            "anchor": 1,
+            "y": 0
+          },
+          {
+            "anchor": 1,
+            "y": 100
+          }
+        ]
+      }
+    ],
+    "stageA": [],
+    "stageB": [],
+    "v3ModelList": null
+  },
+  {
+    "id": "179",
+    "doubleChannel": false,
+    "createDate": "2026-01-07T02:23:03.200Z",
+    "updateDate": "2026-01-07T02:23:03.200Z",
+    "name": "179-磨边",
+    "duration": 24000,
+    "rate": 1,
+    "restTime": 0,
+    "minRuration": 0,
+    "stageList": [
+      {
+        "enabled": true,
+        "hzType": 1,
+        "hzGradient": 1,
+        "hzMin": 19,
+        "hzMax": 34,
+        "hz": [
+          34,
+          19
+        ],
+        "times": 4,
+        "stageTime": 66,
+        "stageTotalTime": 10000,
+        "metas": [
+          {
+            "anchor": 1,
+            "y": 100
+          },
+          {
+            "anchor": 0,
+            "y": 84
+          },
+          {
+            "anchor": 0,
+            "y": 68
+          },
+          {
+            "anchor": 0,
+            "y": 53
+          },
+          {
+            "anchor": 1,
+            "y": 37
+          },
+          {
+            "anchor": 0,
+            "y": 29
+          },
+          {
+            "anchor": 0,
+            "y": 22
+          },
+          {
+            "anchor": 1,
+            "y": 14
+          },
+          {
+            "anchor": 0,
+            "y": 13
+          },
+          {
+            "anchor": 0,
+            "y": 12
+          },
+          {
+            "anchor": 1,
+            "y": 12
+          },
+          {
+            "anchor": 0,
+            "y": 13
+          },
+          {
+            "anchor": 0,
+            "y": 15
+          },
+          {
+            "anchor": 1,
+            "y": 17
+          },
+          {
+            "anchor": 0,
+            "y": 28
+          },
+          {
+            "anchor": 0,
+            "y": 39
+          },
+          {
+            "anchor": 1,
+            "y": 50
+          },
+          {
+            "anchor": 0,
+            "y": 67
+          },
+          {
+            "anchor": 0,
+            "y": 83
+          },
+          {
+            "anchor": 1,
+            "y": 100
+          },
+          {
+            "anchor": 0,
+            "y": 100
+          },
+          {
+            "anchor": 0,
+            "y": 100
+          },
+          {
+            "anchor": 0,
+            "y": 100
+          },
+          {
+            "anchor": 0,
+            "y": 100
+          },
+          {
+            "anchor": 1,
+            "y": 100
+          }
+        ]
+      },
+      {
+        "enabled": true,
+        "hzType": 2,
+        "hzGradient": 0,
+        "hz": [
+          19,
+          41
+        ],
+        "times": 35,
+        "stageTime": 60,
+        "stageTotalTime": 7000,
+        "metas": [
+          {
+            "anchor": 1,
+            "y": 0
+          },
+          {
+            "anchor": 1,
+            "y": 100
+          }
+        ]
+      },
+      {
+        "enabled": true,
+        "hzType": 1,
+        "hzGradient": 0,
+        "hz": [
+          17,
+          30
+        ],
+        "times": 35,
+        "stageTime": 60,
+        "stageTotalTime": 7000,
+        "metas": [
+          {
+            "anchor": 1,
+            "y": 100
+          },
+          {
+            "anchor": 1,
+            "y": 100
+          }
+        ]
+      }
+    ],
+    "stageA": [],
+    "stageB": [],
+    "v3ModelList": null
+  },
+  {
+    "id": "180",
+    "doubleChannel": false,
+    "createDate": "2026-01-07T02:23:03.201Z",
+    "updateDate": "2026-01-07T02:23:03.201Z",
+    "name": "180-123渐快",
+    "duration": 19000,
+    "rate": 1,
+    "restTime": 0,
+    "minRuration": 0,
+    "stageList": [
+      {
+        "enabled": true,
+        "hzType": 1,
+        "hzGradient": 1,
+        "hzMin": 19,
+        "hzMax": 34,
+        "hz": [
+          34,
+          19
+        ],
+        "times": 6,
+        "stageTime": 52,
+        "stageTotalTime": 6000,
+        "metas": [
+          {
+            "anchor": 1,
+            "y": 100
+          },
+          {
+            "anchor": 1,
+            "y": 100
+          },
+          {
+            "anchor": 1,
+            "y": 0
+          },
+          {
+            "anchor": 0,
+            "y": 0
+          },
+          {
+            "anchor": 0,
+            "y": 0
+          },
+          {
+            "anchor": 1,
+            "y": 0
+          },
+          {
+            "anchor": 1,
+            "y": 0
+          },
+          {
+            "anchor": 1,
+            "y": 0
+          },
+          {
+            "anchor": 1,
+            "y": 100
+          },
+          {
+            "anchor": 1,
+            "y": 100
+          }
+        ]
+      },
+      {
+        "enabled": true,
+        "hzType": 1,
+        "hzGradient": 0,
+        "hz": [
+          19,
+          41
+        ],
+        "times": 6,
+        "stageTime": 55,
+        "stageTotalTime": 6000,
+        "metas": [
+          {
+            "anchor": 1,
+            "y": 0
+          },
+          {
+            "anchor": 1,
+            "y": 0
+          },
+          {
+            "anchor": 1,
+            "y": 100
+          },
+          {
+            "anchor": 1,
+            "y": 100
+          },
+          {
+            "anchor": 1,
+            "y": 0
+          },
+          {
+            "anchor": 1,
+            "y": 0
+          },
+          {
+            "anchor": 1,
+            "y": 0
+          },
+          {
+            "anchor": 1,
+            "y": 100
+          },
+          {
+            "anchor": 1,
+            "y": 100
+          },
+          {
+            "anchor": 1,
+            "y": 0
+          }
+        ]
+      },
+      {
+        "enabled": true,
+        "hzType": 1,
+        "hzGradient": 0,
+        "hz": [
+          17,
+          30
+        ],
+        "times": 7,
+        "stageTime": 56,
+        "stageTotalTime": 7000,
+        "metas": [
+          {
+            "anchor": 1,
+            "y": 0
+          },
+          {
+            "anchor": 1,
+            "y": 100
+          },
+          {
+            "anchor": 1,
+            "y": 0
+          },
+          {
+            "anchor": 1,
+            "y": 0
+          },
+          {
+            "anchor": 1,
+            "y": 100
+          },
+          {
+            "anchor": 1,
+            "y": 100
+          },
+          {
+            "anchor": 1,
+            "y": 0
+          },
+          {
+            "anchor": 1,
+            "y": 0
+          },
+          {
+            "anchor": 1,
+            "y": 100
+          },
+          {
+            "anchor": 1,
+            "y": 0
+          }
+        ]
+      }
+    ],
+    "stageA": [],
+    "stageB": [],
+    "v3ModelList": null
+  },
+  {
+    "id": "183",
+    "doubleChannel": false,
+    "createDate": "2026-01-07T02:23:03.202Z",
+    "updateDate": "2026-01-07T02:23:03.202Z",
+    "name": "183-时钟",
+    "duration": 2400,
+    "rate": 1,
+    "restTime": 0,
+    "minRuration": 0,
+    "stageList": [
+      {
+        "enabled": true,
+        "hzType": 1,
+        "hzGradient": 1,
+        "hzMin": 35,
+        "hzMax": 1000,
+        "hz": [
+          1000,
+          35
+        ],
+        "times": 6,
+        "stageTime": 24,
+        "stageTotalTime": 2400,
+        "metas": [
+          {
+            "anchor": 1,
+            "y": 100
+          },
+          {
+            "anchor": 1,
+            "y": 34
+          },
+          {
+            "anchor": 0,
+            "y": 67
+          },
+          {
+            "anchor": 1,
+            "y": 100
+          }
+        ]
+      },
+      {
+        "enabled": false,
+        "hzType": 1,
+        "hzGradient": 0,
+        "hz": [
+          10,
+          30
+        ],
+        "times": 0,
+        "stageTime": 19,
+        "stageTotalTime": 0,
+        "metas": [
+          {
+            "anchor": 1,
+            "y": 0
+          },
+          {
+            "anchor": 1,
+            "y": 100
+          }
+        ]
+      },
+      {
+        "enabled": false,
+        "hzType": 1,
+        "hzGradient": 0,
+        "hz": [
+          10,
+          30
+        ],
+        "times": 0,
+        "stageTime": 19,
+        "stageTotalTime": 0,
+        "metas": [
+          {
+            "anchor": 1,
+            "y": 0
+          },
+          {
+            "anchor": 1,
+            "y": 100
+          }
+        ]
+      }
+    ],
+    "stageA": [],
+    "stageB": [],
+    "v3ModelList": null
+  },
+  {
+    "id": "184",
+    "doubleChannel": false,
+    "createDate": "2026-01-07T02:23:03.203Z",
+    "updateDate": "2026-01-07T02:23:03.203Z",
+    "name": "184-拨弄",
+    "duration": 5400,
+    "rate": 1,
+    "restTime": 0,
+    "minRuration": 0,
+    "stageList": [
+      {
+        "enabled": true,
+        "hzType": 4,
+        "hzGradient": 1,
+        "hzMin": 28,
+        "hzMax": 74,
+        "hz": [
+          74,
+          28
+        ],
+        "times": 6,
+        "stageTime": 48,
+        "stageTotalTime": 5400,
+        "metas": [
+          {
+            "anchor": 1,
+            "y": 40
+          },
+          {
+            "anchor": 0,
+            "y": 60
+          },
+          {
+            "anchor": 0,
+            "y": 80
+          },
+          {
+            "anchor": 1,
+            "y": 100
+          },
+          {
+            "anchor": 1,
+            "y": 12
+          },
+          {
+            "anchor": 1,
+            "y": 100
+          },
+          {
+            "anchor": 0,
+            "y": 81
+          },
+          {
+            "anchor": 0,
+            "y": 62
+          },
+          {
+            "anchor": 1,
+            "y": 43
+          }
+        ]
+      },
+      {
+        "enabled": false,
+        "hzType": 2,
+        "hzGradient": 1,
+        "hzMin": 38,
+        "hzMax": 39,
+        "hz": [
+          39,
+          38
+        ],
+        "times": 0,
+        "stageTime": 48,
+        "stageTotalTime": 0,
+        "metas": [
+          {
+            "anchor": 1,
+            "y": 100
+          },
+          {
+            "anchor": 1,
+            "y": 100
+          },
+          {
+            "anchor": 1,
+            "y": 59
+          },
+          {
+            "anchor": 1,
+            "y": 59
+          }
+        ]
+      },
+      {
+        "enabled": false,
+        "hzType": 1,
+        "hzGradient": 0,
+        "hz": [
+          10,
+          30
+        ],
+        "times": 0,
+        "stageTime": 19,
+        "stageTotalTime": 0,
+        "metas": [
+          {
+            "anchor": 1,
+            "y": 0
+          },
+          {
+            "anchor": 1,
+            "y": 100
+          }
+        ]
+      }
+    ],
+    "stageA": [],
+    "stageB": [],
+    "v3ModelList": null
+  },
+  {
+    "id": "185",
+    "doubleChannel": false,
+    "createDate": "2026-01-07T02:23:03.204Z",
+    "updateDate": "2026-01-07T02:23:03.204Z",
+    "name": "185-往复推油",
+    "duration": 14500,
+    "rate": 1,
+    "restTime": 0,
+    "minRuration": 0,
+    "stageList": [
+      {
+        "enabled": true,
+        "hzType": 1,
+        "hzGradient": 0,
+        "hz": [
+          40,
+          64
+        ],
+        "times": 3,
+        "stageTime": 28,
+        "stageTotalTime": 3000,
+        "metas": [
+          {
+            "anchor": 1,
+            "y": 0
+          },
+          {
+            "anchor": 0,
+            "y": 11
+          },
+          {
+            "anchor": 0,
+            "y": 22
+          },
+          {
+            "anchor": 0,
+            "y": 33
+          },
+          {
+            "anchor": 0,
+            "y": 44
+          },
+          {
+            "anchor": 0,
+            "y": 55
+          },
+          {
+            "anchor": 0,
+            "y": 66
+          },
+          {
+            "anchor": 0,
+            "y": 77
+          },
+          {
+            "anchor": 0,
+            "y": 88
+          },
+          {
+            "anchor": 1,
+            "y": 100
+          }
+        ]
+      },
+      {
+        "enabled": true,
+        "hzType": 1,
+        "hzGradient": 0,
+        "hz": [
+          20,
+          54
+        ],
+        "times": 5,
+        "stageTime": 25,
+        "stageTotalTime": 2500,
+        "metas": [
+          {
+            "anchor": 1,
+            "y": 0
+          },
+          {
+            "anchor": 0,
+            "y": 25
+          },
+          {
+            "anchor": 0,
+            "y": 50
+          },
+          {
+            "anchor": 0,
+            "y": 75
+          },
+          {
+            "anchor": 1,
+            "y": 100
+          }
+        ]
+      },
+      {
+        "enabled": true,
+        "hzType": 1,
+        "hzGradient": 0,
+        "hz": [
+          15,
+          30
+        ],
+        "times": 15,
+        "stageTime": 29,
+        "stageTotalTime": 3000,
+        "metas": [
+          {
+            "anchor": 1,
+            "y": 100
+          },
+          {
+            "anchor": 1,
+            "y": 100
+          }
+        ]
+      },
+      {
+        "enabled": true,
+        "hzType": 1,
+        "hzGradient": 1,
+        "hzMin": 10,
+        "hzMax": 20,
+        "hz": [
+          20,
+          10
+        ],
+        "times": 6,
+        "stageTime": 27,
+        "stageTotalTime": 3000,
+        "metas": [
+          {
+            "anchor": 1,
+            "y": 100
+          },
+          {
+            "anchor": 0,
+            "y": 75
+          },
+          {
+            "anchor": 0,
+            "y": 50
+          },
+          {
+            "anchor": 0,
+            "y": 25
+          },
+          {
+            "anchor": 1,
+            "y": 0
+          }
+        ]
+      },
+      {
+        "enabled": true,
+        "hzType": 1,
+        "hzGradient": 1,
+        "hzMin": 10,
+        "hzMax": 40,
+        "hz": [
+          40,
+          10
+        ],
+        "times": 3,
+        "stageTime": 29,
+        "stageTotalTime": 3000,
+        "metas": [
+          {
+            "anchor": 1,
+            "y": 100
+          },
+          {
+            "anchor": 0,
+            "y": 88
+          },
+          {
+            "anchor": 0,
+            "y": 77
+          },
+          {
+            "anchor": 0,
+            "y": 66
+          },
+          {
+            "anchor": 0,
+            "y": 55
+          },
+          {
+            "anchor": 0,
+            "y": 44
+          },
+          {
+            "anchor": 0,
+            "y": 33
+          },
+          {
+            "anchor": 0,
+            "y": 22
+          },
+          {
+            "anchor": 0,
+            "y": 11
+          },
+          {
+            "anchor": 1,
+            "y": 0
+          }
+        ]
+      }
+    ],
+    "stageA": [],
+    "stageB": [],
+    "v3ModelList": null
+  },
+  {
+    "id": "186",
+    "doubleChannel": false,
+    "createDate": "2026-01-07T02:23:03.205Z",
+    "updateDate": "2026-01-07T02:23:03.205Z",
+    "name": "186-重叠",
+    "duration": 84800,
+    "rate": 1,
+    "restTime": 0,
+    "minRuration": 0,
+    "stageList": [
+      {
+        "enabled": true,
+        "hzType": 1,
+        "hzGradient": 1,
+        "hzMin": 30,
+        "hzMax": 38,
+        "hz": [
+          38,
+          30
+        ],
+        "times": 20,
+        "stageTime": 39,
+        "stageTotalTime": 4000,
+        "metas": [
+          {
+            "anchor": 1,
+            "y": 100
+          },
+          {
+            "anchor": 1,
+            "y": 100
+          }
+        ]
+      },
+      {
+        "enabled": true,
+        "hzType": 1,
+        "hzGradient": 1,
+        "hzMin": 10,
+        "hzMax": 41,
+        "hz": [
+          41,
+          10
+        ],
+        "times": 7,
+        "stageTime": 35,
+        "stageTotalTime": 3500,
+        "metas": [
+          {
+            "anchor": 1,
+            "y": 0
+          },
+          {
+            "anchor": 0,
+            "y": 50
+          },
+          {
+            "anchor": 1,
+            "y": 100
+          },
+          {
+            "anchor": 0,
+            "y": 50
+          },
+          {
+            "anchor": 1,
+            "y": 0
+          }
+        ]
+      },
+      {
+        "enabled": true,
+        "hzType": 1,
+        "hzGradient": 1,
+        "hzMin": 10,
+        "hzMax": 45,
+        "hz": [
+          45,
+          10
+        ],
+        "times": 5,
+        "stageTime": 37,
+        "stageTotalTime": 4000,
+        "metas": [
+          {
+            "anchor": 1,
+            "y": 0
+          },
+          {
+            "anchor": 0,
+            "y": 33
+          },
+          {
+            "anchor": 0,
+            "y": 66
+          },
+          {
+            "anchor": 1,
+            "y": 100
+          },
+          {
+            "anchor": 1,
+            "y": 100
+          },
+          {
+            "anchor": 0,
+            "y": 66
+          },
+          {
+            "anchor": 0,
+            "y": 33
+          },
+          {
+            "anchor": 1,
+            "y": 0
+          }
+        ]
+      },
+      {
+        "enabled": true,
+        "hzType": 1,
+        "hzGradient": 1,
+        "hzMin": 10,
+        "hzMax": 38,
+        "hz": [
+          38,
+          10
+        ],
+        "times": 4,
+        "stageTime": 37,
+        "stageTotalTime": 4400,
+        "metas": [
+          {
+            "anchor": 1,
+            "y": 0
+          },
+          {
+            "anchor": 0,
+            "y": 25
+          },
+          {
+            "anchor": 0,
+            "y": 50
+          },
+          {
+            "anchor": 0,
+            "y": 75
+          },
+          {
+            "anchor": 1,
+            "y": 100
+          },
+          {
+            "anchor": 1,
+            "y": 100
+          },
+          {
+            "anchor": 1,
+            "y": 100
+          },
+          {
+            "anchor": 0,
+            "y": 75
+          },
+          {
+            "anchor": 0,
+            "y": 50
+          },
+          {
+            "anchor": 0,
+            "y": 25
+          },
+          {
+            "anchor": 1,
+            "y": 0
+          }
+        ]
+      },
+      {
+        "enabled": true,
+        "hzType": 1,
+        "hzGradient": 1,
+        "hzMin": 10,
+        "hzMax": 40,
+        "hz": [
+          40,
+          10
+        ],
+        "times": 3,
+        "stageTime": 35,
+        "stageTotalTime": 4500,
+        "metas": [
+          {
+            "anchor": 1,
+            "y": 0
+          },
+          {
+            "anchor": 0,
+            "y": 20
+          },
+          {
+            "anchor": 0,
+            "y": 40
+          },
+          {
+            "anchor": 0,
+            "y": 60
+          },
+          {
+            "anchor": 0,
+            "y": 80
+          },
+          {
+            "anchor": 1,
+            "y": 100
+          },
+          {
+            "anchor": 0,
+            "y": 100
+          },
+          {
+            "anchor": 0,
+            "y": 100
+          },
+          {
+            "anchor": 0,
+            "y": 100
+          },
+          {
+            "anchor": 1,
+            "y": 100
+          },
+          {
+            "anchor": 0,
+            "y": 80
+          },
+          {
+            "anchor": 0,
+            "y": 60
+          },
+          {
+            "anchor": 0,
+            "y": 40
+          },
+          {
+            "anchor": 0,
+            "y": 20
+          },
+          {
+            "anchor": 1,
+            "y": 0
+          }
+        ]
+      },
+      {
+        "enabled": true,
+        "hzType": 1,
+        "hzGradient": 1,
+        "hzMin": 10,
+        "hzMax": 41,
+        "hz": [
+          41,
+          10
+        ],
+        "times": 4,
+        "stageTime": 54,
+        "stageTotalTime": 7200,
+        "metas": [
+          {
+            "anchor": 1,
+            "y": 0
+          },
+          {
+            "anchor": 0,
+            "y": 16
+          },
+          {
+            "anchor": 0,
+            "y": 33
+          },
+          {
+            "anchor": 0,
+            "y": 50
+          },
+          {
+            "anchor": 0,
+            "y": 66
+          },
+          {
+            "anchor": 0,
+            "y": 83
+          },
+          {
+            "anchor": 1,
+            "y": 100
+          },
+          {
+            "anchor": 0,
+            "y": 100
+          },
+          {
+            "anchor": 0,
+            "y": 100
+          },
+          {
+            "anchor": 0,
+            "y": 100
+          },
+          {
+            "anchor": 0,
+            "y": 100
+          },
+          {
+            "anchor": 1,
+            "y": 100
+          },
+          {
+            "anchor": 0,
+            "y": 83
+          },
+          {
+            "anchor": 0,
+            "y": 66
+          },
+          {
+            "anchor": 0,
+            "y": 50
+          },
+          {
+            "anchor": 0,
+            "y": 33
+          },
+          {
+            "anchor": 0,
+            "y": 16
+          },
+          {
+            "anchor": 1,
+            "y": 0
+          }
+        ]
+      },
+      {
+        "enabled": true,
+        "hzType": 1,
+        "hzGradient": 1,
+        "hzMin": 10,
+        "hzMax": 40,
+        "hz": [
+          40,
+          10
+        ],
+        "times": 12,
+        "stageTime": 80,
+        "stageTotalTime": 24000,
+        "metas": [
+          {
+            "anchor": 1,
+            "y": 0
+          },
+          {
+            "anchor": 0,
+            "y": 16
+          },
+          {
+            "anchor": 0,
+            "y": 33
+          },
+          {
+            "anchor": 0,
+            "y": 50
+          },
+          {
+            "anchor": 0,
+            "y": 66
+          },
+          {
+            "anchor": 0,
+            "y": 83
+          },
+          {
+            "anchor": 1,
+            "y": 100
+          },
+          {
+            "anchor": 0,
+            "y": 100
+          },
+          {
+            "anchor": 0,
+            "y": 100
+          },
+          {
+            "anchor": 0,
+            "y": 100
+          },
+          {
+            "anchor": 0,
+            "y": 100
+          },
+          {
+            "anchor": 0,
+            "y": 100
+          },
+          {
+            "anchor": 1,
+            "y": 100
+          },
+          {
+            "anchor": 0,
+            "y": 85
+          },
+          {
+            "anchor": 0,
+            "y": 71
+          },
+          {
+            "anchor": 0,
+            "y": 57
+          },
+          {
+            "anchor": 0,
+            "y": 42
+          },
+          {
+            "anchor": 0,
+            "y": 28
+          },
+          {
+            "anchor": 0,
+            "y": 14
+          },
+          {
+            "anchor": 1,
+            "y": 0
+          }
+        ]
+      },
+      {
+        "enabled": true,
+        "hzType": 2,
+        "hzGradient": 0,
+        "hz": [
+          40,
+          42
+        ],
+        "times": 4,
+        "stageTime": 60,
+        "stageTotalTime": 8800,
+        "metas": [
+          {
+            "anchor": 1,
+            "y": 0
+          },
+          {
+            "anchor": 0,
+            "y": 16
+          },
+          {
+            "anchor": 0,
+            "y": 33
+          },
+          {
+            "anchor": 0,
+            "y": 50
+          },
+          {
+            "anchor": 0,
+            "y": 66
+          },
+          {
+            "anchor": 0,
+            "y": 83
+          },
+          {
+            "anchor": 1,
+            "y": 100
+          },
+          {
+            "anchor": 0,
+            "y": 100
+          },
+          {
+            "anchor": 0,
+            "y": 100
+          },
+          {
+            "anchor": 0,
+            "y": 100
+          },
+          {
+            "anchor": 0,
+            "y": 100
+          },
+          {
+            "anchor": 0,
+            "y": 100
+          },
+          {
+            "anchor": 0,
+            "y": 100
+          },
+          {
+            "anchor": 1,
+            "y": 100
+          },
+          {
+            "anchor": 0,
+            "y": 87
+          },
+          {
+            "anchor": 0,
+            "y": 75
+          },
+          {
+            "anchor": 0,
+            "y": 62
+          },
+          {
+            "anchor": 0,
+            "y": 50
+          },
+          {
+            "anchor": 0,
+            "y": 37
+          },
+          {
+            "anchor": 0,
+            "y": 25
+          },
+          {
+            "anchor": 0,
+            "y": 12
+          },
+          {
+            "anchor": 1,
+            "y": 0
+          }
+        ]
+      },
+      {
+        "enabled": true,
+        "hzType": 2,
+        "hzGradient": 0,
+        "hz": [
+          42,
+          48
+        ],
+        "times": 4,
+        "stageTime": 69,
+        "stageTotalTime": 12000,
+        "metas": [
+          {
+            "anchor": 1,
+            "y": 0
+          },
+          {
+            "anchor": 0,
+            "y": 11
+          },
+          {
+            "anchor": 0,
+            "y": 22
+          },
+          {
+            "anchor": 0,
+            "y": 33
+          },
+          {
+            "anchor": 0,
+            "y": 44
+          },
+          {
+            "anchor": 0,
+            "y": 55
+          },
+          {
+            "anchor": 0,
+            "y": 66
+          },
+          {
+            "anchor": 0,
+            "y": 77
+          },
+          {
+            "anchor": 0,
+            "y": 88
+          },
+          {
+            "anchor": 1,
+            "y": 100
+          },
+          {
+            "anchor": 0,
+            "y": 100
+          },
+          {
+            "anchor": 0,
+            "y": 100
+          },
+          {
+            "anchor": 0,
+            "y": 100
+          },
+          {
+            "anchor": 0,
+            "y": 100
+          },
+          {
+            "anchor": 0,
+            "y": 100
+          },
+          {
+            "anchor": 0,
+            "y": 100
+          },
+          {
+            "anchor": 0,
+            "y": 100
+          },
+          {
+            "anchor": 0,
+            "y": 100
+          },
+          {
+            "anchor": 1,
+            "y": 100
+          },
+          {
+            "anchor": 0,
+            "y": 90
+          },
+          {
+            "anchor": 0,
+            "y": 81
+          },
+          {
+            "anchor": 0,
+            "y": 72
+          },
+          {
+            "anchor": 0,
+            "y": 63
+          },
+          {
+            "anchor": 0,
+            "y": 54
+          },
+          {
+            "anchor": 0,
+            "y": 45
+          },
+          {
+            "anchor": 0,
+            "y": 36
+          },
+          {
+            "anchor": 0,
+            "y": 27
+          },
+          {
+            "anchor": 0,
+            "y": 18
+          },
+          {
+            "anchor": 0,
+            "y": 9
+          },
+          {
+            "anchor": 1,
+            "y": 0
+          }
+        ]
+      },
+      {
+        "enabled": true,
+        "hzType": 2,
+        "hzGradient": 1,
+        "hzMin": 38,
+        "hzMax": 48,
+        "hz": [
+          48,
+          38
+        ],
+        "times": 4,
+        "stageTime": 68,
+        "stageTotalTime": 12400,
+        "metas": [
+          {
+            "anchor": 1,
+            "y": 0
+          },
+          {
+            "anchor": 0,
+            "y": 10
+          },
+          {
+            "anchor": 0,
+            "y": 20
+          },
+          {
+            "anchor": 0,
+            "y": 30
+          },
+          {
+            "anchor": 0,
+            "y": 40
+          },
+          {
+            "anchor": 0,
+            "y": 50
+          },
+          {
+            "anchor": 0,
+            "y": 60
+          },
+          {
+            "anchor": 0,
+            "y": 70
+          },
+          {
+            "anchor": 0,
+            "y": 80
+          },
+          {
+            "anchor": 0,
+            "y": 90
+          },
+          {
+            "anchor": 1,
+            "y": 100
+          },
+          {
+            "anchor": 0,
+            "y": 100
+          },
+          {
+            "anchor": 0,
+            "y": 100
+          },
+          {
+            "anchor": 0,
+            "y": 100
+          },
+          {
+            "anchor": 0,
+            "y": 100
+          },
+          {
+            "anchor": 0,
+            "y": 100
+          },
+          {
+            "anchor": 0,
+            "y": 100
+          },
+          {
+            "anchor": 0,
+            "y": 100
+          },
+          {
+            "anchor": 0,
+            "y": 100
+          },
+          {
+            "anchor": 0,
+            "y": 100
+          },
+          {
+            "anchor": 1,
+            "y": 100
+          },
+          {
+            "anchor": 0,
+            "y": 90
+          },
+          {
+            "anchor": 0,
+            "y": 80
+          },
+          {
+            "anchor": 0,
+            "y": 70
+          },
+          {
+            "anchor": 0,
+            "y": 60
+          },
+          {
+            "anchor": 0,
+            "y": 50
+          },
+          {
+            "anchor": 0,
+            "y": 40
+          },
+          {
+            "anchor": 0,
+            "y": 30
+          },
+          {
+            "anchor": 0,
+            "y": 20
+          },
+          {
+            "anchor": 0,
+            "y": 10
+          },
+          {
+            "anchor": 1,
+            "y": 0
+          }
+        ]
+      }
+    ],
+    "stageA": [],
+    "stageB": [],
+    "v3ModelList": null
+  },
+  {
+    "id": "187",
+    "doubleChannel": false,
+    "createDate": "2026-01-07T02:23:03.210Z",
+    "updateDate": "2026-01-07T02:23:03.210Z",
+    "name": "187-瘦身",
+    "duration": 19500,
+    "rate": 1,
+    "restTime": 0,
+    "minRuration": 0,
+    "stageList": [
+      {
+        "enabled": true,
+        "hzType": 1,
+        "hzGradient": 1,
+        "hzMin": 30,
+        "hzMax": 100,
+        "hz": [
+          100,
+          30
+        ],
+        "times": 20,
+        "stageTime": 39,
+        "stageTotalTime": 4000,
+        "metas": [
+          {
+            "anchor": 1,
+            "y": 100
+          },
+          {
+            "anchor": 1,
+            "y": 100
+          }
+        ]
+      },
+      {
+        "enabled": true,
+        "hzType": 1,
+        "hzGradient": 1,
+        "hzMin": 10,
+        "hzMax": 200,
+        "hz": [
+          200,
+          10
+        ],
+        "times": 19,
+        "stageTime": 38,
+        "stageTotalTime": 3800,
+        "metas": [
+          {
+            "anchor": 1,
+            "y": 65
+          },
+          {
+            "anchor": 1,
+            "y": 65
+          }
+        ]
+      },
+      {
+        "enabled": true,
+        "hzType": 1,
+        "hzGradient": 1,
+        "hzMin": 10,
+        "hzMax": 29,
+        "hz": [
+          29,
+          10
+        ],
+        "times": 19,
+        "stageTime": 37,
+        "stageTotalTime": 3800,
+        "metas": [
+          {
+            "anchor": 1,
+            "y": 100
+          },
+          {
+            "anchor": 1,
+            "y": 100
+          }
+        ]
+      },
+      {
+        "enabled": true,
+        "hzType": 1,
+        "hzGradient": 1,
+        "hzMin": 10,
+        "hzMax": 300,
+        "hz": [
+          300,
+          10
+        ],
+        "times": 13,
+        "stageTime": 39,
+        "stageTotalTime": 3900,
+        "metas": [
+          {
+            "anchor": 1,
+            "y": 0
+          },
+          {
+            "anchor": 1,
+            "y": 0
+          },
+          {
+            "anchor": 1,
+            "y": 100
+          }
+        ]
+      },
+      {
+        "enabled": true,
+        "hzType": 1,
+        "hzGradient": 1,
+        "hzMin": 10,
+        "hzMax": 30,
+        "hz": [
+          30,
+          10
+        ],
+        "times": 20,
+        "stageTime": 40,
+        "stageTotalTime": 4000,
+        "metas": [
+          {
+            "anchor": 1,
+            "y": 100
+          },
+          {
+            "anchor": 1,
+            "y": 100
+          }
+        ]
+      }
+    ],
+    "stageA": [],
+    "stageB": [],
+    "v3ModelList": null
+  },
+  {
+    "id": "188",
+    "doubleChannel": false,
+    "createDate": "2026-01-07T02:23:03.211Z",
+    "updateDate": "2026-01-07T02:23:03.211Z",
+    "name": "188-锤击",
+    "duration": 18000,
+    "rate": 1,
+    "restTime": 10,
+    "minRuration": 0,
+    "stageList": [
+      {
+        "enabled": true,
+        "hzType": 1,
+        "hzGradient": 1,
+        "hzMin": 30,
+        "hzMax": 400,
+        "hz": [
+          400,
+          30
+        ],
+        "times": 25,
+        "stageTime": 49,
+        "stageTotalTime": 5000,
+        "metas": [
+          {
+            "anchor": 1,
+            "y": 100
+          },
+          {
+            "anchor": 1,
+            "y": 100
+          }
+        ]
+      },
+      {
+        "enabled": true,
+        "hzType": 2,
+        "hzGradient": 1,
+        "hzMin": 66,
+        "hzMax": 200,
+        "hz": [
+          200,
+          66
+        ],
+        "times": 15,
+        "stageTime": 29,
+        "stageTotalTime": 3000,
+        "metas": [
+          {
+            "anchor": 1,
+            "y": 30
+          },
+          {
+            "anchor": 1,
+            "y": 70
+          }
+        ]
+      },
+      {
+        "enabled": true,
+        "hzType": 1,
+        "hzGradient": 1,
+        "hzMin": 10,
+        "hzMax": 160,
+        "hz": [
+          160,
+          10
+        ],
+        "times": 10,
+        "stageTime": 47,
+        "stageTotalTime": 5000,
+        "metas": [
+          {
+            "anchor": 1,
+            "y": 0
+          },
+          {
+            "anchor": 1,
+            "y": 0
+          },
+          {
+            "anchor": 1,
+            "y": 100
+          },
+          {
+            "anchor": 1,
+            "y": 0
+          },
+          {
+            "anchor": 1,
+            "y": 100
+          }
+        ]
+      },
+      {
+        "enabled": true,
+        "hzType": 1,
+        "hzGradient": 1,
+        "hzMin": 10,
+        "hzMax": 100,
+        "hz": [
+          100,
+          10
+        ],
+        "times": 25,
+        "stageTime": 49,
+        "stageTotalTime": 5000,
+        "metas": [
+          {
+            "anchor": 1,
+            "y": 100
+          },
+          {
+            "anchor": 1,
+            "y": 100
+          }
+        ]
+      }
+    ],
+    "stageA": [],
+    "stageB": [],
+    "v3ModelList": null
+  },
+  {
+    "id": "189",
+    "doubleChannel": false,
+    "createDate": "2026-01-07T02:23:03.212Z",
+    "updateDate": "2026-01-07T02:23:03.212Z",
+    "name": "189-火罐",
+    "duration": 42000,
+    "rate": 1,
+    "restTime": 15,
+    "minRuration": 0,
+    "stageList": [
+      {
+        "enabled": true,
+        "hzType": 1,
+        "hzGradient": 1,
+        "hzMin": 30,
+        "hzMax": 35,
+        "hz": [
+          35,
+          30
+        ],
+        "times": 70,
+        "stageTime": 73,
+        "stageTotalTime": 14000,
+        "metas": [
+          {
+            "anchor": 1,
+            "y": 100
+          },
+          {
+            "anchor": 1,
+            "y": 100
+          }
+        ]
+      },
+      {
+        "enabled": true,
+        "hzType": 1,
+        "hzGradient": 1,
+        "hzMin": 10,
+        "hzMax": 40,
+        "hz": [
+          40,
+          10
+        ],
+        "times": 70,
+        "stageTime": 73,
+        "stageTotalTime": 14000,
+        "metas": [
+          {
+            "anchor": 1,
+            "y": 60
+          },
+          {
+            "anchor": 1,
+            "y": 60
+          }
+        ]
+      },
+      {
+        "enabled": true,
+        "hzType": 1,
+        "hzGradient": 1,
+        "hzMin": 10,
+        "hzMax": 60,
+        "hz": [
+          60,
+          10
+        ],
+        "times": 70,
+        "stageTime": 73,
+        "stageTotalTime": 14000,
+        "metas": [
+          {
+            "anchor": 1,
+            "y": 100
+          },
+          {
+            "anchor": 1,
+            "y": 100
+          }
+        ]
+      }
+    ],
+    "stageA": [],
+    "stageB": [],
+    "v3ModelList": null
+  },
+  {
+    "id": "191",
+    "doubleChannel": false,
+    "createDate": "2026-01-07T02:23:03.213Z",
+    "updateDate": "2026-01-07T02:23:03.213Z",
+    "name": "191-强烈挤奶",
+    "duration": 2600,
+    "rate": 1,
+    "restTime": 0,
+    "minRuration": 0,
+    "stageList": [
+      {
+        "enabled": true,
+        "hzType": 1,
+        "hzGradient": 0,
+        "hz": [
+          45,
+          140
+        ],
+        "times": 1,
+        "stageTime": 9,
+        "stageTotalTime": 1200,
+        "metas": [
+          {
+            "anchor": 1,
+            "y": 90
+          },
+          {
+            "anchor": 0,
+            "y": 83
+          },
+          {
+            "anchor": 0,
+            "y": 76
+          },
+          {
+            "anchor": 0,
+            "y": 69
+          },
+          {
+            "anchor": 0,
+            "y": 62
+          },
+          {
+            "anchor": 1,
+            "y": 55
+          },
+          {
+            "anchor": 1,
+            "y": 85
+          },
+          {
+            "anchor": 0,
+            "y": 79
+          },
+          {
+            "anchor": 0,
+            "y": 73
+          },
+          {
+            "anchor": 0,
+            "y": 67
+          },
+          {
+            "anchor": 0,
+            "y": 61
+          },
+          {
+            "anchor": 1,
+            "y": 55
+          }
+        ]
+      },
+      {
+        "enabled": true,
+        "hzType": 1,
+        "hzGradient": 0,
+        "hz": [
+          10,
+          10
+        ],
+        "times": 7,
+        "stageTime": 13,
+        "stageTotalTime": 1400,
+        "metas": [
+          {
+            "anchor": 1,
+            "y": 100
+          },
+          {
+            "anchor": 1,
+            "y": 100
+          }
+        ]
+      },
+      {
+        "enabled": false,
+        "hzType": 1,
+        "hzGradient": 0,
+        "hz": [
+          10,
+          30
+        ],
+        "times": 0,
+        "stageTime": 19,
+        "stageTotalTime": 0,
+        "metas": [
+          {
+            "anchor": 1,
+            "y": 0
+          },
+          {
+            "anchor": 1,
+            "y": 100
+          }
+        ]
+      }
+    ],
+    "stageA": [],
+    "stageB": [],
+    "v3ModelList": null
+  }
+]
