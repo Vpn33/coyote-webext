@@ -27,7 +27,7 @@
                     <div class="form-item">
                         <label class="form-item-label">A:</label>
                         <el-slider id="aPowerLimitSlider" v-model="aPowerLimit" :min="0" :max="200"
-                            :disabled="!bleConnected" @input="onAPowerLimitChange" show-input :input-size="'mini'"
+                            :disabled="!bleReady" @input="onAPowerLimitChange" show-input :input-size="'mini'"
                             :show-input-controls="false" class="slider" />
                     </div>
                 </el-col>
@@ -35,7 +35,7 @@
                     <div class="form-item">
                         <label class="form-item-label">B:</label>
                         <el-slider id="bPowerLimitSlider" v-model="bPowerLimit" :min="0" :max="200"
-                            :disabled="!bleConnected" @input="onBPowerLimitChange" show-input :input-size="'mini'"
+                            :disabled="!bleReady" @input="onBPowerLimitChange" show-input :input-size="'mini'"
                             :show-input-controls="false" class="slider" />
                     </div>
                 </el-col>
@@ -49,18 +49,20 @@
             <div class="card mb-3">
                 <div class="card-header">
                     <span>电源强度</span>
+                    <el-switch v-model="powerSame" inactive-text="AB单独" active-text="AB相等">
+                    </el-switch>
                 </div>
                 <el-row :gutter="20">
                     <el-col :span="12">
                         <div class="d-flex align-items-center">
                             <label class="small mr-2">A:</label>
                             <div class="power-inline d-flex justify-content-center">
-                                <el-button id="aDecreaseBtn" size="mini" type="info" :disabled="!bleConnected"
+                                <el-button id="aDecreaseBtn" size="mini" type="info" :disabled="!bleReady"
                                     @click="adjustStrength('A', -1)">-</el-button>
                                 <span id="strengthA" class="font-weight-bold mx-2">{{ strengthA }}</span>
-                                <el-button id="aIncreaseBtn" size="mini" type="info" :disabled="!bleConnected"
+                                <el-button id="aIncreaseBtn" size="mini" type="info" :disabled="!bleReady"
                                     @click="adjustStrength('A', 1)">+</el-button>
-                                <el-button id="aZeroBtn" size="mini" type="warning" :disabled="!bleConnected"
+                                <el-button id="aZeroBtn" size="mini" type="warning" :disabled="!bleReady"
                                     @click="strengthZero('A')">归零</el-button>
                             </div>
                         </div>
@@ -69,12 +71,12 @@
                         <div class="d-flex align-items-center">
                             <label class="small mr-2">B:</label>
                             <div class="power-inline d-flex justify-content-center">
-                                <el-button id="bDecreaseBtn" size="mini" type="info" :disabled="!bleConnected"
+                                <el-button id="bDecreaseBtn" size="mini" type="info" :disabled="!bleReady"
                                     @click="adjustStrength('B', -1)">-</el-button>
                                 <span id="strengthB" class="font-weight-bold mx-2">{{ strengthB }}</span>
-                                <el-button id="bIncreaseBtn" size="mini" type="info" :disabled="!bleConnected"
+                                <el-button id="bIncreaseBtn" size="mini" type="info" :disabled="!bleReady"
                                     @click="adjustStrength('B', 1)">+</el-button>
-                                <el-button id="bZeroBtn" size="mini" type="warning" :disabled="!bleConnected"
+                                <el-button id="bZeroBtn" size="mini" type="warning" :disabled="!bleReady"
                                     @click="strengthZero('B')">归零</el-button>
                             </div>
                         </div>
@@ -92,7 +94,7 @@
                         <div class="form-item">
                             <label class="form-item-label">A:</label>
                             <el-slider id="aFreqBalanceSlider" v-model="aFreqBalance" :min="0" :max="255"
-                                :disabled="!bleConnected" @input="onAFreqBalanceChange" show-input :input-size="'mini'"
+                                :disabled="!bleReady" @input="onAFreqBalanceChange" show-input :input-size="'mini'"
                                 :show-input-controls="false" class="slider" />
                         </div>
                     </el-col>
@@ -100,7 +102,7 @@
                         <div class="form-item">
                             <label class="form-item-label">B:</label>
                             <el-slider id="bFreqBalanceSlider" v-model="bFreqBalance" :min="0" :max="255"
-                                :disabled="!bleConnected" @input="onBFreqBalanceChange" show-input :input-size="'mini'"
+                                :disabled="!bleReady" @input="onBFreqBalanceChange" show-input :input-size="'mini'"
                                 :show-input-controls="false" class="slider" />
                         </div>
                     </el-col>
@@ -117,16 +119,16 @@
                         <div class="form-item">
                             <label class="form-item-label">A:</label>
                             <el-slider id="aIntensityBalanceSlider" v-model="aIntensityBalance" :min="0" :max="255"
-                                :disabled="!bleConnected" @input="onAIntensityBalanceChange" show-input
-                                :input-size="'mini'" :show-input-controls="false" class="slider" />
+                                :disabled="!bleReady" @input="onAIntensityBalanceChange" show-input :input-size="'mini'"
+                                :show-input-controls="false" class="slider" />
                         </div>
                     </el-col>
                     <el-col :span="12">
                         <div class="form-item">
                             <label class="form-item-label">B:</label>
                             <el-slider id="bIntensityBalanceSlider" v-model="bIntensityBalance" :min="0" :max="255"
-                                :disabled="!bleConnected" @input="onBIntensityBalanceChange" show-input
-                                :input-size="'mini'" :show-input-controls="false" class="slider" />
+                                :disabled="!bleReady" @input="onBIntensityBalanceChange" show-input :input-size="'mini'"
+                                :show-input-controls="false" class="slider" />
                         </div>
                     </el-col>
                 </el-row>
@@ -139,7 +141,22 @@
                 <div class="card-header">
                     <span>播放组件</span>
                 </div>
-                <el-tabs v-model="activeName" type="card">
+
+                <div class="charter-content">
+                    <el-switch class="charter-switch" v-model="showCharter" active-text="显示图像" inactive-text="关闭图像"
+                        active-color="#F9E49C" @change="toggleCharter"></el-switch>
+                    <div v-if="showCharter" class="charter-items">
+                        <div class="charter-item">
+                            <div id="channel-a-chart" class="charter-canvas">
+                            </div>
+                        </div>
+                        <div class="charter-item">
+                            <div id="channel-b-chart" class="charter-canvas">
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <el-tabs v-model="activeName" type="border-card">
                     <el-tab-pane label="普通波形" name="normal">
                         <!-- 波形频率 -->
                         <div class="card mb-3">
@@ -151,7 +168,7 @@
                                     <div class="form-item">
                                         <label class="form-item-label">A:</label>
                                         <el-slider id="aWaveFreq1" v-model="aWaveFreq1" :min="10" :max="1000"
-                                            :disabled="!bleConnected" @input="onAWaveFreq1Change" show-input
+                                            :disabled="!bleReady" @input="onAWaveFreq1Change" show-input
                                             :input-size="'mini'" :show-input-controls="false" class="slider" />
                                     </div>
                                 </el-col>
@@ -159,7 +176,7 @@
                                     <div class="form-item">
                                         <label class="form-item-label">B:</label>
                                         <el-slider id="bWaveFreq1" v-model="bWaveFreq1" :min="10" :max="1000"
-                                            :disabled="!bleConnected" @input="onBWaveFreq1Change" show-input
+                                            :disabled="!bleReady" @input="onBWaveFreq1Change" show-input
                                             :input-size="'mini'" :show-input-controls="false" class="slider" />
                                     </div>
                                 </el-col>
@@ -174,7 +191,7 @@
                                     <div class="form-item">
                                         <label class="form-item-label">A:</label>
                                         <el-slider id="aWaveIntensity1" v-model="aWaveIntensity1" :min="0" :max="100"
-                                            :disabled="!bleConnected" @input="onAWaveIntensity1Change" show-input
+                                            :disabled="!bleReady" @input="onAWaveIntensity1Change" show-input
                                             :input-size="'mini'" :show-input-controls="false" class="slider" />
                                     </div>
                                 </el-col>
@@ -182,7 +199,7 @@
                                     <div class="form-item">
                                         <label class="form-item-label">B:</label>
                                         <el-slider id="bWaveIntensity1" v-model="bWaveIntensity1" :min="0" :max="100"
-                                            :disabled="!bleConnected" @input="onBWaveIntensity1Change" show-input
+                                            :disabled="!bleReady" @input="onBWaveIntensity1Change" show-input
                                             :input-size="'mini'" :show-input-controls="false" class="slider" />
                                     </div>
                                 </el-col>
@@ -191,7 +208,7 @@
                         <el-row :gutter="20">
                             <el-col :span="24">
                                 <el-button id="nomalPlayBtn" type="primary" :plain="!isNomalPlaySending" size="small"
-                                    style="width: 100%" :disabled="!bleConnected" @click="toggleNomalPlay">
+                                    style="width: 100%" :disabled="!bleReady" @click="toggleNomalPlay">
                                     {{ isNomalPlaySending ? '停止播放' : '开始播放' }}
                                 </el-button>
                             </el-col>
@@ -282,30 +299,47 @@
                             </el-col>
                         </el-row>
                     </el-tab-pane>
-                    <div class="charter-content">
-                        <el-switch class="charter-switch" v-model="showCharter" active-text="显示图像" inactive-text="关闭图像"
-                            active-color="#F9E49C" @change="toggleCharter"></el-switch>
-                        <div v-if="showCharter" class="charter-items">
-                            <div class="charter-item">
-                                <div id="channel-a-chart" class="charter-canvas">
-                                </div>
+                    <el-tab-pane label="漫画脚本" name="playManga">
+                        <div v-if="playManga">
+                            <el-button type="primary" size="small" @click="closePlayMangaPage">
+                                关闭脚本
+                            </el-button>
+                            <div class="play-manga-info">
+                                <span>漫画ID：{{ playManga.bookId }}</span>
+                                <span>漫画名称：{{ playManga.bookName }}</span>
+                                <el-table :data="playManga.scriptList" border :row-class-name="playMangaTableRowActive"
+                                    @row-dblclick="playMangaPage">
+                                    <el-table-column prop="pageNo" label="页码" min-width="10%">
+                                    </el-table-column>
+                                    <el-table-column prop="scriptContent" label="脚本内容"
+                                        class-name="script-content-column">
+                                    </el-table-column>
+                                </el-table>
                             </div>
-                            <div class="charter-item">
-                                <div id="channel-b-chart" class="charter-canvas">
-                                </div>
-                            </div>
+
                         </div>
-                    </div>
+                        <div v-else>
+                            当前暂无脚本
+                            <el-button type="primary" size="small" @click="loadTestScript">
+                                加载默认
+                            </el-button>
+                        </div>
+                    </el-tab-pane>
                 </el-tabs>
 
-
-                <el-row :gutter="20">
+                <el-row :gutter="20" class="wave-btns">
                     <el-col :span="24">
                         <el-button type="primary" size="small" @click="openWaveSaver">
                             波形编辑器
                         </el-button>
                         <el-button type="primary" size="small" @click="openCtrlItemList">
                             波形列表
+                        </el-button>
+                        <el-button type="success" size="small" @click="openMangaScriptEditor">
+                            漫画脚本编辑器
+                        </el-button>
+                        <el-button type="success" size="small" @click="openMangaScriptList">
+                            漫画脚本列表
                         </el-button>
                     </el-col>
                 </el-row>
@@ -343,6 +377,7 @@ export default {
     },
     data() {
         return {
+            tabId: null,
             activeName: 'playlist',
             // 蓝牙设备常量
             BATTERY_SERVICE_UUID: '0000180a-0000-1000-8000-00805f9b34fb',
@@ -363,6 +398,7 @@ export default {
             batteryLevel: '未知',
             strengthA: 0,
             strengthB: 0,
+            powerSame: true,  // 是否AB通道电源强度相等
             previousChannelAPower: 0, // 上一次的A通道电源强度
             previousChannelBPower: 0, // 上一次的B通道电源强度
 
@@ -410,9 +446,9 @@ export default {
             nomalPlayTimer: null,
             nomalPlayCache: [],
             generateDataBatchTimer: null,
-            sendBatchSize: 10, // 每次从波形队列获取x条数据
-            generateNomalPlayInterval: 5000, // 每隔X毫秒生成一批默认数据 这个值不能小于channelPlayTime * 1000 当前最小值是5秒
-            generateNomalPlayShakeDelay: 6000, // 每隔X毫秒生成一批X毫秒的数据 这个值最后的波形数据时间 要至少大于generateNomalPlayInterval 1秒，避免不连续的问题
+            generateNomalPlayInterval: 5000, // 这个参数只给 每隔X毫秒生成一批默认数据 这个值不能小于channelPlayTime * 1000 当前最小值是5秒
+            generatePlayBatchIng: false, // 是否正在生成播放批次
+            generateNomalPlayShakeDelay: 5000, // 每隔X毫秒生成一批X毫秒的数据 这个值最后的波形数据时间 要至少大于generateNomalPlayInterval 1秒，避免不连续的问题
             tmpSendData: null, // 上次发送波形的数据
 
             // V3指令相关状态管理
@@ -489,25 +525,40 @@ export default {
                 pw: [], // 电源强度数据
                 wa: []  // 波形数据
             },
-            waCacheMaxCnt: 4000, // 波形图像缓存最大项
-            pwCacheMaxCnt: 400, // 电源图像缓存最大项
-            waChartMaxCnt: 200, // 波形图像显示最大项
-            pwChartMaxCnt: 20, // 电源图像显示最大项
+            waCacheMaxCnt: 500, // 波形图像缓存最大项
+            pwCacheMaxCnt: 200, // 电源图像缓存最大项
+            waChartMaxCnt: 500, // 波形图像显示最大项
+            pwChartMaxCnt: 100, // 电源图像显示最大项
+
+            playManga: null, // 当前播放的漫画脚本
+            playMangaCurrentPageNo: '2', // 当前播放的漫画脚本页码
+            flatPowerIntensity: {
+                a: null, // A通道电源强度
+                b: null, // B通道电源强度
+            }, // 上次播放的漫画脚本电源强度
+            flatPowerIntensityInv: null,
+            tempPlayerInfo: null, // 临时播放器信息
         };
+    },
+    computed: {
+        bleReady() {
+            return this.bleConnected === true || this.testConnectBLE === true;
+        },
     },
     methods: {
         clearLogArea() {
             document.getElementById('logArea').innerHTML = '';
         },
         playChannelWave(channelType, channelRow) {
-            if (channelType === 'A') {
+            if (channelType === 'A' || channelType === 'both') {
                 this.aChannelPlayIdx = _.findIndex(this.aChannelList, item => item.id === channelRow.id);
                 // 如果A通道正在播放中
                 if (this.aChannelPlaying) {
                     // 重置A通道播放时间
                     this.channelAPlayTime = 0;
                 }
-            } else {
+            }
+            if (channelType === 'B' || channelType === 'both') {
                 this.bChannelPlayIdx = _.findIndex(this.bChannelList, item => item.id === channelRow.id);
                 // 如果B通道正在播放中
                 if (this.bChannelPlaying) {
@@ -519,11 +570,8 @@ export default {
             // 清空缓存并重新生成波形数据
             this.clearCacheRegenerate();
         },
-        setActiveChannelType(channelType) {
-            this.activeChannelType = channelType;
-        },
         openSelectWavesList(channelType) {
-            this.setActiveChannelType(channelType);
+            this.activeChannelType = channelType;
             this.$refs.channelWaveList.openChannelWaveListDialog(channelType === 'A' ? this.aChannelList.map(item => item.id) : this.bChannelList.map(item => item.id));
         },
         getCheckedWaveList(waveList) {
@@ -532,9 +580,9 @@ export default {
             } else {
                 this.bChannelList = waveList;
             }
-            this.saveChcekedWaveIds();
+            this.saveCheckedWaveIds();
         },
-        saveChcekedWaveIds() {
+        saveCheckedWaveIds() {
             MyStorage.saveCheckedWaveIds({
                 a: this.aChannelList.map(item => item.id),
                 b: this.bChannelList.map(item => item.id),
@@ -554,7 +602,7 @@ export default {
                 }
                 this.bChannelList = this.bChannelList.filter(item => item.id !== channelRow.id);
             }
-            this.saveChcekedWaveIds();
+            this.saveCheckedWaveIds();
         },
         // 显示连接提示
         showConnectionAlert(message) {
@@ -1032,14 +1080,22 @@ export default {
 
         // 调节强度
         adjustStrength(channel, value) {
+            // 如果正在自动平滑处理电源强度变化，就先清除计时器 手动点击处理强度最优先
+            this.clearFlatPowerIntensity();
             // 计算新的强度值，强度范围0-100
             let newA = this.strengthA;
             let newB = this.strengthB;
 
             if (channel === 'A') {
                 newA = Math.max(0, Math.min(100, this.strengthA + value));
+                if (this.powerSame === true) {
+                    newB = newA;
+                }
             } else if (channel === 'B') {
                 newB = Math.max(0, Math.min(100, this.strengthB + value));
+                if (this.powerSame === true) {
+                    newA = newB;
+                }
             }
 
             // 更新显示
@@ -1054,10 +1110,8 @@ export default {
 
         // 强度归零
         strengthZero(channel) {
-            if (!this.writeCharacteristic) {
-                this.log('设备未连接或未就绪，无法发送归零命令');
-                return Promise.reject('设备未连接或未就绪');
-            }
+            // 如果正在自动平滑处理电源强度变化，就先清除计时器
+            this.clearFlatPowerIntensity();
 
             // 根据通道参数确定要设置的值
             let newA = this.deviceStrengthValueA;
@@ -1065,10 +1119,17 @@ export default {
 
             if (channel === 'A') {
                 newA = 0;
-                this.log('准备发送A通道强度归零命令');
+                if (this.powerSame === true) {
+                    newB = 0;
+                }
             } else if (channel === 'B') {
                 newB = 0;
-                this.log('准备发送B通道强度归零命令');
+                if (this.powerSame === true) {
+                    newA = 0;
+                }
+            } else if (channel === 'both') {
+                newA = 0;
+                newB = 0;
             }
 
             // 使用sendStrengthCommand来单独设置通道强度
@@ -1078,16 +1139,20 @@ export default {
                     // 更新UI显示
                     if (channel === 'A') {
                         this.strengthA = 0;
+                        if (this.powerSame === true) {
+                            this.strengthB = 0;
+                        }
                     } else if (channel === 'B') {
                         this.strengthB = 0;
+                        if (this.powerSame === true) {
+                            this.strengthA = 0;
+                        }
                     }
                 });
         },
 
         // 发送强度命令
         sendStrengthCommand(newA, newB) {
-            // 这里可以实现发送强度命令的逻辑
-            // 暂时使用sendBLEData作为占位
             return this.sendBLEData(newA, newB);
         },
         generateNomalPlayBatch() {
@@ -1120,6 +1185,8 @@ export default {
                 // 创建buffer的副本并添加到缓存
                 this.nomalPlayCache.push(buffer);
             }
+            // 启动批量发送
+            this.startBatchDataSend();
         },
 
         clearCacheRegenerate() {
@@ -1333,19 +1400,6 @@ export default {
             // 立即生成一批默认数据
             this.generateNomalPlayBatch();
 
-            // 设置定时器，每5秒生成一批数据
-            this.nomalPlayTimer = setInterval(() => {
-                if (!this.isNomalPlaySending || this.nomalPlayTimer === null) {
-                    clearInterval(this.nomalPlayTimer);
-                    return;
-                }
-                // 生成一批默认数据
-                this.generateNomalPlayBatch();
-            }, this.generateNomalPlayInterval);
-
-            // 启动批量发送
-            this.startBatchDataSend();
-
             this.log('开始播放波形数据');
         },
 
@@ -1367,11 +1421,18 @@ export default {
             }
         },
         getNomalPlayFromCache() {
+            // 每次取队列中的数据量  减去10 是避免抖动延迟时间带来的影响 每次留存1秒的数据
+            let batchSize = this.nomalPlayCache.length - 10;
+
             // 从缓存中获取需要发送的X条数据
-            return this.nomalPlayCache.splice(0, this.sendBatchSize);
+            return this.nomalPlayCache.splice(0, batchSize);
         },
         startBatchDataSend() {
             if (!this.writeCharacteristic && !this.testConnectBLE) {
+                return;
+            }
+            // 如果两条通道都没有在播放 则不发送数据
+            if (!this.aChannelPlaying && !this.bChannelPlaying) {
                 return;
             }
 
@@ -1409,23 +1470,25 @@ export default {
                     const failedCount = results.filter(r => !r.success).length;
                     this.log(`批量发送完成: 成功 ${successfulCount} 条, 失败 ${failedCount} 条`);
                     this.log(`当前缓存队列剩余数据: ${this.nomalPlayCache.length} 条`);
+                    // 无论是否成功，都继续下一批数据的发送
+                    if (this.aChannelPlaying || this.bChannelPlaying) {
+                        this.generateChannelPlayBatch();
+                    }
                 })
                 .catch(error => {
                     this.log('批量发送过程中发生错误: ' + error.message);
                 }).finally(() => {
-                    // 无论是否成功，都继续下一批数据的发送
-                    this.startBatchDataSend();
                     if (this.aChannelPlaying) {
-                        //  sendBatchSize条 * 100毫秒 / 1000秒 = 通道已播放时间
-                        this.channelAPlayTime += this.sendBatchSize * 100 / 1000;
+                        //  已发送的条 * 100毫秒 / 1000秒 = 通道已播放时间
+                        this.channelAPlayTime += sendPromises.length / 10;
                         if (this.channelAPlayTime % this.channelPlayTime.a == 0) {
                             // 通道A播放时间到了，需要计算下个波形下标
                             this.channelAPlayWaitingNext = true;
                         }
                     }
                     if (this.bChannelPlaying) {
-                        //  sendBatchSize条 * 100毫秒 / 1000秒 = 通道已播放时间
-                        this.channelBPlayTime += this.sendBatchSize * 100 / 1000;
+                        //  已发送的条 * 100毫秒 / 1000秒 = 通道已播放时间
+                        this.channelBPlayTime += sendPromises.length / 1000;
                         if (this.channelBPlayTime % this.channelPlayTime.b == 0) {
                             // 通道B播放时间到了，需要计算下个波形下标
                             this.channelBPlayWaitingNext = true;
@@ -1500,6 +1563,13 @@ export default {
                     this.pulseToCharts(data);
                 }
 
+                if (!this.bleConnected) {
+                    if (this.testConnectBLE) {
+                        return Promise.resolve('testConnectBLE = true, 发送波形数据成功！');
+                    }
+                    return Promise.reject('设备未连接');
+                }
+
                 // 发送数据
                 return this.writeMethod.call(this.writeCharacteristic, optBuffer)
                     .catch(error => {
@@ -1547,7 +1617,7 @@ export default {
                         const currentRow = this.aChannelList.splice(item.oldIndex, 1)[0];
                         this.$nextTick(() => {
                             this.aChannelList.splice(item.newIndex, 0, currentRow);
-                            this.saveChcekedWaveIds();
+                            this.saveCheckedWaveIds();
                         });
                     },
                 });
@@ -1567,7 +1637,7 @@ export default {
                         const currentRow = this.bChannelList.splice(item.oldIndex, 1)[0];
                         this.$nextTick(() => {
                             this.bChannelList.splice(item.newIndex, 0, currentRow);
-                            this.saveChcekedWaveIds();
+                            this.saveCheckedWaveIds();
                         });
                     },
                 });
@@ -1577,67 +1647,13 @@ export default {
             this.$refs.waveSaver.openWaveEditor();
         },
         openCtrlItemList() {
-            this.$router.push({ name: 'CtrlItemList' });
+            const url = this.$router.resolve({ name: 'CtrlItemList' }).href;
+            window.open(url, '_blank');
         },
         getCheckedWaveIds() {
             const checkedWaveIds = MyStorage.getCheckedWaveIds();
             const allWaves = MyStorage.waveList();
-            let ctrlItemList = allWaves.map(itemData => {
-                const ctrlItem = new CtrlItem();
-
-                // 复制基本属性
-                Object.assign(ctrlItem, itemData);
-
-                // 将stageList转换为WaveStage实例
-                if (itemData.stageList && itemData.stageList.length > 0) {
-                    ctrlItem.stageList = itemData.stageList.map(stageData => {
-                        const stage = new WaveStage();
-
-                        // 复制stage基本属性
-                        Object.assign(stage, stageData);
-
-                        // 将metas转换为WaveMeta实例
-                        stage.metas = stageData.metas.map(metaData => {
-                            return new WaveMeta(metaData.y, metaData.anchor)
-                        });
-
-                        return stage;
-                    });
-                }
-
-                if (itemData.stageA && itemData.stageA.length > 0) {
-                    ctrlItem.stageA = itemData.stageA.map(stageData => {
-                        const stage = new WaveStage();
-
-                        // 复制stage基本属性
-                        Object.assign(stage, stageData);
-
-                        // 将metas转换为WaveMeta实例
-                        stage.metas = stageData.metas.map(metaData => {
-                            return new WaveMeta(metaData.y, metaData.anchor)
-                        });
-
-                        return stage;
-                    });
-                }
-                if (itemData.stageB && itemData.stageB.length > 0) {
-                    ctrlItem.stageB = itemData.stageB.map(stageData => {
-                        const stage = new WaveStage();
-
-                        // 复制stage基本属性
-                        Object.assign(stage, stageData);
-
-                        // 将metas转换为WaveMeta实例
-                        stage.metas = stageData.metas.map(metaData => {
-                            return new WaveMeta(metaData.y, metaData.anchor)
-                        });
-
-                        return stage;
-                    });
-                }
-
-                return ctrlItem;
-            });
+            let ctrlItemList = this.formateCtrlItemWave(allWaves);
             if (checkedWaveIds?.a && checkedWaveIds.a.length > 0) {
                 // 先找到所有选中的波形
                 // 按照checkedWaveIds.a中的顺序重新排列波形
@@ -1662,9 +1678,43 @@ export default {
         onChannelPlayTimeChange() {
             MyStorage.saveChannelPlayTime(this.channelPlayTime);
         },
-        // 切换通道播放状态
-        toggleChannelPlay(channel) {
+        channelPlayStart(channel) {
             if (channel === 'A') {
+                if (this.aChannelPlaying) {
+                    return;
+                } else {
+                    this.toggleChannelPlay('A', true);
+                }
+            } else if (channel === 'B') {
+                if (this.bChannelPlaying) {
+                    return;
+                } else {
+                    this.toggleChannelPlay('B', true);
+                }
+            } else if (channel === 'both') {
+                this.toggleChannelPlay('both', true);
+            }
+        },
+        channelPlayStop(channel) {
+            if (channel === 'A') {
+                if (!this.aChannelPlaying) {
+                    return;
+                } else {
+                    this.toggleChannelPlay('A', false);
+                }
+            } else if (channel === 'B') {
+                if (!this.bChannelPlaying) {
+                    return;
+                } else {
+                    this.toggleChannelPlay('B', false);
+                }
+            } else if (channel === 'both') {
+                this.toggleChannelPlay('both', false);
+            }
+        },
+        // 切换通道播放状态
+        toggleChannelPlay(channel, play) {
+            if (channel === 'A' || channel === 'both') {
                 if (!this.aChannelList || this.aChannelList.length <= 0) {
                     this.$message({
                         message: 'A通道没有选中的波形',
@@ -1672,11 +1722,18 @@ export default {
                     });
                     return;
                 }
-                this.aChannelPlaying = !this.aChannelPlaying;
+                if (null != play || undefined != play) {
+                    this.aChannelPlaying = play;
+                } else {
+                    this.aChannelPlaying = !this.aChannelPlaying;
+                }
+
                 if (!this.aChannelPlaying) {
                     this.cleanChartViewInv(1);
+                    this.clearFlatPowerIntensity();
                 }
-            } else if (channel === 'B') {
+            }
+            if (channel === 'B' || channel === 'both') {
                 if (!this.bChannelList || this.bChannelList.length <= 0) {
                     this.$message({
                         message: 'B通道没有选中的波形',
@@ -1684,9 +1741,14 @@ export default {
                     });
                     return;
                 }
-                this.bChannelPlaying = !this.bChannelPlaying;
+                if (null != play || undefined != play) {
+                    this.bChannelPlaying = play;
+                } else {
+                    this.bChannelPlaying = !this.bChannelPlaying;
+                }
                 if (!this.bChannelPlaying) {
                     this.cleanChartViewInv(2);
+                    this.clearFlatPowerIntensity();
                 }
             }
             this.playerStart();
@@ -1700,6 +1762,8 @@ export default {
                 }
                 this.channelAPlayWaitingNext = false;
                 this.channelAPlayTime = 0;
+                // 重置通道功率历史值，确保下次比较时使用当前值作为参考
+                this.previousChannelAPower = -1;
             }
             // B通道如果关闭了播放
             if (!this.bChannelPlaying) {
@@ -1708,6 +1772,8 @@ export default {
                 }
                 this.channelBPlayWaitingNext = false;
                 this.channelBPlayTime = 0;
+                // 重置通道功率历史值，确保下次比较时使用当前值作为参考
+                this.previousChannelBPower = -1;
             }
             if (!this.aChannelPlaying && !this.bChannelPlaying) {
                 // 清空缓存，准备新的数据
@@ -1724,35 +1790,25 @@ export default {
                 this.log('设备未准备好，无法发送播放数据');
                 return;
             } */
-
-            // 重置通道功率历史值，确保下次比较时使用当前值作为参考
-            // 解决切换播放按钮时previousChannelAPower和previousChannelBPower没有重置的问题
-            this.previousChannelAPower = -1;
-            this.previousChannelBPower = -1;
-
-            // 清空缓存，准备新的数据
-            this.clearNomalPlayCache();
-            this.clearCacheRegenerate();
-
             // 立即生成一批默认数据
             this.generateChannelPlayBatch();
 
-            // 设置定时器，每5秒生成一批数据
-            this.nomalPlayTimer = setInterval(() => {
-                if ((!this.aChannelPlaying && !this.bChannelPlaying) || this.nomalPlayTimer === null) {
-                    clearInterval(this.nomalPlayTimer);
-                    return;
-                }
-                // 生成一批默认数据
-                this.generateChannelPlayBatch();
-            }, this.generateNomalPlayInterval);
+            // // 设置定时器，每5秒生成一批数据
+            // this.nomalPlayTimer = setInterval(() => {
+            //     if ((!this.aChannelPlaying && !this.bChannelPlaying) || this.nomalPlayTimer === null) {
+            //         clearInterval(this.nomalPlayTimer);
+            //         return;
+            //     }
+            //     // 生成一批默认数据
+            //     this.generateChannelPlayBatch();
+            // }, this.generateNomalPlayInterval);
 
-            // 启动批量发送
-            this.startBatchDataSend();
+            // // 启动批量发送
+            // this.startBatchDataSend();
 
             this.log('开始播放波形数据');
         },
-        getEachOfGenerateV3List(modelList, startIdx, rate = 1) {
+        getEachOfGenerateV3List(modelList, channelModelIdx, rate = 1) {
             const result = [];
             const listLength = modelList.length;
 
@@ -1764,21 +1820,28 @@ export default {
             // 循环获取需要的数量，超出数组长度时从0开始循环
             // 每次需要从列表获取的数量
             const batchSize = this.generateNomalPlayShakeDelay / 100;
+            let startIdx = this[channelModelIdx];
+            let currentIdx = null;
             for (let i = 0; i < batchSize; i++) {
-                const currentIdx = (startIdx + i) % listLength;
+                currentIdx = i;
+                if ((startIdx + i) % listLength === 0) {
+                    currentIdx = 0;
+                }
                 // 默认的播放速率是100ms ，即每个meta是100ms  rate=2时 播放速率是50ms 即每个meta是50ms rate=4时 播放速率是25ms 即每个meta是25ms
                 if (rate === 1) {
-                    result.push(modelList[currentIdx]);
-                    result.push(modelList[currentIdx]);
-                    result.push(modelList[currentIdx]);
-                    result.push(modelList[currentIdx]);
+                    result.push(modelList[i]);
+                    result.push(modelList[i]);
+                    result.push(modelList[i]);
+                    result.push(modelList[i]);
                 } else if (rate === 2) {
-                    result.push(modelList[currentIdx]);
-                    result.push(modelList[currentIdx]);
+                    result.push(modelList[i]);
+                    result.push(modelList[i]);
                 } else {
-                    result.push(modelList[currentIdx]);
+                    result.push(modelList[i]);
                 }
+
             }
+            this[channelModelIdx] = currentIdx;
             // 这里的result是以25ms为单位的
 
             return result;
@@ -1807,6 +1870,10 @@ export default {
             return nextPlayIdx;
         },
         generateChannelPlayBatch() {
+            if (this.generatePlayBatchIng) {
+                return;
+            }
+            this.generatePlayBatchIng = true;
             let currentACtrlItem = null;
             let currentBCtrlItem = null;
             let tempAChannelV3ModelList = [];
@@ -1833,7 +1900,7 @@ export default {
                     // 双通道模式下 要同时播放A通道和B通道
                     this.channelPlayInDoubleChannel = true;
                 } else {
-                    tempAChannelV3ModelList = this.getEachOfGenerateV3List(this.aChannelV3ModelList, this.aChannelPlayIdx, currentACtrlItem.rate);
+                    tempAChannelV3ModelList = this.getEachOfGenerateV3List(this.aChannelV3ModelList, 'aChannelV3ModelIdx', currentACtrlItem.rate);
                 }
             }
             if (this.bChannelPlaying) {
@@ -1863,7 +1930,7 @@ export default {
                     // 双通道模式下 要同时播放A通道和B通道
                     this.channelPlayInDoubleChannel = true;
                 } else {
-                    tempBChannelV3ModelList = this.getEachOfGenerateV3List(this.bChannelV3ModelList, this.bChannelPlayIdx, currentBCtrlItem.rate);
+                    tempBChannelV3ModelList = this.getEachOfGenerateV3List(this.bChannelV3ModelList, 'bChannelV3ModelIdx', currentBCtrlItem.rate);
                 }
             }
 
@@ -1910,7 +1977,11 @@ export default {
                 this.nomalPlayCache.push(buffer);
                 tempCnt++;
             }
+            this.log(`生成缓存队列剩余数据: ${this.nomalPlayCache.length} 条`);
 
+            // 启动批量发送
+            this.startBatchDataSend();
+            this.generatePlayBatchIng = false;
         },
         selectActiveWave(channel) {
             return (tableRow) => {
@@ -2302,10 +2373,10 @@ export default {
                     // 移除已经看不见的部分
                     chartData.wa.splice(0, 50);
                     chartData.pw.splice(0, 5);
-                    
+
                     // 标记当前动画帧已完成
                     this.chartViewInv[channel] = null;
-                    
+
                     // 如果还有剩余数据，继续递归调用处理
                     if (chartData.wa.length > 0) {
                         this.setChartViewRange(channel, chartData);
@@ -2341,6 +2412,571 @@ export default {
             chartData.pw.push(1 === channel ? this.strengthA : this.strengthB);
             chartData.pw = _.takeRight(chartData.pw, this.pwCacheMaxCnt);
         },
+        saveTempPlayerInfo() {
+            // 当加载脚本时， 需要缓存当前播放器的播放模式和最小播放时间信息  在关闭脚本后用于恢复播放器状态
+            this.tempPlayerInfo = {
+                aChannelPlayIdx: this.aChannelPlayIdx, // A通道播放下标
+                bChannelPlayIdx: this.bChannelPlayIdx, // B通道播放下标
+                channelPlayType: _.cloneDeep(this.channelPlayType), // 播放模式
+                channelPlayTime: _.cloneDeep(this.channelPlayTime), // 最小播放时间
+            };
+        },
+        restoreTempPlayerInfo() {
+            // 当关闭脚本时，需要恢复之前缓存的播放器状态
+            if (this.tempPlayerInfo) {
+                this.aChannelPlayIdx = this.tempPlayerInfo.aChannelPlayIdx;
+                this.bChannelPlayIdx = this.tempPlayerInfo.bChannelPlayIdx;
+                this.channelPlayType = this.tempPlayerInfo.channelPlayType;
+                this.onPlayTypeChange();
+                this.getChannelPlayType();
+
+                this.channelPlayTime = this.tempPlayerInfo.channelPlayTime;
+                this.onChannelPlayTimeChange();
+                this.getChannelPlayTime();
+                this.tempPlayerInfo = null;
+            }
+        },
+        initExtendsMessage() {
+            chrome.tabs?.query({ active: true, currentWindow: true }, (tabs) => {
+                if (tabs && tabs[0]) {
+                    this.tabId = tabs[0].id;
+                }
+            });
+            // 初始化扩展消息
+            chrome.runtime?.onMessage.addListener((request, sender, sendResponse) => {
+                // 漫画脚本加载
+                if (request.action === 'load') {
+                    console.log('触发了脚本load', request);
+                    // 缓存当前播放器的信息
+                    this.saveTempPlayerInfo();
+                    // 漫画脚本加载
+                    const mangaList = MyStorage.mangaList();
+                    let mangaScript = null;
+                    if (mangaList && mangaList.length > 0) {
+                        // 漫画脚本加载
+                        mangaScript = _.find(mangaList, { bookId: request.bookId });
+                    }
+                    if (mangaScript) {
+                        this.playManga = mangaScript;
+                        console.log('当前播放脚本：', this.playManga);
+                        return sendResponse({ code: '000', msg: 'success', data: mangaScript });
+                    }
+                    return sendResponse({ code: '000', msg: 'noneScript' });
+                }
+                // 漫画脚本编辑
+                if (request.action === 'edit') {
+                    console.log('触发了脚本edit', request);
+                    chrome.tabs.update(this.tabId, { active: true }, function (tab) {
+
+                    });
+                    const mangaList = MyStorage.mangaList();
+                    const mangaScript = _.find(mangaList, { bookId: request.bookId }) || { bookId: request.bookId, bookName: request.bookName || '', scriptList: [] };
+                    // 先更新Vuex状态，再进行路由跳转
+                    this.$store.dispatch('setEditMangaScript', mangaScript).then(() => {
+                        this.$router.push({ name: 'MangaScriptEditor' });
+                    });
+                }
+                if (request.action === 'play') {
+                    console.log('触发了play', request);
+                    if (!this.playManga) {
+                        return sendResponse({ code: '002', msg: 'scriptClose' });
+                    }
+                    const pageNo = request.page;
+                    const row = _.find(this.playManga.scriptList, (item) => {
+                        if (this.isNum(item.pageNo) && item.pageNo === pageNo) {
+                            return true;
+                        } else {
+                            return this.logicPage(item.pageNo, pageNo);
+                        }
+                    });
+                    if (!row) {
+                        console.log('未找到对应的脚本行:', row);
+                        return;
+                    }
+                    try {
+                        // 触发并执行脚本
+                        this.playMangaPageForEvent(row, request);
+                        return sendResponse({ code: '000' });
+                    } catch (error) {
+                        return sendResponse({ code: '001', msg: error.$message });
+                    }
+                }
+                // 漫画脚本关闭
+                if (request.action === 'close') {
+                    console.log('触发了close', request);
+                    this.closePlayMangaPage();
+                }
+            });
+        },
+        isNum(param) {
+            let num = parseInt(param);
+            return !Number.isNaN(num);
+        },
+        logicPage(param, pageNo) {
+            return new String(pageNo).match(param)?.[0];
+        },
+        openMangaScriptEditor() {
+            const mangaScript = { bookId: '', bookName: '', scriptList: [] };
+            // 先更新Vuex状态，再进行路由跳转
+            this.$store.dispatch('setEditMangaScript', mangaScript).then(() => {
+                const url = this.$router.resolve({ name: 'MangaScriptEditor' }).href;
+                window.open(url, '_blank');
+            });
+        },
+        openMangaScriptList() {
+            const url = this.$router.resolve({ name: 'MangaScriptList' }).href;
+            window.open(url, '_blank');
+            // this.$router.push({ name: 'MangaScriptList' });
+        },
+        loadTestScript() {
+            // 加载测试脚本
+            const mangaList = MyStorage.mangaList();
+            if (mangaList && mangaList.length > 0) {
+                this.playManga = mangaList[0];
+                this.saveTempPlayerInfo();
+            }
+        },
+        closePlayMangaPage() {
+            this.playManga = null;
+            this.playMangaCurrentPageNo = null;
+            // 关闭播放脚本时，重置上次电源强度
+            this.flatPowerIntensity = {
+                a: null, // A通道电源强度
+                b: null, // B通道电源强度
+            };
+            // 清除之前的定时器
+            this.clearFlatPowerIntensity();
+            // 双通道强度设置成0
+            this.strengthZero('both');
+            // 双通道播放器停止
+            this.setPlayerStatus('both', false);
+            // 恢复之前缓存的播放器状态
+            this.restoreTempPlayerInfo();
+        },
+        playMangaTableRowActive({ row, rowIndex }) {
+            // 设置当前触发的脚本选中状态
+            if (rowIndex === this.playMangaCurrentPageNo) {
+                return 'playManga-active-row';
+            }
+            return '';
+        },
+        playMangaPage(row, column, event) {
+            let rowIdx = _.findIndex(this.playManga.scriptList, row);
+            let pageNo = parseInt(row.pageNo);
+            if (!this.isNum(row.pageNo)) {
+                pageNo = parseInt(prompt('触发页码：'));
+                const isCurrentPage = this.logicPage(row.pageNo, pageNo);
+                if (false === isCurrentPage) {
+                    console.log('触发页码结果:', rowIdx + ' 逻辑判断结果:', isCurrentPage);
+                    return;
+                }
+            }
+            this.triggerMangaScript(row);
+            this.playMangaCurrentPageNo = rowIdx;
+
+
+            // // 双击也可以触发脚本
+            // this.triggerMangaScriptForDynamic(row, {
+            //     action: 'play', bookId: this.playManga.bookId, page: pageNo
+            // });
+
+        },
+        playMangaPageForEvent(row, request) {
+            const rowIdx = _.findIndex(this.playManga.scriptList, row);
+            // 双击也可以触发脚本
+            // this.triggerMangaScriptForDynamic(row, request);
+            this.triggerMangaScript(row);
+            this.playMangaCurrentPageNo = rowIdx;
+        },
+        // triggerMangaScriptForDynamic(row, request) {
+        //     // 触发漫画的脚本
+        //     try {
+        //         let func = new Function(row.scriptContent);
+        //         func.call(this, request);
+        //         console.info('触发漫画脚本成功:', row);
+        //     } catch (error) {
+        //         console.info('触发漫画脚本时出错:', error, row);
+        //     }
+        // },
+        triggerMangaScript(row) {
+            // 触发漫画的脚本
+            try {
+                // 安全解析脚本内容，避免使用eval或new Function违反CSP
+                const scriptLines = row.scriptContent.split('\n');
+                for (let line of scriptLines) {
+                    // 跳过注释和空行
+                    line = line.trim();
+                    if (line.startsWith('//') || line === '') continue;
+
+                    // 解析函数调用
+                    const match = line.match(/this\.([a-zA-Z_][a-zA-Z0-9_]*)\((.*)\);?/);
+                    if (match) {
+                        const funcName = match[1];
+                        const argsStr = match[2];
+
+                        // 检查函数是否存在于当前组件中
+                        if (typeof this[funcName] === 'function') {
+                            // 解析参数
+                            let args = [];
+                            if (argsStr.trim() !== '') {
+                                try {
+                                    // 使用JSON.parse的思想，但更宽松地解析参数
+                                    args = this.parseScriptArgs(argsStr);
+                                } catch (e) {
+                                    console.error('解析脚本参数失败:', argsStr, e);
+                                    continue;
+                                }
+                            }
+
+                            // 调用函数
+                            this[funcName](...args);
+                        }
+                    }
+                }
+                console.info('触发漫画脚本成功:', row);
+            } catch (error) {
+                console.info('触发漫画脚本时出错:', error, row);
+            }
+        },
+        parseScriptArgs(argsStr) {
+            // 简单的参数解析器
+            const args = [];
+            let currentArg = '';
+            let inString = false;
+            let stringChar = '';
+            let inParentheses = 0;
+
+            for (let i = 0; i < argsStr.length; i++) {
+                const char = argsStr[i];
+
+                if (inString) {
+                    if (char === stringChar && argsStr[i - 1] !== '\\') {
+                        inString = false;
+                        stringChar = '';
+                    }
+                    currentArg += char;
+                } else if (char === '"' || char === "'") {
+                    inString = true;
+                    stringChar = char;
+                    currentArg += char;
+                } else if (char === '(') {
+                    inParentheses++;
+                    currentArg += char;
+                } else if (char === ')') {
+                    inParentheses--;
+                    currentArg += char;
+                } else if (char === ',' && inParentheses === 0) {
+                    // 分隔参数
+                    args.push(this.evaluateArg(currentArg.trim()));
+                    currentArg = '';
+                } else {
+                    currentArg += char;
+                }
+            }
+
+            // 添加最后一个参数
+            if (currentArg.trim() !== '') {
+                args.push(this.evaluateArg(currentArg.trim()));
+            }
+
+            return args;
+        },
+        evaluateArg(argStr) {
+            // 简单的参数求值
+            argStr = argStr.trim();
+
+            // 字符串
+            if ((argStr.startsWith('"') && argStr.endsWith('"')) ||
+                (argStr.startsWith("'") && argStr.endsWith("'"))) {
+                return argStr.slice(1, -1).replace(/\\"/g, '"').replace(/\\'/g, "'");
+            }
+
+            // 数字
+            if (!isNaN(argStr)) {
+                return parseFloat(argStr);
+            }
+
+            // 布尔值
+            if (argStr === 'true') return true;
+            if (argStr === 'false') return false;
+
+            // null
+            if (argStr === 'null') return null;
+
+            // undefined
+            if (argStr === 'undefined') return undefined;
+
+            // 对象或数组（简单情况）
+            if ((argStr.startsWith('{') && argStr.endsWith('}')) ||
+                (argStr.startsWith('[') && argStr.endsWith(']'))) {
+                try {
+                    return JSON.parse(argStr);
+                } catch (e) {
+                    return argStr;
+                }
+            }
+
+            // 默认返回字符串
+            return argStr;
+        },
+        formateCtrlItemWave(allWaves) {
+            if (!allWaves || allWaves.length === 0) {
+                return [];
+            }
+            return allWaves.map(itemData => {
+                const ctrlItem = new CtrlItem();
+
+                // 复制基本属性
+                Object.assign(ctrlItem, itemData);
+
+                // 将stageList转换为WaveStage实例
+                if (itemData.stageList && itemData.stageList.length > 0) {
+                    ctrlItem.stageList = itemData.stageList.map(stageData => {
+                        const stage = new WaveStage();
+
+                        // 复制stage基本属性
+                        Object.assign(stage, stageData);
+
+                        // 将metas转换为WaveMeta实例
+                        stage.metas = stageData.metas.map(metaData => {
+                            return new WaveMeta(metaData.y, metaData.anchor)
+                        });
+
+                        return stage;
+                    });
+                }
+
+                if (itemData.stageA && itemData.stageA.length > 0) {
+                    ctrlItem.stageA = itemData.stageA.map(stageData => {
+                        const stage = new WaveStage();
+
+                        // 复制stage基本属性
+                        Object.assign(stage, stageData);
+
+                        // 将metas转换为WaveMeta实例
+                        stage.metas = stageData.metas.map(metaData => {
+                            return new WaveMeta(metaData.y, metaData.anchor)
+                        });
+
+                        return stage;
+                    });
+                }
+                if (itemData.stageB && itemData.stageB.length > 0) {
+                    ctrlItem.stageB = itemData.stageB.map(stageData => {
+                        const stage = new WaveStage();
+
+                        // 复制stage基本属性
+                        Object.assign(stage, stageData);
+
+                        // 将metas转换为WaveMeta实例
+                        stage.metas = stageData.metas.map(metaData => {
+                            return new WaveMeta(metaData.y, metaData.anchor)
+                        });
+
+                        return stage;
+                    });
+                }
+
+                return ctrlItem;
+            });
+        },
+        setPowerIntensity(channel, intensity, delayTime) {
+            if (delayTime) {
+                setTimeout(() => {
+                    this.setPowerIntensity(channel, intensity);
+                }, delayTime);
+                return;
+            }
+            // 漫画脚本触发电源强度改变
+            let newA = this.strengthA;
+            let newB = this.strengthB;
+            if ('A' === channel || 'both' === channel) {
+                let tempA = this.aPowerLimit * intensity;
+                // 如果电源强度变化大于等于10，则平滑设置电源强度 每0.5秒变化1次
+                const powerDiff = Math.abs(tempA - newA);
+                if (powerDiff >= 10) {
+                    this.flatPowerIntensity.a = tempA;
+                    if (this.powerSame === true) {
+                        this.flatPowerIntensity.b = tempA;
+                    }
+                } else {
+                    newA = tempA;
+                    if (this.powerSame === true) {
+                        newB = newA;
+                    }
+                }
+            }
+            if ('B' === channel || 'both' === channel) {
+                let tempB = this.bPowerLimit * intensity;
+                // 如果电源强度变化大于等于10，则平滑设置电源强度 每0.5秒变化1次
+                const powerDiff = Math.abs(tempB - newB);
+                if (powerDiff >= 10) {
+                    this.flatPowerIntensity.b = tempB;
+                    if (this.powerSame === true) {
+                        this.flatPowerIntensity.a = tempB;
+                    }
+                } else {
+                    newB = tempB;
+                    if (this.powerSame === true) {
+                        newA = newB;
+                    }
+                }
+            }
+            // 如果有平滑处理 先执行一次 然后再进入自动平滑处理
+            this.sendStrengthCommand(newA, newB);
+            this.strengthA = newA;
+            this.strengthB = newB;
+            // 如果AB都不需要平滑 就直接设置强度
+            if (this.flatPowerIntensity.a || this.flatPowerIntensity.b) {
+                this.autoFlatPowerIntensity();
+            }
+        },
+        autoFlatPowerIntensity() { // 平滑的处理脚本触发的电源强度变化
+            // 如果AB都不需要平滑 就清除计时器 直接返回 
+            if (!this.flatPowerIntensity.a && !this.flatPowerIntensity.b) {
+                this.clearFlatPowerIntensity();
+                return;
+            }
+            // 如果AB都到达了目标强度 就清除计时器 直接返回
+            if (this.flatPowerIntensity.a === this.strengthA && this.flatPowerIntensity.b === this.strengthB) {
+                this.clearFlatPowerIntensity();
+                return;
+            }
+            // 每0.5秒变化一次
+            this.flatPowerIntensityInv = setTimeout(() => {
+                let newA = this.strengthA;
+                let newB = this.strengthB;
+
+                // 如果A通道需要平滑 就设置A通道强度
+                if (this.flatPowerIntensity.a) {
+                    let tempDiffA = this.flatPowerIntensity?.a - newA;
+                    if (tempDiffA > 0) {
+                        newA++;
+                    } else if (tempDiffA < 0) {
+                        newA--;
+                    } else {
+                        this.flatPowerIntensity.a = null;
+                    }
+                }
+                // 如果B通道需要平滑 就设置B通道强度
+                if (this.flatPowerIntensity.b) {
+                    let tempDiffB = this.flatPowerIntensity?.b - newB;
+                    if (tempDiffB > 0) {
+                        newB++;
+                    } else if (tempDiffB < 0) {
+                        newB--;
+                    } else {
+                        this.flatPowerIntensity.b = null;
+                    }
+                }
+                this.sendStrengthCommand(newA, newB);
+                this.strengthA = newA;
+                this.strengthB = newB;
+                // 如果AB都到达了目标强度 就清除计时器 直接返回
+                if (this.flatPowerIntensity.a === this.strengthA && this.flatPowerIntensity.b === this.strengthB) {
+                    this.clearFlatPowerIntensity();
+                    return;
+                }
+                // 如果计时器已经启动了 就直接返回
+                this.autoFlatPowerIntensity();
+            }, 500);
+        },
+        clearFlatPowerIntensity() { // 清除平滑设置电源强度定时器
+            if (this.flatPowerIntensityInv) {
+                clearTimeout(this.flatPowerIntensityInv);
+                this.flatPowerIntensityInv = null;
+            }
+        },
+        setChannelWave(channel, waveId, delayTime) {
+            if (delayTime) {
+                setTimeout(() => {
+                    this.setChannelWave(channel, waveId);
+                }, delayTime);
+                return;
+            }
+            // 漫画脚本触发通道波形改变
+            if ('A' === channel) {
+                let triggerWave = MyStorage.getWaveById(waveId);
+                if (!triggerWave) {
+                    console.info('触发的脚本中包含不存在的波形:', waveId);
+                    return;
+                }
+                let triggerCtrlItem = this.formateCtrlItemWave([triggerWave])[0];
+                // 判断是否波形在通道波形列表中存在
+                let aChannelItem = _.find(this.aChannelList, item => item.id === triggerCtrlItem.id);
+                // 如果不存在要保存到列表
+                if (!aChannelItem) {
+                    this.aChannelList.push(triggerCtrlItem);
+                    this.saveCheckedWaveIds();
+                    aChannelItem = triggerCtrlItem;
+                }
+                this.playChannelWave('A', aChannelItem);
+            } else if ('B' === channel) {
+                let triggerWave = MyStorage.getWaveById(waveId);
+                if (!triggerWave) {
+                    console.info('触发的脚本中包含不存在的波形:', waveId);
+                    return;
+                }
+                let triggerCtrlItem = this.formateCtrlItemWave([triggerWave])[0];
+                // 判断是否波形在通道波形列表中存在
+                let bChannelItem = _.find(this.bChannelList, item => item.id === triggerCtrlItem.id);
+                // 如果不存在要保存到列表
+                if (!bChannelItem) {
+                    this.bChannelList.push(triggerCtrlItem);
+                    this.saveCheckedWaveIds();
+                    bChannelItem = triggerCtrlItem;
+                }
+                this.playChannelWave('B', bChannelItem);
+            }
+        },
+        setPlayerStatus(channel, isStart, delayTime) {
+            if (delayTime) {
+                setTimeout(() => {
+                    this.setPlayerStatus(channel, isStart);
+                }, delayTime);
+                return;
+            }
+            // 漫画脚本触发通道播放器状态改变
+            if (true === isStart) {
+                // 如果是开始播放 重复执行不会toggle的播放器函数
+                this.channelPlayStart(channel);
+            } else {
+                // 如果是停止播放 重复执行不会toggle的播放器函数
+                this.channelPlayStop(channel);
+            }
+        },
+        setPlayTime(channel, time, delayTime) {
+            if (delayTime) {
+                setTimeout(() => {
+                    this.setPlayTime(channel, time);
+                }, delayTime);
+                return;
+            }
+            // 漫画脚本触发通道播放时间改变
+            if ('A' === channel || 'both' === channel) {
+                this.channelPlayTime.a = time;
+            }
+            if ('B' === channel || 'both' === channel) {
+                this.channelPlayTime.b = time;
+            }
+            this.onChannelPlayTimeChange();
+        },
+        setPlayType(channel, type, delayTime) {
+            if (delayTime) {
+                setTimeout(() => {
+                    this.setPlayType(channel, type);
+                }, delayTime);
+                return;
+            }
+            // 漫画脚本触发通道播放类型改变
+            if ('A' === channel || 'both' === channel) {
+                this.channelPlayType.a = type;
+            }
+            if ('B' === channel || 'both' === channel) {
+                this.channelPlayType.b = type;
+            }
+            this.onPlayTypeChange();
+        },
     },
     mounted() {
         // 组件挂载时的初始化逻辑
@@ -2349,6 +2985,7 @@ export default {
         this.getCheckedWaveIds();
         this.getChannelPlayType();
         this.getChannelPlayTime();
+        this.initExtendsMessage();
     },
     beforeDestroy() {
         // 组件销毁前的清理逻辑
@@ -2518,5 +3155,22 @@ export default {
 .charter-canvas {
     width: 100%;
     height: 200px;
+}
+
+.wave-player .script-content-column .cell {
+    white-space: pre;
+}
+
+.wave-player .wave-btns {
+    margin-top: 10px;
+}
+
+.play-manga-info span {
+    display: block;
+}
+
+.wave-player .playManga-active-row,
+.wave-player .el-table--enable-row-hover .el-table__body tr:hover>td.el-table__cell {
+    background-color: #d9faff;
 }
 </style>

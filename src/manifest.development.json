@@ -5,13 +5,33 @@
     "version": "0.0.1",
     "options_page": "options.html",
     "action": {
-        
-        "default_title": "Coyote Webext"
+        "default_title": "Coyote Webext",
+        "default_icon": {
+            "16": "assets/icon16.png",
+            "48": "assets/icon48.png",
+            "128": "assets/icon128.png"
+        }
     },
+    "icons": {
+        "16": "assets/icon16.png",
+        "48": "assets/icon48.png",
+        "128": "assets/icon128.png"
+    },
+    "content_scripts": [
+        {
+            "matches": [
+                "http://192.168.3.233:9998/openBook?id=*"
+            ],
+            "js": [
+                "inject_lib/MangaDownloader.js"
+            ]
+        }
+    ],
     "background": {
         "service_worker": "background.js"
     },
     "permissions": [
+        "scripting",
         "contextMenus",
         "tabs"
     ]

@@ -5,6 +5,7 @@
   "scripts": {
     "serve": "vue-cli-service serve",
     "build": "vue-cli-service build",
+    "build-debug": "vue-cli-service build --mode development",
     "lint": "vue-cli-service lint",
     "build-watch": "vue-cli-service build-watch"
   },
@@ -15,6 +16,7 @@
     "jquery": "^3.3.1",
     "lodash": "^4.17.21",
     "sortablejs": "^1.15.6",
+    "source-map-loader": "^5.0.0",
     "vue": "^2.7.16",
     "vue-router": "^3.6.5",
     "vuex": "^3.6.2"

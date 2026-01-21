@@ -11,7 +11,7 @@ export default {
             return null;
         }
         let waves = this.waveList();
-        return waves.find((w) => w.id === id);
+        return _.find(waves, (w) => w.id === id + '');
     },
     checkWaveName(name) { // 检查波形名称是否存在
         let waves = this.waveList();
@@ -114,5 +114,20 @@ export default {
             return;
         }
         localStorage.setItem('ChannelPlayTime', JSON.stringify(channelPlayTime));
+    },
+    mangaList() { // 获取本地列表中的漫画脚本
+        let waves = localStorage.getItem('Manga');
+        if (waves) {
+            waves = JSON.parse(waves);
+        } else {
+            waves = [];
+        }
+        return waves;
+    },
+    saveMangaList(mangaList) { // 保存漫画脚本到本地列表中
+        if (!mangaList) {
+            return;
+        }
+        localStorage.setItem('Manga', JSON.stringify(mangaList));
     },
 }

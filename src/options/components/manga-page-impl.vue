@@ -1,0 +1,542 @@
+<template>
+    <div class="manga-page-impl">
+        <el-button @click="openAddScriptDialog">添加</el-button>
+        <el-table :data="scriptList" style="width: 100%">
+            <el-table-column label="行号" width="100">
+                <template slot-scope="scope">
+                    {{ scope.$index + 1 }}
+                </template>
+            </el-table-column>
+            <el-table-column prop="pageNo" min-width="300" label="页码">
+            </el-table-column>
+            <el-table-column prop="scriptContent" min-width="400" label="脚本内容" class-name="script-content-column">
+            </el-table-column>
+            <el-table-column label="操作" width="200">
+                <template slot-scope="scope">
+                    <el-button type="primary" @click="editItem(scope.row, scope.$index)">编辑</el-button>
+                    <el-button type="danger" @click="deleteItem(scope.row, scope.$index)">删除</el-button>
+                </template>
+            </el-table-column>
+        </el-table>
+        <el-dialog title="添加脚本" :visible.sync="dialogVisible" width="70%" :close-on-click-modal="false"
+            :before-close="addScriptClose">
+            <el-form :model="addScriptItem" ref="addScriptForm" label-width="120px" :rules="scriptRules">
+                <el-form-item label="页码" prop="pageNo">
+                    <el-input v-model="addScriptItem.pageNo" placeholder="请输入页码"></el-input>
+                </el-form-item>
+                <el-form-item label="脚本内容" prop="scriptContent">
+                    <div style="display: flex; align-items: center; margin-bottom: 8px;">
+                        <el-tag v-for="item in implType" :key="item.label" :type="item.type" effect="dark"
+                            @click="openPopScriptDialog(item)" class="impl-type-tag">
+                            {{ item.label }}
+                        </el-tag>
+                        <el-button type="text" size="small" @click="formatScriptContent" style="margin-left: auto;">
+                            格式化
+                        </el-button>
+                    </div>
+                    <el-input ref="scriptContent" v-model="addScriptItem.scriptContent" type="textarea"
+                        placeholder="请输入脚本内容" :autosize="{ minRows: 4, maxRows: 20 }"></el-input>
+                </el-form-item>
+            </el-form>
+            <div slot="footer" class="dialog-footer">
+                <el-button type="primary" @click="addScriptContent">确定</el-button>
+                <el-button @click="addScriptClose">取消</el-button>
+            </div>
+        </el-dialog>
+        <el-dialog :title="popScriptForm.title" :visible.sync="popScriptVisible" width="30%"
+            :close-on-click-modal="false" :before-close="popScriptClose">
+            <el-form :model="popScriptForm" ref="popScriptForm" label-width="120px">
+                <el-form-item v-for="(val, index) in popScriptForm.items" :key="'popScriptForm_' + index" v-bind="val"
+                    :prop="val.name" :rules="val.rules">
+                    <template slot="label" v-if="val.labelSlot">
+                        {{ val.labelSlot }}
+                    </template>
+                    <template v-if="val.type === 'input'">
+                        <el-input v-model="val.value" placeholder="请输入" v-on="val.events"></el-input>
+                    </template>
+                    <template v-if="val.type === 'select'">
+                        <el-select v-model="val.value" placeholder="请选择" v-on="val.events">
+                            <el-option v-for="item in val.options" :key="item.value" :label="item.label"
+                                :value="item.value"></el-option>
+                        </el-select>
+                    </template>
+                    <template v-if="val.type === 'checkbox'">
+                        <el-checkbox-group v-model="val.value" v-on="val.events">
+                            <el-checkbox v-for="item in val.options" :key="item.value" :label="item.value"
+                                :value="item.value">{{ item.label }}</el-checkbox>
+                        </el-checkbox-group>
+                    </template>
+                    <template v-if="val.type === 'radio'">
+                        <el-radio-group v-model="val.value" v-on="val.events">
+                            <el-radio v-for="item in val.options" :key="item.value" :label="item.value"
+                                :value="item.value">{{ item.label }}</el-radio>
+                        </el-radio-group>
+                    </template>
+                    <template v-if="val.type === 'slider'">
+                        <ul class="slider-item">
+                            <li class="slider-item-slider"><el-slider v-model="val.value" v-bind="val"
+                                    v-on="val.events"></el-slider></li>
+                            <li class="slider-item-text">{{ val.formatTooltip(val.value) }}</li>
+                        </ul>
+                    </template>
+                    <template v-if="val.type === 'input-number'">
+                        <el-input-number v-model="val.value" v-bind="val" v-on="val.events"></el-input-number>
+                    </template>
+                    <template v-if="val.type === 'switch'">
+                        <el-switch v-model="val.value" v-bind="val" v-on="val.events"></el-switch>
+                    </template>
+                    <template v-if="val.type === 'SelectOneWave'">
+                        <SelectOneWave ref="selectWave" v-bind="val" v-on="val.events"></SelectOneWave>
+                    </template>
+                </el-form-item>
+            </el-form>
+            <template slot="footer">
+                <el-button type="primary" @click="popScriptContentConfirm">确定</el-button>
+                <el-button @click="popScriptClose">取消</el-button>
+            </template>
+        </el-dialog>
+    </div>
+</template>
+<script>
+import SelectOneWave from './select-one-wave.vue';
+import WaveUtil from '../../lib/WaveUtil.js';
+export default {
+    name: 'MangaPageImpl',
+    components: {
+        SelectOneWave,
+    },
+    props: {
+        value: {
+            type: Array,
+            default: () => [],
+        },
+
+    },
+    data() {
+        return {
+            scriptList: [],
+            dialogVisible: false,
+            addScriptItem: {
+                pageNo: '',
+                scriptContent: '',
+            },
+            implType: [
+                {
+                    label: '通道电源强度', type: 'warning', value: 'setPowerIntensity',
+                    form: {
+                        title: '设置通道电源强度',
+                        items: [
+                            { name: 'channel', label: '通道', type: 'select', value: 'both', options: [{ label: 'A和B', value: 'both' }, { label: '仅A', value: 'A' }, { label: '仅B', value: 'B' }] },
+                            { name: 'intensity', label: '电源强度', type: 'slider', value: 50, min: 0, max: 100, step: 1, formatTooltip: (val) => val + '%' },
+                            {
+                                name: 'waitTime', label: '延迟时间', type: 'slider', value: 0, min: 0, max: 10000, step: 100, formatTooltip: (val) => {
+                                    return WaveUtil.msToViewTimeStr(val);
+                                }
+                            },
+                        ],
+                        codeTemplate: (item) => {
+                            return `// 1 ~ 100% 根据通道电源上限的百分比进行计算
+this.setPowerIntensity('${item.channel}', ${item.intensity / 100}${item.waitTime ? `, ${item.waitTime}` : ''});`
+                        },
+                    },
+                },
+                {
+                    label: '通道波形', type: 'success', value: 'setChannelWave',
+                    form: {
+                        title: '设置通道波形',
+                        items: [
+                            { name: 'channel', label: '通道', type: 'select', value: 'A', options: [{ label: 'A通道', value: 'A' }, { label: 'B通道', value: 'B' }] },
+                            {
+                                name: 'selWave', label: '选择波形', type: 'SelectOneWave', value: {},
+                                showChecked: false,
+                                rules: [{
+                                    required: true, message: '请选择波形', validator: (rule, val, callback) => {
+                                        return this.popScriptForm.items[1].value?.id !== undefined ? callback() : callback(new Error('请选择波形'));
+                                    }
+                                },
+                                ],
+                                events: {
+                                    'change': (selectedWave) => {
+                                        this.popScriptForm.items[1].value = selectedWave;
+                                    }
+                                }
+
+                            },
+                            {
+                                name: 'waitTime', label: '延迟时间', type: 'slider', value: 0, min: 0, max: 1000, formatTooltip: (val) => {
+                                    return WaveUtil.msToViewTimeStr(val * 100);
+                                }
+                            },
+                        ],
+                        codeTemplate: (item) => {
+                            return `// 设置通道${item.channel}的波形为${item.selWave.name}
+this.setChannelWave('${item.channel}', ${item.selWave.id}${item.waitTime ? `, ${item.waitTime}` : ''});`
+                        },
+                    },
+                },
+                {
+                    label: '通道播放时间', type: 'primary', value: 'setPlayTime',
+                    form: {
+                        title: '设置通道播放时间',
+                        items: [
+                            { name: 'channel', label: '通道', type: 'select', value: 'A', options: [{ label: 'A和B', value: 'both' }, { label: 'A通道', value: 'A' }, { label: 'B通道', value: 'B' }] },
+                            { name: 'time', label: '播放时间', type: 'slider', value: 60, min: 5, max: 300, formatTooltip: (val) => val + '秒' },
+                            {
+                                name: 'waitTime', label: '延迟时间', type: 'slider', value: 0, min: 0, max: 10000, step: 100, formatTooltip: (val) => {
+                                    return WaveUtil.msToViewTimeStr(val);
+                                }
+                            },
+                        ],
+                        codeTemplate: (item) => {
+                            return `// 设置通道${item.channel}的播放时间为${item.time}秒
+this.setPlayTime('${item.channel}', ${item.time}${item.waitTime ? `, ${item.waitTime}` : ''});`
+                        },
+                    },
+                },
+                {
+                    label: '播放模式', type: 'primary', value: 'setPlayType',
+                    form: {
+                        title: '设置播放模式',
+                        items: [
+                            { name: 'channel', label: '通道', type: 'select', value: 'A', options: [{ label: 'A和B', value: 'both' }, { label: 'A通道', value: 'A' }, { label: 'B通道', value: 'B' }] },
+                            {
+                                name: 'playType', label: '播放模式', type: 'select', value: 1,
+                                options: [{ label: '列表循环', value: 0 }, { label: '单曲循环', value: 1 }, { label: '随机', value: 2 }]
+                            },
+                            {
+                                name: 'waitTime', label: '延迟时间', type: 'slider', value: 0, min: 0, max: 10000, step: 100, formatTooltip: (val) => {
+                                    return WaveUtil.msToViewTimeStr(val);
+                                }
+                            },
+                        ],
+                        codeTemplate: (item) => {
+                            return `// 设置播放模式为${this.playTypeFilter(item.playType)}
+this.setPlayType('${item.channel}', ${item.playType}${item.waitTime ? `, ${item.waitTime}` : ''});`
+                        },
+                    },
+                },
+                {
+                    label: '通道播放器', type: 'info', value: 'setPlayerStatus',
+                    form: {
+                        title: '设置通道播放器开始播放',
+                        items: [
+                            { name: 'channel', label: '通道', type: 'select', value: 'A', options: [{ label: 'A和B', value: 'both' }, { label: 'A通道', value: 'A' }, { label: 'B通道', value: 'B' }] },
+                            { name: 'isStart', label: '播放', type: 'switch', value: true, activeText: '开始', inactiveText: '停止' },
+                            {
+                                name: 'waitTime', label: '延迟时间', type: 'slider', value: 0, min: 0, max: 10000, step: 100, formatTooltip: (val) => {
+                                    return WaveUtil.msToViewTimeStr(val);
+                                }
+                            },
+                        ],
+                        codeTemplate: (item) => {
+                            return `// 设置通道${item.channel}的播放器
+this.setPlayerStatus('${item.channel}', ${item.isStart}${item.waitTime ? `, ${item.waitTime}` : ''});`
+                        },
+                    },
+                },
+//                 {
+//                     label: '链式', type: 'info', value: 'callPromise',
+//                     codeTemplate: (item) => {
+//                         return `new Promise((resolve, reject) => {
+// }).then(() => {
+// }).catch(() => {
+//     // 失败回调
+// });`
+//                     },
+//                 },
+//                 {
+//                     label: '等待', type: 'info', value: 'waitToDo',
+//                     form: {
+//                         title: '设置等待时间',
+//                         items: [
+//                             {
+//                                 name: 'waitTime', label: '等待时间', type: 'slider', value: 1, min: 1, max: 1000, formatTooltip: (val) => {
+//                                     return WaveUtil.msToViewTimeStr(val * 100);
+//                                 }
+//                             },
+//                         ],
+//                         codeTemplate: (item) => {
+//                             return `setTimeout(() => {
+// }, ${item.waitTime} * 100);`
+//                         },
+//                     },
+
+//                 }
+            ],
+            scriptRules: {
+                pageNo: [{ required: true, message: '请输入页码', trigger: 'blur' }],
+                scriptContent: [{ required: true, message: '请输入脚本内容', trigger: 'blur' }],
+            },
+            popScriptVisible: false,
+            popScriptForm: {
+                items: [],
+            },
+        }
+    },
+    methods: {
+        openPopScriptDialog(impl) {
+            if (impl.form) {
+                this.popScriptForm = _.cloneDeep(impl.form);
+                this.popScriptVisible = true;
+            } else {
+                let popCodeContent = impl.codeTemplate().trim() + '\n';
+                let resContent = this.addScriptItem.scriptContent;
+                if (!resContent.endsWith('\n')) {
+                    resContent += '\n';
+                }
+                resContent += popCodeContent;
+                this.addScriptItem.scriptContent = resContent;
+            }
+        },
+        popScriptContentConfirm() {
+            this.$refs.popScriptForm.validate((valid) => {
+                if (valid) {
+                    let t = {};
+                    this.popScriptForm.items.map(item => {
+                        t[item.name] = item.value;
+                    });
+                    // console.log('popScriptItem', popScriptItem);
+                    // 计算字符串模板
+                    let popCodeContent = this.popScriptForm.codeTemplate(t).trim() + '\n';
+                    let resContent = this.addScriptItem.scriptContent;
+                    if (!resContent.endsWith('\n')) {
+                        resContent += '\n';
+                    }
+                    resContent += popCodeContent;
+                    this.addScriptItem.scriptContent = resContent.trim();
+                    this.popScriptClose();
+                }
+            });
+        },
+        popScriptClose() {
+            this.popScriptVisible = false;
+            this.$refs.popScriptForm.resetFields();
+        },
+        openAddScriptDialog() {
+            this.dialogVisible = true;
+        },
+        addScriptClose() {
+            this.dialogVisible = false;
+            this.$refs.addScriptForm.resetFields();
+            // 上面的重置不会清空值，需要手动清空
+            this.addScriptItem = this.$options.data().addScriptItem;
+        },
+        formatScriptContent() {
+            // 格式化脚本内容，添加适当的缩进
+            let scriptContent = this.addScriptItem.scriptContent;
+            if (!scriptContent) return;
+
+            // 解析脚本内容
+            const lines = scriptContent.split('\n');
+            const formattedLines = [];
+            const indentSize = 1;
+
+            // 使用栈来跟踪括号的位置和缩进级别
+            const braceStack = [];
+
+            // 遍历每一行
+            for (let i = 0; i < lines.length; i++) {
+                let line = lines[i].trim();
+                if (line === '') {
+                    // 只保留一个空行
+                    if (i > 0 && formattedLines[formattedLines.length - 1] !== '') {
+                        formattedLines.push('');
+                    }
+                    continue;
+                }
+
+                // 检查是否有结束括号需要减少缩进
+                const hasEndBrace = line.includes('}');
+
+                // 特殊处理：如果行以结束括号开头，需要从栈中弹出并使用对应的缩进级别
+                if (line.startsWith('}')) {
+                    if (braceStack.length > 0) {
+                        braceStack.pop();
+                    }
+                }
+
+                // 添加缩进，使用当前栈的长度作为缩进级别
+                const indentLevel = braceStack.length;
+                const indent = ' '.repeat(indentLevel * indentSize);
+                formattedLines.push(indent + line);
+
+                // 检查是否有开始括号需要增加缩进
+                const hasStartBrace = line.includes('{');
+
+                // 特殊处理：只对大括号{}进行跟踪，确保结束括号与开始括号对齐
+                if (hasStartBrace) {
+                    // 计算这一行的开始括号数量
+                    const startBraces = line.match(/\{/g) || [];
+                    for (let j = 0; j < startBraces.length; j++) {
+                        braceStack.push(indentLevel);
+                    }
+                }
+
+                // 检查是否有结束括号需要从栈中弹出
+                if (hasEndBrace) {
+                    // 计算这一行的结束括号数量
+                    const endBraces = line.match(/\}/g) || [];
+                    for (let j = 0; j < endBraces.length; j++) {
+                        if (braceStack.length > 0) {
+                            braceStack.pop();
+                        }
+                    }
+                }
+
+                // 特殊处理：如果行包含=>{，则需要增加缩进
+                if (line.includes('=>{')) {
+                    braceStack.push(indentLevel);
+                }
+
+                // 特殊处理链式调用（如.then()、.catch()、.finally()）
+                const chainCalls = ['.then(', '.catch(', '.finally('];
+                const hasChainCall = chainCalls.some(call => line.includes(call));
+
+                if (hasChainCall) {
+                    // 检查链式调用后面是否有{，如果有，增加缩进
+                    for (let call of chainCalls) {
+                        if (line.includes(call)) {
+                            const callIndex = line.indexOf(call);
+                            const restOfLine = line.slice(callIndex + call.length).trim();
+                            if (restOfLine.startsWith('{')) {
+                                braceStack.push(indentLevel);
+                            } else if (restOfLine.startsWith('(')) {
+                                // 处理.then(() => {}) 这种情况
+                                if (restOfLine.includes('=>')) {
+                                    const arrowIndex = restOfLine.indexOf('=>');
+                                    const arrowRest = restOfLine.slice(arrowIndex + 2).trim();
+                                    if (arrowRest.startsWith('{')) {
+                                        braceStack.push(indentLevel);
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+
+            // 移除多余的空行
+            const finalLines = [];
+            for (let line of formattedLines) {
+                if (line !== '' || (finalLines.length > 0 && finalLines[finalLines.length - 1] !== '')) {
+                    finalLines.push(line);
+                }
+            }
+
+            // 更新脚本内容
+            this.addScriptItem.scriptContent = finalLines.join('\n');
+        },
+        addScriptContent() {
+            this.$refs.addScriptForm.validate((valid) => {
+                if (valid) {
+                    let addScriptItem = _.cloneDeep(this.addScriptItem);
+                    // console.log('addScriptItem', addScriptItem);
+                    if (addScriptItem.idx !== undefined) {
+                        this.scriptList[addScriptItem.idx] = addScriptItem;
+                    } else {
+                        this.scriptList.push(addScriptItem);
+                    }
+                    this.addScriptClose();
+                    this.$emit('change', this.scriptList);
+                }
+            });
+        },
+        editItem(item, index) {
+            this.addScriptItem = _.cloneDeep(item);
+            this.addScriptItem.idx = index;
+            this.dialogVisible = true;
+        },
+        deleteItem(item, index) {
+            this.$confirm('确定删除吗？', '提示', {
+                confirmButtonText: '确定',
+                cancelButtonText: '取消',
+                type: 'warning'
+            }).then(() => {
+                this.scriptList.splice(index, 1);
+            });
+        },
+        modelTypeFilter(modelType) {
+            switch (modelType) {
+                case '0':
+                    return 'AB同步';
+                case '1':
+                    return 'AB单独';
+                case '2':
+                    return '仅A';
+                case '3':
+                    return '仅B';
+                default:
+                    return modelType;
+            }
+        },
+        powerTypeFilter(powerType) {
+            switch (powerType) {
+                case '0':
+                    return '线性改变';
+                case '1':
+                    return '直接改变';
+                default:
+                    return powerType;
+            }
+        },
+        playTypeFilter(playType) {
+
+            switch (playType) {
+                case 0:
+                    return '列表循环';
+                case 1:
+                    return '单曲循环';
+                case 2:
+                    return '随机';
+                default:
+                    return playType;
+            }
+        },
+
+    },
+    mounted() {
+        this.scriptList = _.cloneDeep(this.value) || [];
+    },
+    watch: {
+        // 监听value变化，更新scriptList
+        value: {
+            handler(newVal) {
+                this.scriptList = _.cloneDeep(newVal) || [];
+            },
+            deep: true // 深度监听，确保数组内容变化也能触发更新
+        }
+    }
+}
+</script>
+<style>
+.manga-page-impl .script-content-column .cell {
+    white-space: pre;
+}
+
+/* 修复错误消息显示位置 */
+.manga-page-impl .el-form-item {
+    margin-bottom: 22px;
+}
+
+/* 为标签添加间距 */
+.manga-page-impl .impl-type-tag {
+    margin-right: 10px !important;
+    margin-bottom: 8px !important;
+}
+
+.manga-page-impl .slider-item {
+    display: flex;
+    flex-direction: row;
+    list-style-type: none;
+    padding-inline-start: 0px;
+}
+
+.manga-page-impl .slider-item-slider {
+    flex-grow: 18;
+}
+
+.manga-page-impl .slider-item-text {
+    flex-grow: 2;
+    text-align: center;
+}
+</style>

@@ -1,9 +1,9 @@
 <template>
     <div v-if="channelWaveListDialogVisible">
-        <el-dialog title="请选择波形" :visible.sync="channelWaveListDialogVisible" width="50%" center
+        <el-dialog title="请选择波形" :visible.sync="channelWaveListDialogVisible" width="50%" center append-to-body
             :close-on-click-modal="false" :before-close="channelWaveListDialogClose">
-            <ctrl-item-list ref="ctrlItemList" :defaultCheckedIds="defaultCheckedIds"
-                :show-checked="true" :max-height="maxHeight"></ctrl-item-list>
+            <ctrl-item-list ref="ctrlItemList" :defaultCheckedIds="defaultCheckedIds" :show-checked="showChecked"
+                :max-height="maxHeight" :readonly="readonly"></ctrl-item-list>
             <span slot="footer" class="dialog-footer">
                 <el-button @click="channelWaveListDialogClose">取 消</el-button>
                 <el-button type="primary" @click="getCheckedWaveList">确 认</el-button>
@@ -19,12 +19,24 @@ export default {
     components: {
         CtrlItemList,
     },
-
+    props: {
+        showChecked: {
+            type: Boolean,
+            default: true,
+        },
+        readonly: {
+            type: Boolean,
+            default: false,
+        },
+        maxHeight: {
+            type: String,
+            default: '400px',
+        }
+    },
     data() {
         return {
             channelWaveListDialogVisible: false,
-            defaultCheckedIds: [],
-            maxHeight: '400px',
+            defaultCheckedIds: []
         }
     },
     methods: {
@@ -32,6 +44,7 @@ export default {
             if (defaultCheckedIds) {
                 this.defaultCheckedIds = defaultCheckedIds || [];
             }
+
             this.channelWaveListDialogVisible = true;
         },
         channelWaveListDialogClose() {
@@ -50,6 +63,9 @@ export default {
             this.$emit('getCheckedWaveList', waveList);
             this.channelWaveListDialogClose();
         },
+    },
+    mounted() {
+
     }
 }
 </script>

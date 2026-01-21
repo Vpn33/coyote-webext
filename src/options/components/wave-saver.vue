@@ -5,7 +5,7 @@
             <WaveEditor ref="waveEditor" :item="editWaveItem"></WaveEditor>
             <span slot="footer" class="dialog-footer">
                 <el-button @click="editorDialogClose">取 消</el-button>
-                <el-button type="primary" @click="doSave">保存</el-button>
+                <el-button type="primary" @click="doSave">保 存</el-button>
                 <el-button type="normal" @click="openSaveAsDialog">另存为</el-button>
             </span>
         </el-dialog>

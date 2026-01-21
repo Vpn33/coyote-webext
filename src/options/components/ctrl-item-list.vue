@@ -7,8 +7,10 @@
         <div v-else>
             <p class="mb-3">共加载 {{ ctrlItemList.length }} 个波形</p>
             <el-button type="primary" size="small" @click="reimportDefWave">重置默认波形</el-button>
+            <el-input v-model="searchText" placeholder="搜索波形" clearable @input="handleSearch"></el-input>
             <el-table ref="ctrlItemTable" :data="ctrlItemList" stripe border style="width: 100%" size="small"
-                @selection-change="handleSelectionChange">
+                @selection-change="handleSelectionChange" :max-height="maxHeight" :highlight-current-row="!showChecked"
+                @current-change="handleCurrentChange">
                 <el-table-column v-if="showChecked" type="selection" width="55">
                 </el-table-column>
                 <el-table-column prop="name" label="名称" min-width="150" align="left">
@@ -28,7 +30,7 @@
                         <span>{{scope.row.stageList.filter(stage => stage.enabled).length}}个</span>
                     </template>
                 </el-table-column>
-                <el-table-column label="操作" min-width="150" align="center" fixed="right" v-if="!showChecked">
+                <el-table-column label="操作" min-width="150" align="center" fixed="right" v-if="!readonly">
                     <template slot-scope="scope">
                         <el-button type="primary" size="small" @click="editWave(scope.row)">
                             编辑
@@ -50,6 +52,7 @@ import WaveStage from '../../lib/WaveStage.js'
 import WaveMeta from '../../lib/WaveMeta.js'
 import WaveSaver from './wave-saver';
 import MyStorage from '@/lib/MyStorage';
+import { readonly } from 'vue';
 
 export default {
     components: {
@@ -64,9 +67,13 @@ export default {
             type: Boolean,
             default: false,
         },
+        readonly: {
+            type: Boolean,
+            default: false,
+        },
         maxHeight: {
             type: String,
-            default: '200px',
+            default: null,
         },
     },
     data() {
@@ -74,6 +81,7 @@ export default {
             ctrlItemList: [],
             checkedItemList: [],
             editWaveItem: null,
+            searchText: null,
         }
     },
     created() {
@@ -95,6 +103,20 @@ export default {
         }
     },
     methods: {
+        handleSearch() {
+            let st = this.searchText.trim();
+            if (!st) {
+                this.loadCtrlItemData();
+            } else {
+                this.ctrlItemList = this.ctrlItemList.filter(item => item.name.includes(st));
+            }
+        },
+        handleCurrentChange(currentRow) {
+            if (!this.showChecked && currentRow) {
+                this.$refs.ctrlItemTable.setCurrentRow(currentRow);
+                this.checkedItemList = [_.cloneDeep(currentRow)];
+            }
+        },
         reimportDefWave() {
             this.$confirm('此操作将重置所有波形数据, 是否继续?', '提示', {
                 confirmButtonText: '确定',
@@ -103,13 +125,13 @@ export default {
             }).then(() => {
                 let tempDefData = ctrlItemListData;
                 let waveList = MyStorage.waveList() || [];
-                
+
                 // 创建默认数据的ID映射表，方便快速查找
                 let defDataMap = {};
                 tempDefData.forEach(item => {
                     defDataMap[item.id] = item;
                 });
-                
+
                 // 合并数据：如果当前waveList中的波形在默认数据中存在相同ID，则用默认数据替换
                 let mergedList = waveList.map(item => {
                     if (defDataMap[item.id]) {
@@ -117,10 +139,10 @@ export default {
                     }
                     return item;
                 });
-                
+
                 // 将合并后的数据保存到本地存储
                 MyStorage.saveWaveList(mergedList);
-                
+
                 // 重新加载数据
                 this.loadCtrlItemData();
             }).catch(() => {
@@ -241,7 +263,11 @@ export default {
             this.$nextTick(() => {
                 this.ctrlItemList.forEach(row => {
                     if (this.defaultCheckedIds.indexOf(row.id) >= 0) {
-                        this.$refs.ctrlItemTable.toggleRowSelection(row, true);
+                        if (this.showChecked) {
+                            this.$refs.ctrlItemTable.toggleRowSelection(row, true);
+                        } else {
+                            this.handleCurrentChange(row);
+                        }
                     }
                 })
             })
@@ -249,6 +275,14 @@ export default {
     }
 }
 </script>
-<style scoped>
-/* 可以根据需要添加自定义样式 */
+<style >
+.el-table--striped .el-table__body tr.el-table__row--striped.current-row td.el-table__cell, .el-table--striped .el-table__body tr.el-table__row--striped.selection-row td.el-table__cell {
+    background-color: #cbe2fd;
+}
+.el-table__body tr.current-row>td.el-table__cell, .el-table__body tr.selection-row>td.el-table__cell {
+    background-color: #cbe2fd;
+}
+.el-table--enable-row-hover .el-table__body tr:hover>td.el-table__cell {
+    background-color: #cbe2fd;
+}
 </style>

@@ -3,6 +3,10 @@ import VueRouter from 'vue-router'
 import WavePlayer from "./components/wave-player.vue";
 import WaveEditor from "./components/wave-editor.vue";
 import CtrlItemList from "./components/ctrl-item-list.vue";
+import MangaScriptEditor from "./components/manga-script-editor.vue";
+import MangaScriptList from "./components/manga-script-list.vue";
+
+
 
 Vue.use(VueRouter)
 
@@ -21,6 +25,16 @@ const routes = [
     path: '/ctrlItemList/',
     name: 'CtrlItemList',
     component: CtrlItemList
+  },
+  {
+    path: '/mangaScriptEditor/',
+    name: 'MangaScriptEditor',
+    component: MangaScriptEditor
+  },
+  {
+    path: '/mangaScriptList/',
+    name: 'MangaScriptList',
+    component: MangaScriptList
   }
 ]
 
