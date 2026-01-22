@@ -536,6 +536,7 @@ export default {
                 a: null, // A通道电源强度
                 b: null, // B通道电源强度
             }, // 上次播放的漫画脚本电源强度
+            flatPowerIntensityInterval: 500, // 平滑电源强度变化时间间隔 500ms变化一次
             flatPowerIntensityInv: null,
             tempPlayerInfo: null, // 临时播放器信息
         };
@@ -2903,10 +2904,10 @@ export default {
             this.strengthB = newB;
             // 如果AB都不需要平滑 就直接设置强度
             if (this.flatPowerIntensity.a || this.flatPowerIntensity.b) {
-                this.autoFlatPowerIntensity();
+                this.autoFlatPowerIntensity(this.flatPowerIntensityInterval);
             }
         },
-        autoFlatPowerIntensity() { // 平滑的处理脚本触发的电源强度变化
+        autoFlatPowerIntensity(flatInterval) { // 平滑的处理脚本触发的电源强度变化
             // 如果AB都不需要平滑 就清除计时器 直接返回 
             if (!this.flatPowerIntensity.a && !this.flatPowerIntensity.b) {
                 this.clearFlatPowerIntensity();
@@ -2953,8 +2954,8 @@ export default {
                     return;
                 }
                 // 如果计时器已经启动了 就直接返回
-                this.autoFlatPowerIntensity();
-            }, 500);
+                this.autoFlatPowerIntensity(flatInterval);
+            }, flatInterval);
         },
         clearFlatPowerIntensity() { // 清除平滑设置电源强度定时器
             if (this.flatPowerIntensityInv) {
@@ -3052,6 +3053,24 @@ export default {
             }
             this.onPlayTypeChange();
         },
+        setFlatPowerIntensity(channel, intensity, flatInterval, delayTime) {
+            if (delayTime) {
+                setTimeout(() => {
+                    this.setFlatPowerIntensity(channel, intensity);
+                }, delayTime);
+                return;
+            }
+            // 每X毫秒 平滑的电源变化
+            if ('A' === channel || 'both' === channel) {
+                this.flatPowerIntensity.a = this.strengthA + intensity;
+            }
+            if ('B' === channel || 'both' === channel) {
+                this.flatPowerIntensity.b = this.strengthB + intensity;
+            }
+            // 清除旧的定时器 重新设置新的定时器
+            this.clearFlatPowerIntensity();
+            this.autoFlatPowerIntensity(flatInterval);
+        }
     },
     mounted() {
         // 组件挂载时的初始化逻辑

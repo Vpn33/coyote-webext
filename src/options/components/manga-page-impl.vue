@@ -1,7 +1,7 @@
 <template>
     <div class="manga-page-impl">
         <el-button @click="openAddScriptDialog">添加</el-button>
-        <el-table :data="scriptList" style="width: 100%">
+        <el-table id="scriptList" :data="scriptList" style="width: 100%" border>
             <el-table-column label="行号" width="100">
                 <template slot-scope="scope">
                     {{ scope.$index + 1 }}
@@ -22,15 +22,21 @@
             :before-close="addScriptClose">
             <el-form :model="addScriptItem" ref="addScriptForm" label-width="120px" :rules="scriptRules">
                 <el-form-item label="页码" prop="pageNo">
+                    <div>
+                        <el-tag v-for="item in implPage" :key="item.label" :type="item.type" effect="dark"
+                            @click="openPopScriptDialog(item, true)" class="impl-type-tag">
+                            {{ item.label }}
+                        </el-tag>
+                    </div>
                     <el-input v-model="addScriptItem.pageNo" placeholder="请输入页码"></el-input>
                 </el-form-item>
                 <el-form-item label="脚本内容" prop="scriptContent">
-                    <div style="display: flex; align-items: center; margin-bottom: 8px;">
+                    <div>
                         <el-tag v-for="item in implType" :key="item.label" :type="item.type" effect="dark"
                             @click="openPopScriptDialog(item)" class="impl-type-tag">
                             {{ item.label }}
                         </el-tag>
-                        <el-button type="text" size="small" @click="formatScriptContent" style="margin-left: auto;">
+                        <el-button type="text" size="small" @click="formatScriptContent">
                             格式化
                         </el-button>
                     </div>
@@ -98,6 +104,7 @@
     </div>
 </template>
 <script>
+import Sortable from 'sortablejs';
 import SelectOneWave from './select-one-wave.vue';
 import WaveUtil from '../../lib/WaveUtil.js';
 export default {
@@ -120,6 +127,21 @@ export default {
                 pageNo: '',
                 scriptContent: '',
             },
+            implPage: [
+                {
+                    label: '从x~y页', type: 'warning', value: 'setPowerIntensity',
+                    form: {
+                        title: '从x~y页',
+                        items: [
+                            { name: 'startPage', label: '起始页码', type: 'input-number', controlsPosition: 'right', value: 1, min: 1, max: 10000, step: 1 },
+                            { name: 'endPage', label: '结束页码', type: 'input-number', controlsPosition: 'right', value: 2, min: 1, max: 10000, step: 1 },
+                        ],
+                        codeTemplate: (item) => {
+                            return `[${item.startPage}-${item.endPage}]`
+                        },
+                    },
+                }
+            ],
             implType: [
                 {
                     label: '通道电源强度', type: 'warning', value: 'setPowerIntensity',
@@ -137,6 +159,30 @@ export default {
                         codeTemplate: (item) => {
                             return `// 1 ~ 100% 根据通道电源上限的百分比进行计算
 this.setPowerIntensity('${item.channel}', ${item.intensity / 100}${item.waitTime ? `, ${item.waitTime}` : ''});`
+                        },
+                    },
+                },
+                {
+                    label: '平滑电源强度', type: 'warning', value: 'setFlatPowerIntensity',
+                    form: {
+                        title: '设置平滑电源强度加减',
+                        items: [
+                            { name: 'channel', label: '通道', type: 'select', value: 'both', options: [{ label: 'A和B', value: 'both' }, { label: '仅A', value: 'A' }, { label: '仅B', value: 'B' }] },
+                            { name: 'intensity', label: '电源强度变化', type: 'slider', value: 0, min: -100, max: 100, step: 1, formatTooltip: (val) => val > 0 ? '+' + val : val },
+                            {
+                                name: 'flatInterval', label: '平滑时间间隔', type: 'slider', value: 500, min: 100, max: 10000, step: 100, formatTooltip: (val) => {
+                                    return WaveUtil.msToViewTimeStr(val);
+                                }
+                            },
+                            {
+                                name: 'waitTime', label: '延迟时间', type: 'slider', value: 0, min: 0, max: 10000, step: 100, formatTooltip: (val) => {
+                                    return WaveUtil.msToViewTimeStr(val);
+                                }
+                            },
+                        ],
+                        codeTemplate: (item) => {
+                            return `// 平滑的设置通道电源强度加减
+this.setFlatPowerIntensity('${item.channel}', ${item.intensity}, ${item.flatInterval}${item.waitTime ? `, ${item.waitTime}` : ''});`
                         },
                     },
                 },
@@ -234,37 +280,55 @@ this.setPlayerStatus('${item.channel}', ${item.isStart}${item.waitTime ? `, ${it
                         },
                     },
                 },
-//                 {
-//                     label: '链式', type: 'info', value: 'callPromise',
-//                     codeTemplate: (item) => {
-//                         return `new Promise((resolve, reject) => {
-// }).then(() => {
-// }).catch(() => {
-//     // 失败回调
-// });`
-//                     },
-//                 },
-//                 {
-//                     label: '等待', type: 'info', value: 'waitToDo',
-//                     form: {
-//                         title: '设置等待时间',
-//                         items: [
-//                             {
-//                                 name: 'waitTime', label: '等待时间', type: 'slider', value: 1, min: 1, max: 1000, formatTooltip: (val) => {
-//                                     return WaveUtil.msToViewTimeStr(val * 100);
-//                                 }
-//                             },
-//                         ],
-//                         codeTemplate: (item) => {
-//                             return `setTimeout(() => {
-// }, ${item.waitTime} * 100);`
-//                         },
-//                     },
 
-//                 }
+                //                 {
+                //                     label: '链式', type: 'info', value: 'callPromise',
+                //                     codeTemplate: (item) => {
+                //                         return `new Promise((resolve, reject) => {
+                // }).then(() => {
+                // }).catch(() => {
+                //     // 失败回调
+                // });`
+                //                     },
+                //                 },
+                //                 {
+                //                     label: '等待', type: 'info', value: 'waitToDo',
+                //                     form: {
+                //                         title: '设置等待时间',
+                //                         items: [
+                //                             {
+                //                                 name: 'waitTime', label: '等待时间', type: 'slider', value: 1, min: 1, max: 1000, formatTooltip: (val) => {
+                //                                     return WaveUtil.msToViewTimeStr(val * 100);
+                //                                 }
+                //                             },
+                //                         ],
+                //                         codeTemplate: (item) => {
+                //                             return `setTimeout(() => {
+                // }, ${item.waitTime} * 100);`
+                //                         },
+                //                     },
+
+                //                 }
             ],
             scriptRules: {
-                pageNo: [{ required: true, message: '请输入页码', trigger: 'blur' }],
+                pageNo: [{ required: true, message: '请输入页码', trigger: 'blur' },
+                {
+                    message: '页码重复', validator: (rule, value, callback) => {
+                        if (this.addScriptItem.idx) {
+                            if (this.scriptList[this.addScriptItem.idx].pageNo === value) {
+                                callback();
+                            }
+                        }
+                        const exItem = _.find(this.scriptList, (item) => {
+                            return item.pageNo === value;
+                        })
+                        if (exItem) {
+                            callback(new Error('页码重复'));
+                        } else {
+                            callback();
+                        }
+                    },
+                }],
                 scriptContent: [{ required: true, message: '请输入脚本内容', trigger: 'blur' }],
             },
             popScriptVisible: false,
@@ -274,9 +338,10 @@ this.setPlayerStatus('${item.channel}', ${item.isStart}${item.waitTime ? `, ${it
         }
     },
     methods: {
-        openPopScriptDialog(impl) {
+        openPopScriptDialog(impl, isPage) {
             if (impl.form) {
                 this.popScriptForm = _.cloneDeep(impl.form);
+                this.popScriptForm.isPage = isPage;
                 this.popScriptVisible = true;
             } else {
                 let popCodeContent = impl.codeTemplate().trim() + '\n';
@@ -286,6 +351,7 @@ this.setPlayerStatus('${item.channel}', ${item.isStart}${item.waitTime ? `, ${it
                 }
                 resContent += popCodeContent;
                 this.addScriptItem.scriptContent = resContent;
+
             }
         },
         popScriptContentConfirm() {
@@ -298,12 +364,16 @@ this.setPlayerStatus('${item.channel}', ${item.isStart}${item.waitTime ? `, ${it
                     // console.log('popScriptItem', popScriptItem);
                     // 计算字符串模板
                     let popCodeContent = this.popScriptForm.codeTemplate(t).trim() + '\n';
-                    let resContent = this.addScriptItem.scriptContent;
-                    if (!resContent.endsWith('\n')) {
-                        resContent += '\n';
+                    if (this.popScriptForm.isPage) {
+                        this.addScriptItem.pageNo = popCodeContent;
+                    } else {
+                        let resContent = this.addScriptItem.scriptContent;
+                        if (!resContent.endsWith('\n')) {
+                            resContent += '\n';
+                        }
+                        resContent += popCodeContent;
+                        this.addScriptItem.scriptContent = resContent.trim();
                     }
-                    resContent += popCodeContent;
-                    this.addScriptItem.scriptContent = resContent.trim();
                     this.popScriptClose();
                 }
             });
@@ -492,10 +562,31 @@ this.setPlayerStatus('${item.channel}', ${item.isStart}${item.waitTime ? `, ${it
                     return playType;
             }
         },
-
+        initSortTable() {
+            // 为A通道表格添加排序功能
+            const scTable = document.querySelector("#scriptList");
+            if (scTable) {
+                Sortable.create(scTable.querySelector('.el-table__body-wrapper tbody'), {
+                    group: 'shared',
+                    animation: 150,
+                    ghostClass: 'sortable-ghost', //拖拽样式
+                    easing: 'cubic-bezier(1, 0, 0, 1)',
+                    // 结束拖动事件
+                    onEnd: (item) => {
+                        // 更新脚本列表数据
+                        const currentRow = this.scriptList.splice(item.oldIndex, 1)[0];
+                        this.$nextTick(() => {
+                            this.scriptList.splice(item.newIndex, 0, currentRow);
+                            this.$emit('change', this.scriptList);
+                        });
+                    },
+                });
+            }
+        },
     },
     mounted() {
         this.scriptList = _.cloneDeep(this.value) || [];
+        this.initSortTable();
     },
     watch: {
         // 监听value变化，更新scriptList
@@ -538,5 +629,13 @@ this.setPlayerStatus('${item.channel}', ${item.isStart}${item.waitTime ? `, ${it
 .manga-page-impl .slider-item-text {
     flex-grow: 2;
     text-align: center;
+}
+
+.manga-page-impl .el-form-item__error {
+    position: relative;
+}
+
+.manga-page-impl .el-input-number .el-input {
+    width: 100%;
 }
 </style>
