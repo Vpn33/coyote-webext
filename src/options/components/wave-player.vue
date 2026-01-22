@@ -448,7 +448,7 @@ export default {
             generateDataBatchTimer: null,
             generateNomalPlayInterval: 5000, // 这个参数只给 每隔X毫秒生成一批默认数据 这个值不能小于channelPlayTime * 1000 当前最小值是5秒
             generatePlayBatchIng: false, // 是否正在生成播放批次
-            generateNomalPlayShakeDelay: 5000, // 每隔X毫秒生成一批X毫秒的数据 这个值最后的波形数据时间 要至少大于generateNomalPlayInterval 1秒，避免不连续的问题
+            generateNomalPlayShakeDelay: 2000, // 每隔X毫秒生成一批X毫秒的数据 这个值最后的波形数据时间 要至少大于generateNomalPlayInterval 1秒，避免不连续的问题
             tmpSendData: null, // 上次发送波形的数据
 
             // V3指令相关状态管理
@@ -675,8 +675,10 @@ export default {
                 }
                 reject(error);
             }).finally(() => {
-                // 继续处理队列中的下一个命令
-                this.processGattQueue();
+                if (this.aChannelPlaying || this.bChannelPlaying) {
+                    // 继续处理队列中的下一个命令
+                    this.processGattQueue();
+                }
             });
         },
 
@@ -1451,6 +1453,13 @@ export default {
                 // 使用setTimeout控制每条数据的发送间隔为100ms
                 const sendPromise = new Promise((resolve) => {
                     setTimeout(() => {
+                        if (!this.aChannelPlaying && !this.bChannelPlaying) {
+                            // 如果两条通道都没有在播放 则清空缓存
+                            this.clearNomalPlayCache();
+                            // 清空缓存并重新生成波形数据
+                            this.clearCacheRegenerate();
+                            return;
+                        }
                         return this.sendBLEData(this.strengthA, this.strengthB, dataItem)
                             .then(() => {
                                 resolve({ success: true, index });
@@ -1731,6 +1740,10 @@ export default {
                 if (!this.aChannelPlaying) {
                     this.cleanChartViewInv(1);
                     this.clearFlatPowerIntensity();
+                    // 清空播放缓存
+                    this.clearNomalPlayCache();
+                    // 清空缓存并重新生成波形数据
+                    this.clearCacheRegenerate();
                 }
             }
             if (channel === 'B' || channel === 'both') {
@@ -1818,30 +1831,28 @@ export default {
             }
 
             // 循环获取需要的数量，超出数组长度时从0开始循环
-            // 每次需要从列表获取的数量
-            const batchSize = this.generateNomalPlayShakeDelay / 100;
-            let startIdx = this[channelModelIdx];
-            let currentIdx = null;
+            // 每次需要从生成缓存的数量 
+            const batchSize = this.generateNomalPlayShakeDelay / 25;
+            let startIdx = this[channelModelIdx] || 0;
             for (let i = 0; i < batchSize; i++) {
-                currentIdx = i;
-                if ((startIdx + i) % listLength === 0) {
-                    currentIdx = 0;
-                }
                 // 默认的播放速率是100ms ，即每个meta是100ms  rate=2时 播放速率是50ms 即每个meta是50ms rate=4时 播放速率是25ms 即每个meta是25ms
                 if (rate === 1) {
-                    result.push(modelList[i]);
-                    result.push(modelList[i]);
-                    result.push(modelList[i]);
-                    result.push(modelList[i]);
+                    result.push(modelList[startIdx]);
+                    result.push(modelList[startIdx]);
+                    result.push(modelList[startIdx]);
+                    result.push(modelList[startIdx]);
                 } else if (rate === 2) {
-                    result.push(modelList[i]);
-                    result.push(modelList[i]);
+                    result.push(modelList[startIdx]);
+                    result.push(modelList[startIdx]);
                 } else {
-                    result.push(modelList[i]);
+                    result.push(modelList[startIdx]);
                 }
-
+                startIdx++;
+                if (startIdx % listLength === 0) {
+                    startIdx = 0;
+                }
             }
-            this[channelModelIdx] = currentIdx;
+            this[channelModelIdx] = startIdx;
             // 这里的result是以25ms为单位的
 
             return result;
@@ -1873,6 +1884,9 @@ export default {
             if (this.generatePlayBatchIng) {
                 return;
             }
+            if (!this.aChannelPlaying && !this.bChannelPlaying) {
+                return;
+            }
             this.generatePlayBatchIng = true;
             let currentACtrlItem = null;
             let currentBCtrlItem = null;
@@ -1883,6 +1897,8 @@ export default {
                 if (this.channelAPlayWaitingNext === true) {
                     // 重置等待切换
                     this.channelAPlayWaitingNext = false;
+                    // 清空缓存
+                    this.aChannelV3ModelList = [];
                     // 重置播放时间
                     this.channelAPlayTime = 0;
                     // 计算播放下一个索引
@@ -1907,6 +1923,8 @@ export default {
                 if (this.channelBPlayWaitingNext === true) {
                     // 重置等待切换
                     this.channelBPlayWaitingNext = false;
+                    // 清空缓存
+                    this.bChannelV3ModelList = [];
                     // 重置播放时间
                     this.channelBPlayTime = 0;
                     // 计算播放下一个索引
@@ -1956,24 +1974,71 @@ export default {
                 // data[12~15] - B通道波形频率(4bytes) 
                 // data[16~19] - B通道波形强度 (4bytes) 
 
-                for (let dataIdx = 4; dataIdx <= 19; dataIdx++) {
-                    // 4个一组 是1秒的数据
-                    if (dataIdx >= 4 && dataIdx <= 7 && this.aChannelPlaying === true) {
-                        data[dataIdx] = tempAChannelV3ModelList[listIdx]?.hz || 0 & 0xFF;
-                    } else if (dataIdx >= 8 && dataIdx <= 11 && this.aChannelPlaying === true) {
-                        data[dataIdx] = tempAChannelV3ModelList[listIdx]?.z || 0 & 0xFF;
-                    } else if (dataIdx >= 12 && dataIdx <= 15 && this.bChannelPlaying === true) {
-                        data[dataIdx] = tempBChannelV3ModelList[listIdx]?.hz || 0 & 0xFF;
-                    } else if (dataIdx >= 16 && dataIdx <= 19 && this.bChannelPlaying === true) {
-                        data[dataIdx] = tempBChannelV3ModelList[listIdx]?.z || 0 & 0xFF;
-                    }
-
-                    listIdx++;
-                    if (listIdx >= listMaxSize) {
-                        listIdx = 0;
-                    }
+                // 每个buffer组装100ms的数据，按照25ms一个数据点的规则
+                if (this.aChannelPlaying === true) {
+                    const tmpA = tempAChannelV3ModelList[listIdx];
+                    data[4] = tmpA?.hz || 0 & 0xFF;
+                    data[8] = tmpA?.z || 0 & 0xFF;
                 }
-                // 1秒的数据
+                if (this.bChannelPlaying === true) {
+                    const tmpB = tempBChannelV3ModelList[listIdx];
+                    data[12] = tmpB?.hz || 0 & 0xFF;
+                    data[16] = tmpB?.z || 0 & 0xFF;
+                }
+                // 移动到下一个25ms的数据点
+                listIdx++;
+                if (listIdx >= listMaxSize) {
+                    listIdx = 0;
+                }
+                if (this.aChannelPlaying === true) {
+                    const tmpA = tempAChannelV3ModelList[listIdx];
+                    data[5] = tmpA?.hz || 0 & 0xFF;
+                    data[9] = tmpA?.z || 0 & 0xFF;
+                }
+                if (this.bChannelPlaying === true) {
+                    const tmpB = tempBChannelV3ModelList[listIdx];
+                    data[13] = tmpB?.hz || 0 & 0xFF;
+                    data[17] = tmpB?.z || 0 & 0xFF;
+                }
+                // 移动到下一个25ms的数据点
+                listIdx++;
+                if (listIdx >= listMaxSize) {
+                    listIdx = 0;
+                }
+                if (this.aChannelPlaying === true) {
+                    const tmpA = tempAChannelV3ModelList[listIdx];
+                    data[6] = tmpA?.hz || 0 & 0xFF;
+                    data[10] = tmpA?.z || 0 & 0xFF;
+                }
+                if (this.bChannelPlaying === true) {
+                    const tmpB = tempBChannelV3ModelList[listIdx];
+                    data[14] = tmpB?.hz || 0 & 0xFF;
+                    data[18] = tmpB?.z || 0 & 0xFF;
+                }
+                // 移动到下一个25ms的数据点
+                listIdx++;
+                if (listIdx >= listMaxSize) {
+                    listIdx = 0;
+                }
+                if (this.aChannelPlaying === true) {
+                    const tmpA = tempAChannelV3ModelList[listIdx];
+                    data[7] = tmpA?.hz || 0 & 0xFF;
+                    data[11] = tmpA?.z || 0 & 0xFF;
+                }
+                if (this.bChannelPlaying === true) {
+                    const tmpB = tempBChannelV3ModelList[listIdx];
+                    data[15] = tmpB?.hz || 0 & 0xFF;
+                    data[19] = tmpB?.z || 0 & 0xFF;
+                }
+
+
+                // 移动到下一个25ms的数据点
+                listIdx++;
+                if (listIdx >= listMaxSize) {
+                    listIdx = 0;
+                }
+
+                // 100毫秒一组的数据
                 this.nomalPlayCache.push(buffer);
                 tempCnt++;
             }
@@ -2297,7 +2362,7 @@ export default {
         },
         setChartViewRange(channel, chartData) {
             if (!this.chartViewInv[channel]) {
-                this.chartViewInv[channel] = requestAnimationFrame(() => {
+                this.chartViewInv[channel] = setTimeout(() => {
                     // 循环内重取charter 否则可能关闭了 但是临时变量没删 导致函数继续执行
                     let _charter = this.charter1;
                     if (channel === 2) {
@@ -2381,7 +2446,7 @@ export default {
                     if (chartData.wa.length > 0) {
                         this.setChartViewRange(channel, chartData);
                     }
-                });
+                }, 200);
 
             }
         },
@@ -2399,8 +2464,8 @@ export default {
                     this.charter2.setOption(this.getWaveChartsOpt(), false);
                 }
             }
-            // clearInterval(this.chartViewInv[channel]);
-            cancelAnimationFrame(this.chartViewInv[channel]);
+            clearInterval(this.chartViewInv[channel]);
+            // cancelAnimationFrame(this.chartViewInv[channel]);
             this.chartViewInv[channel] = null;
             this.chartViewMin[channel] = 0;
             this.charterTmp[channel] = null;
