@@ -526,7 +526,7 @@ export default {
                 wa: []  // 波形数据
             },
             waCacheMaxCnt: 500, // 波形图像缓存最大项
-            pwCacheMaxCnt: 200, // 电源图像缓存最大项
+            pwCacheMaxCnt: 100, // 电源图像缓存最大项
             waChartMaxCnt: 500, // 波形图像显示最大项
             pwChartMaxCnt: 100, // 电源图像显示最大项
 
@@ -557,6 +557,7 @@ export default {
                     // 重置A通道播放时间
                     this.channelAPlayTime = 0;
                 }
+                this.aChannelV3ModelList = [];
             }
             if (channelType === 'B' || channelType === 'both') {
                 this.bChannelPlayIdx = _.findIndex(this.bChannelList, item => item.id === channelRow.id);
@@ -565,6 +566,7 @@ export default {
                     // 重置B通道播放时间
                     this.channelBPlayTime = 0;
                 }
+                this.bChannelV3ModelList = [];
             }
             this.clearNomalPlayCache();
             // 清空缓存并重新生成波形数据
@@ -2118,10 +2120,10 @@ export default {
             return {
                 // color: ['#F9E49C'],
                 grid: {
-                    width: "90%",
-                    height: "75%",
+                    width: "98%",
+                    height: "85%",
                     left: "center",
-                    top: "20%",
+                    top: "10%",
                     right: "center",
                 },
                 legend: {
@@ -2282,12 +2284,19 @@ export default {
                 this.writeCharts(2, chartListB);
             }
         },
+        songToChartsV3(msList, channel) {
+            // 返回图像数组 每个msList是100ms的数据 每10ms一个图像
+            let resArr = new Array(10);
+        },
         songToCharts(msList, channel) {
             let tmp = this.charterTmp[channel];
             if (!tmp) {
                 this.charterTmp[channel] = this.getCharterTmp();
                 tmp = this.charterTmp[channel];
             }
+
+            // 清空zArr数组，确保每次处理波形时都是从空数组开始
+            tmp.zArr = [];
 
             // 计算100毫秒内的脉冲 激活为1 休息为0 每组有4个 每个25ms
             for (let i = 0; i < 100; i++) {
@@ -2327,7 +2336,8 @@ export default {
                     resArr[k] = 0;
                 } else {
                     // 计算当前波形的脉冲Z
-                    resArr[k] = parseInt(tmp.lastZ + (((tmp.zArr[k] - tmp.lastZ) * (k + 1)) / 10));
+                    // resArr[k] = parseInt(tmp.lastZ + (((tmp.zArr[k] - tmp.lastZ) * (k + 1)) / 10));
+                    resArr[k] = tmp.zArr[k];
                     // 保留最后一个z 避免断崖式图像 在波形完整播放后需要重置
                     tmp.lastZ = tmp.zArr[k];
                 }
@@ -3195,6 +3205,7 @@ export default {
 
 .charter-content {
     text-align: center;
+    padding-bottom: 10px;
 }
 
 .charter-switch .el-switch__label {
