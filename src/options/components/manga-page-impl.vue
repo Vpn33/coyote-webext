@@ -1,23 +1,54 @@
 <template>
     <div class="manga-page-impl">
         <el-button @click="openAddScriptDialog">添加</el-button>
-        <el-table id="scriptList" :data="scriptList" style="width: 100%" border>
-            <el-table-column label="行号" width="100">
-                <template slot-scope="scope">
-                    {{ scope.$index + 1 }}
-                </template>
-            </el-table-column>
-            <el-table-column prop="pageNo" min-width="300" label="页码">
-            </el-table-column>
-            <el-table-column prop="scriptContent" min-width="400" label="脚本内容" class-name="script-content-column">
-            </el-table-column>
-            <el-table-column label="操作" width="200">
-                <template slot-scope="scope">
-                    <el-button type="primary" @click="editItem(scope.row, scope.$index)">编辑</el-button>
-                    <el-button type="danger" @click="deleteItem(scope.row, scope.$index)">删除</el-button>
-                </template>
-            </el-table-column>
-        </el-table>
+        <el-row>
+            <el-col :span="16">
+                <el-table id="scriptList" :data="scriptList" style="width: 100%" border max-height="500">
+                    <el-table-column label="行号" width="100">
+                        <template slot-scope="scope">
+                            {{ scope.$index + 1 }}
+                        </template>
+                    </el-table-column>
+                    <el-table-column prop="pageNo" min-width="300" label="页码">
+                    </el-table-column>
+                    <el-table-column prop="scriptContent" min-width="400" label="脚本内容"
+                        class-name="script-content-column">
+                    </el-table-column>
+                    <el-table-column label="操作" width="200">
+                        <template slot-scope="scope">
+                            <el-button type="primary" @click="editItem(scope.row, scope.$index)">编辑</el-button>
+                            <el-button type="danger" @click="deleteItem(scope.row, scope.$index)">删除</el-button>
+                        </template>
+                    </el-table-column>
+                </el-table>
+            </el-col>
+            <el-col :span="8">
+                <el-row>
+                    <el-col :span="12">
+                        <div class="quickset-container">
+                            <span class="quickset-name">A通道电源强度</span>
+                            <el-slider class="quickset-slider" v-model="powerA" vertical height="200px"
+                                :show-input="true" :min="0" :max="100" :step="1" :show-input-controls="false"
+                                @input="quickChannelPowerChange('A')" input-size="mini"
+                                :format-tooltip="(val) => val + '%'"></el-slider>
+                        </div>
+                    </el-col>
+                    <el-col :span="12">
+                        <div class="quickset-container">
+                            <span class="quickset-name">B通道电源强度</span>
+                            <el-slider class="quickset-slider" v-model="powerB" vertical height="200px"
+                                :show-input="true" :min="0" :max="100" :step="1" :show-input-controls="false"
+                                @input="quickChannelPowerChange('B')" input-size="mini"
+                                :format-tooltip="(val) => val + '%'"></el-slider>
+                        </div>
+                    </el-col>
+                </el-row>
+                <div class="quickset-btn">
+                    <el-switch v-model="channelSync" active-text="同步" inactive-text="单独"></el-switch>
+                    <el-button class="quickset-btn" type="primary" @click="quickAddScript">快速添加</el-button>
+                </div>
+            </el-col>
+        </el-row>
         <el-dialog title="添加脚本" :visible.sync="dialogVisible" width="70%" :close-on-click-modal="false"
             :before-close="addScriptClose">
             <el-form :model="addScriptItem" ref="addScriptForm" label-width="120px" :rules="scriptRules">
@@ -137,7 +168,15 @@ export default {
                             { name: 'endPage', label: '结束页码', type: 'input-number', controlsPosition: 'right', value: 2, min: 1, max: 10000, step: 1 },
                         ],
                         codeTemplate: (item) => {
-                            return `[${item.startPage}-${item.endPage}]`
+                            if (item.startPage <= 9 && item.endPage <= 9) {
+                                return `[${item.startPage}-${item.endPage}]`;
+                            } else {
+                                let reg = [];
+                                for (let i = item.startPage; i <= item.endPage; i++) {
+                                    reg.push(i);
+                                }
+                                return `^(${reg.join('|')})$`;
+                            }
                         },
                     },
                 }
@@ -149,7 +188,7 @@ export default {
                         title: '设置通道电源强度',
                         items: [
                             { name: 'channel', label: '通道', type: 'select', value: 'both', options: [{ label: 'A和B', value: 'both' }, { label: '仅A', value: 'A' }, { label: '仅B', value: 'B' }] },
-                            { name: 'intensity', label: '电源强度', type: 'slider', value: 50, min: 0, max: 100, step: 1, formatTooltip: (val) => val + '%' },
+                            { name: 'intensity', label: '电源强度', type: 'slider', value: 50, min: 0, max: 100, step: 1, showInput: true, showInputControls: false, inputSize: 'mini', formatTooltip: (val) => val + '%' },
                             {
                                 name: 'waitTime', label: '延迟时间', type: 'slider', value: 0, min: 0, max: 10000, step: 100, formatTooltip: (val) => {
                                     return WaveUtil.msToViewTimeStr(val);
@@ -168,7 +207,7 @@ this.setPowerIntensity('${item.channel}', ${item.intensity / 100}${item.waitTime
                         title: '设置平滑电源强度加减',
                         items: [
                             { name: 'channel', label: '通道', type: 'select', value: 'both', options: [{ label: 'A和B', value: 'both' }, { label: '仅A', value: 'A' }, { label: '仅B', value: 'B' }] },
-                            { name: 'intensity', label: '电源强度变化', type: 'slider', value: 0, min: -100, max: 100, step: 1, formatTooltip: (val) => val > 0 ? '+' + val : val },
+                            { name: 'intensity', label: '电源强度变化', type: 'slider', value: 0, min: -100, max: 100, step: 1, showInput: true, showInputControls: false, inputSize: 'mini', formatTooltip: (val) => val > 0 ? '+' + val : val },
                             {
                                 name: 'flatInterval', label: '平滑时间间隔', type: 'slider', value: 500, min: 100, max: 10000, step: 100, formatTooltip: (val) => {
                                     return WaveUtil.msToViewTimeStr(val);
@@ -226,7 +265,7 @@ this.setChannelWave('${item.channel}', ${item.selWave.id}${item.waitTime ? `, ${
                         title: '设置通道播放时间',
                         items: [
                             { name: 'channel', label: '通道', type: 'select', value: 'A', options: [{ label: 'A和B', value: 'both' }, { label: 'A通道', value: 'A' }, { label: 'B通道', value: 'B' }] },
-                            { name: 'time', label: '播放时间', type: 'slider', value: 60, min: 5, max: 300, formatTooltip: (val) => val + '秒' },
+                            { name: 'time', label: '播放时间', type: 'slider', value: 60, min: 5, max: 300, showInput: true, showInputControls: false, inputSize: 'mini', formatTooltip: (val) => val + '秒' },
                             {
                                 name: 'waitTime', label: '延迟时间', type: 'slider', value: 0, min: 0, max: 10000, step: 100, formatTooltip: (val) => {
                                     return WaveUtil.msToViewTimeStr(val);
@@ -244,7 +283,7 @@ this.setPlayTime('${item.channel}', ${item.time}${item.waitTime ? `, ${item.wait
                     form: {
                         title: '设置播放模式',
                         items: [
-                            { name: 'channel', label: '通道', type: 'select', value: 'A', options: [{ label: 'A和B', value: 'both' }, { label: 'A通道', value: 'A' }, { label: 'B通道', value: 'B' }] },
+                            { name: 'channel', label: '通道', type: 'select', value: 'both', options: [{ label: 'A和B', value: 'both' }, { label: 'A通道', value: 'A' }, { label: 'B通道', value: 'B' }] },
                             {
                                 name: 'playType', label: '播放模式', type: 'select', value: 1,
                                 options: [{ label: '列表循环', value: 0 }, { label: '单曲循环', value: 1 }, { label: '随机', value: 2 }]
@@ -335,6 +374,9 @@ this.setPlayerStatus('${item.channel}', ${item.isStart}${item.waitTime ? `, ${it
             popScriptForm: {
                 items: [],
             },
+            powerA: 0, // 快速设置 A通道电源强度
+            powerB: 0, // 快速设置 B通道电源强度
+            channelSync: true, // 快速设置通道同步
         }
     },
     methods: {
@@ -344,12 +386,16 @@ this.setPlayerStatus('${item.channel}', ${item.isStart}${item.waitTime ? `, ${it
                 this.popScriptForm.isPage = isPage;
                 this.popScriptVisible = true;
             } else {
-                let popCodeContent = impl.codeTemplate().trim() + '\n';
+                let popCodeContent = impl.codeTemplate().trim()
+                if (!isPage) {
+                    popCodeContent += '\n';
+                }
                 let resContent = this.addScriptItem.scriptContent;
-                if (!resContent.endsWith('\n')) {
+                if (!isPage && !resContent.endsWith('\n')) {
                     resContent += '\n';
                 }
                 resContent += popCodeContent;
+
                 this.addScriptItem.scriptContent = resContent;
 
             }
@@ -363,12 +409,15 @@ this.setPlayerStatus('${item.channel}', ${item.isStart}${item.waitTime ? `, ${it
                     });
                     // console.log('popScriptItem', popScriptItem);
                     // 计算字符串模板
-                    let popCodeContent = this.popScriptForm.codeTemplate(t).trim() + '\n';
+                    let popCodeContent = this.popScriptForm.codeTemplate(t).trim();
+                    if (!this.popScriptForm.isPage) {
+                        popCodeContent += '\n';
+                    }
                     if (this.popScriptForm.isPage) {
                         this.addScriptItem.pageNo = popCodeContent;
                     } else {
                         let resContent = this.addScriptItem.scriptContent;
-                        if (!resContent.endsWith('\n')) {
+                        if (!this.popScriptForm.isPage && !resContent.endsWith('\n')) {
                             resContent += '\n';
                         }
                         resContent += popCodeContent;
@@ -562,6 +611,57 @@ this.setPlayerStatus('${item.channel}', ${item.isStart}${item.waitTime ? `, ${it
                     return playType;
             }
         },
+        quickChannelPowerChange(channel) {
+            if (channel === 'A') {
+                if (this.channelSync) {
+                    this.powerB = this.powerA;
+                }
+            } else if (channel === 'B') {
+                if (this.channelSync) {
+                    this.powerA = this.powerB;
+                }
+            }
+        },
+        isNum(param) {
+            let num = parseInt(param);
+            return !Number.isNaN(num);
+        },
+        quickAddScript() {
+            let pageNo = 1;
+            let lastItem = _.last(this.scriptList);
+            if (lastItem) {
+                if (this.isNum(lastItem.pageNo)) {
+                    pageNo = parseInt(lastItem.pageNo) + 1;
+                } else {
+                    if (lastItem.pageNo.indexOf('-') !== -1) {
+                        pageNo = parseInt(lastItem.pageNo.split('-')[1]) + 1;
+                    } else if (lastItem.pageNo.indexOf('|') !== -1) {
+                        pageNo = parseInt(_.last(lastItem.pageNo.split('|')).match(/\d+/g).join('')) + 1;
+                    }
+                }
+            }
+            let channel = 'both';
+            if (this.channelSync) {
+                this.scriptList.push({
+                    pageNo,
+                    scriptContent: `// 1 ~ 100% 根据通道电源上限的百分比进行计算
+this.setPowerIntensity('${channel}', ${this.powerA});`
+                });
+            } else {
+                channel = 'A';
+                this.scriptList.push({
+                    pageNo,
+                    scriptContent: `// 1 ~ 100% 根据通道电源上限的百分比进行计算
+this.setPowerIntensity('${channel}', ${this.powerA});`
+                });
+                channel = 'B';
+                this.scriptList.push({
+                    pageNo,
+                    scriptContent: `// 1 ~ 100% 根据通道电源上限的百分比进行计算
+this.setPowerIntensity('${channel}', ${this.powerB});`
+                });
+            }
+        },
         initSortTable() {
             // 为A通道表格添加排序功能
             const scTable = document.querySelector("#scriptList");
@@ -582,7 +682,7 @@ this.setPlayerStatus('${item.channel}', ${item.isStart}${item.waitTime ? `, ${it
                     },
                 });
             }
-        },
+        }
     },
     mounted() {
         this.scriptList = _.cloneDeep(this.value) || [];
@@ -637,5 +737,40 @@ this.setPlayerStatus('${item.channel}', ${item.isStart}${item.waitTime ? `, ${it
 
 .manga-page-impl .el-input-number .el-input {
     width: 100%;
+}
+
+.manga-page-impl .el-input-number.el-input-number--mini {
+    width: 20%;
+}
+
+.manga-page-impl .el-input-number.el-input-number--mini+.el-slider__runway.show-input {
+    margin-right: 80px;
+}
+
+.manga-page-impl .el-slider.is-vertical.el-slider--with-input {
+    padding-bottom: 65px;
+}
+
+.manga-page-impl .quickset-btn {
+    display: flex;
+    /* 弹性布局 */
+    align-content: center;
+    /* 垂直居中 */
+    flex-direction: column;
+    /* 垂直方向 */
+    flex-wrap: nowrap;
+    /* 不换行 */
+    justify-content: center;
+    /** 水平居中 */
+    align-items: center;
+    /** 垂直居中 */
+    gap: 1rem;
+    /** 按钮间距 */
+}
+
+.manga-page-impl .quickset-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
 }
 </style>

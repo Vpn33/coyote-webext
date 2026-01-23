@@ -2558,21 +2558,22 @@ export default {
                         return sendResponse({ code: '002', msg: 'scriptClose' });
                     }
                     const pageNo = request.page;
-                    const row = _.find(this.playManga.scriptList, (item) => {
-                        if (this.isNum(item.pageNo) && item.pageNo === pageNo) {
-                            return true;
+                    const rowIdx = _.findIndex(this.playManga.scriptList, (item) => {
+                        if (this.isNum(item.pageNo)) {
+                            return item.pageNo === pageNo;
                         } else {
                             return this.logicPage(item.pageNo, pageNo);
                         }
                     });
-                    if (!row) {
-                        console.log('未找到对应的脚本行:', row);
+                    if (rowIdx < 0) {
+                        console.log('未找到对应的脚本行:', pageNo);
                         return;
                     }
                     try {
+                        let row = this.playManga.scriptList[rowIdx];
                         // 触发并执行脚本
-                        this.playMangaPageForEvent(row, request);
-                        return sendResponse({ code: '000' });
+                        this.playMangaPageForEvent(row, rowIdx, request);
+                        return sendResponse({ code: '000', data: row.scriptContent });
                     } catch (error) {
                         return sendResponse({ code: '001', msg: error.$message });
                     }
@@ -2657,8 +2658,7 @@ export default {
             // });
 
         },
-        playMangaPageForEvent(row, request) {
-            const rowIdx = _.findIndex(this.playManga.scriptList, row);
+        playMangaPageForEvent(row, rowIdx, request) {
             // 双击也可以触发脚本
             // this.triggerMangaScriptForDynamic(row, request);
             this.triggerMangaScript(row);

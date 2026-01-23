@@ -10,6 +10,9 @@ function initializeExtension() {
     // 初始化编辑按钮
     initEditBtn();
 
+    // 初始化脚本显示
+    initScriptView();
+
     // 加载脚本
     loadScript();
 
@@ -62,7 +65,14 @@ function initWatchPage() {
 function triggerPage(pageInfo) {
     if (pageInfo.indexOf('/') > 0) {
         const page = pageInfo.split('/')[0];
-        callRemoteMethod('play', { bookId, page });
+        callRemoteMethod('play', { bookId, page }).then((response) => {
+            if (response?.code === '000') {
+                const currentPageScript = response?.data;
+                if (currentPageScript) {
+                    document.getElementById('scriptView').textContent = currentPageScript;
+                }
+            }
+        });
         return true;
     }
     return false;
@@ -72,13 +82,13 @@ function loadScript() {
     try {
         if (bookId) {
             callRemoteMethod('load', { bookId })
-            .then((response) => {
-                if (response?.msg === 'success') {
-                    message('✅脚本加载成功');
-                } else if (response?.msg === 'noneScript') {
-                    message('⚠️您还没有设置脚本');
-                }
-            });
+                .then((response) => {
+                    if (response?.msg === 'success') {
+                        message('✅脚本加载成功');
+                    } else if (response?.msg === 'noneScript') {
+                        message('⚠️您还没有设置脚本');
+                    }
+                });
         }
     } catch (error) {
     }
@@ -123,6 +133,7 @@ function sendMsg(msg) {
             if (response?.code === '001') {
                 message('执行脚本报错：⚠️' + (response?.msg || 'playError'));
             }
+            return response;
         }).catch((error) => {
             // DO Nothing
         });
@@ -150,6 +161,24 @@ function initEditBtn() {
             callRemoteMethod('edit', { bookId, bookName });
         }
     });
+}
+
+function initScriptView() {
+    const playBtn = document.createElement('pre');
+    playBtn.id = 'scriptView';
+    playBtn.textContent = '脚本内容';
+    playBtn.style.fontFamily = 'monospace';
+    playBtn.style.fontSize = '0.6rem';
+    playBtn.style.position = 'fixed';
+    playBtn.style.maxHeight = '200px';
+    playBtn.style.overflowY = 'auto';
+    playBtn.style.top = '50px';
+    playBtn.style.left = '10px';
+    playBtn.style.zIndex = '9999';
+    playBtn.style.padding = '2px 2px';
+    playBtn.style.color = 'rgb(121 121 121)';
+    playBtn.style.cursor = 'pointer';
+    document.body.appendChild(playBtn);
 }
 
 function getUrlParams() {
