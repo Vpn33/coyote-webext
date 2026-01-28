@@ -160,7 +160,7 @@ export default {
             },
             implPage: [
                 {
-                    label: '从x~y页', type: 'warning', value: 'setPowerIntensity',
+                    label: '从x~y页', type: 'warning', value: 'pageRegex',
                     form: {
                         title: '从x~y页',
                         items: [

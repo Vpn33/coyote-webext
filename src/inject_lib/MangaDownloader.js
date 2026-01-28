@@ -144,7 +144,7 @@ function sendMsg(msg) {
 
 function initEditBtn() {
     const playBtn = document.createElement('button');
-    playBtn.textContent = 'Coyote脚本';
+    playBtn.textContent = '编辑脚本';
     playBtn.style.position = 'fixed';
     playBtn.style.top = '10px';
     playBtn.style.left = '10px';
