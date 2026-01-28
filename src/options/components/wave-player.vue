@@ -1,6 +1,6 @@
 ﻿<template>
     <div class="wave-player">
-        <h1 class="h3 mb-3">Coyote V3 蓝牙控制</h1>
+        <h1 class="h3 mb-3">Coyote V3 蓝牙控制器 - {{ version }}</h1>
 
         <el-row :gutter="20" class="mb-3">
             <el-col :span="24">
@@ -12,8 +12,7 @@
         </el-row>
         <el-row :gutter="20" class="mb-3">
             <el-col :span="24">
-                <el-alert id="batteryStatus" type="info" :title="`电量: ${batteryLevel}`" center show-icon
-                    :closable="false" />
+                <el-alert id="batteryStatus" type="info" :title="`电量: ${batteryLevel}`" center :closable="false" />
             </el-col>
         </el-row>
 
@@ -49,7 +48,7 @@
             <div class="card mb-3">
                 <div class="card-header">
                     <span>电源强度</span>
-                    <el-switch v-model="powerSame" inactive-text="AB单独" active-text="AB相等">
+                    <el-switch v-model="powerSame" inactive-text="单独" active-text="同步">
                     </el-switch>
                 </div>
                 <el-row :gutter="20">
@@ -379,6 +378,7 @@ export default {
         return {
             tabId: null,
             activeName: 'playlist',
+            version: '1.0.0',
             // 蓝牙设备常量
             BATTERY_SERVICE_UUID: '0000180a-0000-1000-8000-00805f9b34fb',
             SERVICE_UUID: '0000180c-0000-1000-8000-00805f9b34fb',
@@ -419,7 +419,6 @@ export default {
             // 命令队列相关
             gattCommandQueue: [], // GATT操作命令队列
             isExecutingGattCommand: false, // 是否正在执行GATT命令
-            batteryLevel: '未知',
 
             // 波形测试滑块值
             aWaveFreq1: 500,
@@ -1676,6 +1675,7 @@ export default {
                 // 先找到所有选中的波形
                 // 按照checkedWaveIds.b中的顺序重新排列波形
                 this.bChannelList = checkedWaveIds.b.map(id => ctrlItemList.find(wave => wave.id === id)).filter(Boolean);
+                console.log('B通道选中的波形:', this.bChannelList);
             }
         },
         getChannelPlayType() {
@@ -1726,6 +1726,9 @@ export default {
         },
         // 切换通道播放状态
         toggleChannelPlay(channel, play) {
+            if (this.powerSame === true) {
+                channel = 'both';
+            }
             if (channel === 'A' || channel === 'both') {
                 if (!this.aChannelList || this.aChannelList.length <= 0) {
                     this.$message({
@@ -2522,7 +2525,7 @@ export default {
             chrome.runtime?.onMessage.addListener((request, sender, sendResponse) => {
                 // 漫画脚本加载
                 if (request.action === 'load') {
-                    console.log('触发了脚本load', request);
+                    this.log('触发了脚本load', request);
                     // 缓存当前播放器的信息
                     this.saveTempPlayerInfo();
                     // 漫画脚本加载
@@ -2534,14 +2537,14 @@ export default {
                     }
                     if (mangaScript) {
                         this.playManga = mangaScript;
-                        console.log('当前播放脚本：', this.playManga);
+                        this.log('当前播放脚本：', this.playManga);
                         return sendResponse({ code: '000', msg: 'success', data: mangaScript });
                     }
                     return sendResponse({ code: '000', msg: 'noneScript' });
                 }
                 // 漫画脚本编辑
                 if (request.action === 'edit') {
-                    console.log('触发了脚本edit', request);
+                    this.log('触发了脚本edit', request);
                     chrome.tabs.update(this.tabId, { active: true }, function (tab) {
 
                     });
@@ -2553,7 +2556,7 @@ export default {
                     });
                 }
                 if (request.action === 'play') {
-                    console.log('触发了play', request);
+                    this.log('触发了play', request);
                     if (!this.playManga) {
                         return sendResponse({ code: '002', msg: 'scriptClose' });
                     }
@@ -2566,7 +2569,7 @@ export default {
                         }
                     });
                     if (rowIdx < 0) {
-                        console.log('未找到对应的脚本行:', pageNo);
+                        this.log('未找到对应的脚本行:', pageNo);
                         return;
                     }
                     try {
@@ -2580,8 +2583,69 @@ export default {
                 }
                 // 漫画脚本关闭
                 if (request.action === 'close') {
-                    console.log('触发了close', request);
+                    this.log('触发了close', request);
                     this.closePlayMangaPage();
+                    return sendResponse({ code: '000' });
+                }
+                // 获取设备电量
+                if (request.action === 'getBattery') {
+                    if (!this.bleReady) {
+                        return sendResponse({ code: '002', msg: 'bleNotReady' });
+                    }
+                    let batteryLevel = this.batteryLevel || '-';
+                    if (batteryLevel === '未知') {
+                        batteryLevel = undefined;
+                    }
+                    return sendResponse({ code: '000', data: batteryLevel });
+                }
+                // 切换通道播放状态
+                if (request.action === 'togglePower') {
+                    this.log('触发了togglePower', request);
+                    this.toggleChannelPlay(request.channel, request.play);
+                    return sendResponse({ code: '000' });
+                }
+                // 设置通道电源强度
+                if (request.action === 'setPower') {
+                    this.log('触发了setPower', request);
+                    this.setPowerIntensity(request.channel, request.power);
+                    return sendResponse({ code: '000' });
+                }
+                if (request.action === 'quickAdd') {
+                    this.log('触发了quickAdd', request);
+
+                    if (this.playManga) {
+                        // 漫画脚本加载
+                        const mangaList = MyStorage.mangaList();
+                        let idx = null;
+                        if (mangaList && mangaList.length > 0) {
+                            // 漫画脚本加载
+                            idx = _.findIndex(mangaList, { bookId: request.bookId });
+                        }
+
+                        const pageNo = request.pageNo;
+                        const rowIdx = _.findIndex(this.playManga.scriptList, (item) => {
+                            if (this.isNum(item.pageNo)) {
+                                return item.pageNo === pageNo;
+                            } else {
+                                return this.logicPage(item.pageNo, pageNo);
+                            }
+                        });
+                        let row = this.playManga.scriptList[rowIdx];
+                        let content;
+                        if (request.powerA === request.powerB) {
+                            content = `// 1 ~ 100% 根据通道电源上限的百分比进行计算
+this.setPowerIntensity('both', ${request.powerA});`
+                        } else {
+                            content = `// 1 ~ 100% 根据通道电源上限的百分比进行计算
+this.setPowerIntensity('A', ${request.powerA});
+this.setPowerIntensity('B', ${request.powerB});`;
+                        }
+                        row.scriptContent = content;
+                        // 保存到本地列表中
+                        mangaList[idx].scriptList.splice(rowIdx, 1, row);
+                        MyStorage.saveMangaList(mangaList);
+                    }
+                    return sendResponse({ code: '000' });
                 }
             });
         },
@@ -2644,7 +2708,7 @@ export default {
                 pageNo = parseInt(prompt('触发页码：'));
                 const isCurrentPage = this.logicPage(row.pageNo, pageNo);
                 if (false === isCurrentPage) {
-                    console.log('触发页码结果:', rowIdx + ' 逻辑判断结果:', isCurrentPage);
+                    this.log('触发页码结果:', rowIdx + ' 逻辑判断结果:', isCurrentPage);
                     return;
                 }
             }
@@ -2709,9 +2773,9 @@ export default {
                         }
                     }
                 }
-                console.info('触发漫画脚本成功:', row);
+                this.log('触发漫画脚本成功:', row);
             } catch (error) {
-                console.info('触发漫画脚本时出错:', error, row);
+                this.log('触发漫画脚本时出错:', error, row);
             }
         },
         parseScriptArgs(argsStr) {
@@ -2857,6 +2921,9 @@ export default {
             });
         },
         setPowerIntensity(channel, intensity, delayTime) {
+            if (false === this.aChannelPlaying && false === this.bChannelPlaying) {
+                return;
+            }
             if (delayTime) {
                 setTimeout(() => {
                     this.setPowerIntensity(channel, intensity);
@@ -2867,34 +2934,42 @@ export default {
             let newA = this.strengthA;
             let newB = this.strengthB;
             if ('A' === channel || 'both' === channel) {
-                let tempA = this.aPowerLimit * intensity;
-                // 如果电源强度变化大于等于10，则平滑设置电源强度 每0.5秒变化1次
-                const powerDiff = Math.abs(tempA - newA);
-                if (powerDiff >= 10) {
-                    this.flatPowerIntensity.a = tempA;
-                    if (this.powerSame === true) {
-                        this.flatPowerIntensity.b = tempA;
-                    }
+                if (false === this.aChannelPlaying) {
+                    newA = 0;
                 } else {
-                    newA = tempA;
-                    if (this.powerSame === true) {
-                        newB = newA;
+                    let tempA = Math.round(this.aPowerLimit * intensity);
+                    // 如果电源强度变化大于等于10，则平滑设置电源强度 每0.5秒变化1次
+                    const powerDiff = Math.abs(tempA - newA);
+                    if (powerDiff >= 10) {
+                        this.flatPowerIntensity.a = tempA;
+                        if (this.powerSame === true) {
+                            this.flatPowerIntensity.b = tempA;
+                        }
+                    } else {
+                        newA = tempA;
+                        if (this.powerSame === true) {
+                            newB = newA;
+                        }
                     }
                 }
             }
             if ('B' === channel || 'both' === channel) {
-                let tempB = this.bPowerLimit * intensity;
-                // 如果电源强度变化大于等于10，则平滑设置电源强度 每0.5秒变化1次
-                const powerDiff = Math.abs(tempB - newB);
-                if (powerDiff >= 10) {
-                    this.flatPowerIntensity.b = tempB;
-                    if (this.powerSame === true) {
-                        this.flatPowerIntensity.a = tempB;
-                    }
+                if (false === this.bChannelPlaying) {
+                    newA = 0;
                 } else {
-                    newB = tempB;
-                    if (this.powerSame === true) {
-                        newA = newB;
+                    let tempB = Math.round(this.bPowerLimit * intensity);
+                    // 如果电源强度变化大于等于10，则平滑设置电源强度 每0.5秒变化1次
+                    const powerDiff = Math.abs(tempB - newB);
+                    if (powerDiff >= 10) {
+                        this.flatPowerIntensity.b = tempB;
+                        if (this.powerSame === true) {
+                            this.flatPowerIntensity.a = tempB;
+                        }
+                    } else {
+                        newB = tempB;
+                        if (this.powerSame === true) {
+                            newA = newB;
+                        }
                     }
                 }
             }
@@ -2903,7 +2978,7 @@ export default {
             this.strengthA = newA;
             this.strengthB = newB;
             // 如果AB都不需要平滑 就直接设置强度
-            if (this.flatPowerIntensity.a || this.flatPowerIntensity.b) {
+            if (this.flatPowerIntensity?.a >= 0 || this.flatPowerIntensity?.b >= 0) {
                 this.autoFlatPowerIntensity(this.flatPowerIntensityInterval);
             }
         },
@@ -2920,6 +2995,10 @@ export default {
             }
             // 每0.5秒变化一次
             this.flatPowerIntensityInv = setTimeout(() => {
+                if (false === this.aChannelPlaying && false === this.bChannelPlaying) {
+                    this.clearFlatPowerIntensity();
+                    return;
+                }
                 let newA = this.strengthA;
                 let newB = this.strengthB;
 
@@ -2964,6 +3043,9 @@ export default {
             }
         },
         setChannelWave(channel, waveId, delayTime) {
+            if (false === this.aChannelPlaying && false === this.bChannelPlaying) {
+                return;
+            }
             if (delayTime) {
                 setTimeout(() => {
                     this.setChannelWave(channel, waveId);
@@ -2972,6 +3054,9 @@ export default {
             }
             // 漫画脚本触发通道波形改变
             if ('A' === channel) {
+                if (false === this.aChannelPlaying) {
+                    return;
+                }
                 let triggerWave = MyStorage.getWaveById(waveId);
                 if (!triggerWave) {
                     console.info('触发的脚本中包含不存在的波形:', waveId);
@@ -2988,6 +3073,9 @@ export default {
                 }
                 this.playChannelWave('A', aChannelItem);
             } else if ('B' === channel) {
+                if (false === this.bChannelPlaying) {
+                    return;
+                }
                 let triggerWave = MyStorage.getWaveById(waveId);
                 if (!triggerWave) {
                     console.info('触发的脚本中包含不存在的波形:', waveId);
@@ -3022,6 +3110,9 @@ export default {
             }
         },
         setPlayTime(channel, time, delayTime) {
+            if (false === this.aChannelPlaying && false === this.bChannelPlaying) {
+                return;
+            }
             if (delayTime) {
                 setTimeout(() => {
                     this.setPlayTime(channel, time);
@@ -3030,14 +3121,21 @@ export default {
             }
             // 漫画脚本触发通道播放时间改变
             if ('A' === channel || 'both' === channel) {
-                this.channelPlayTime.a = time;
+                if (true === this.aChannelPlaying) {
+                    this.channelPlayTime.a = time;
+                }
             }
             if ('B' === channel || 'both' === channel) {
-                this.channelPlayTime.b = time;
+                if (true === this.aChannelPlaying) {
+                    this.channelPlayTime.b = time;
+                }
             }
             this.onChannelPlayTimeChange();
         },
         setPlayType(channel, type, delayTime) {
+            if (false === this.aChannelPlaying && false === this.bChannelPlaying) {
+                return;
+            }
             if (delayTime) {
                 setTimeout(() => {
                     this.setPlayType(channel, type);
@@ -3046,14 +3144,21 @@ export default {
             }
             // 漫画脚本触发通道播放类型改变
             if ('A' === channel || 'both' === channel) {
-                this.channelPlayType.a = type;
+                if (true === this.aChannelPlaying) {
+                    this.channelPlayType.a = type;
+                }
             }
             if ('B' === channel || 'both' === channel) {
-                this.channelPlayType.b = type;
+                if (true === this.bChannelPlaying) {
+                    this.channelPlayType.b = type;
+                }
             }
             this.onPlayTypeChange();
         },
         setFlatPowerIntensity(channel, intensity, flatInterval, delayTime) {
+            if (false === this.aChannelPlaying && false === this.bChannelPlaying) {
+                return;
+            }
             if (delayTime) {
                 setTimeout(() => {
                     this.setFlatPowerIntensity(channel, intensity);
@@ -3062,10 +3167,14 @@ export default {
             }
             // 每X毫秒 平滑的电源变化
             if ('A' === channel || 'both' === channel) {
-                this.flatPowerIntensity.a = this.strengthA + intensity;
+                if (true === this.aChannelPlaying) {
+                    this.flatPowerIntensity.a = this.strengthA + intensity;
+                }
             }
             if ('B' === channel || 'both' === channel) {
-                this.flatPowerIntensity.b = this.strengthB + intensity;
+                if (true === this.bChannelPlaying) {
+                    this.flatPowerIntensity.b = this.strengthB + intensity;
+                }
             }
             // 清除旧的定时器 重新设置新的定时器
             this.clearFlatPowerIntensity();

@@ -1,5 +1,6 @@
 let bookId = null;
 let bookName = null;
+let currentPage = null;
 // 页面加载完成后初始化
 function initializeExtension() {
     if (!bookId) {
@@ -13,6 +14,9 @@ function initializeExtension() {
     // 初始化脚本显示
     initScriptView();
 
+    // 初始化Coyote设备按钮
+    initCoyoteDeviceBtn();
+
     // 加载脚本
     loadScript();
 
@@ -21,6 +25,7 @@ function initializeExtension() {
 
     // 监控页面关闭
     initClosePage();
+
 }
 function initClosePage() {
     // 监控页面关闭
@@ -65,6 +70,7 @@ function initWatchPage() {
 function triggerPage(pageInfo) {
     if (pageInfo.indexOf('/') > 0) {
         const page = pageInfo.split('/')[0];
+        currentPage = page;
         callRemoteMethod('play', { bookId, page }).then((response) => {
             if (response?.code === '000') {
                 const currentPageScript = response?.data;
@@ -84,6 +90,8 @@ function loadScript() {
             callRemoteMethod('load', { bookId })
                 .then((response) => {
                     if (response?.msg === 'success') {
+                        // 加载设备电量
+                        loadDeviceBattery();
                         message('✅脚本加载成功');
                     } else if (response?.msg === 'noneScript') {
                         message('⚠️您还没有设置脚本');
@@ -144,7 +152,7 @@ function sendMsg(msg) {
 
 function initEditBtn() {
     const playBtn = document.createElement('button');
-    playBtn.textContent = 'Coyote脚本';
+    playBtn.textContent = '脚本编辑';
     playBtn.style.position = 'fixed';
     playBtn.style.top = '10px';
     playBtn.style.left = '10px';
@@ -174,7 +182,7 @@ function initScriptView() {
     playBtn.style.overflowY = 'auto';
     playBtn.style.top = '50px';
     playBtn.style.left = '10px';
-    playBtn.style.zIndex = '9999';
+    playBtn.style.zIndex = '9998';
     playBtn.style.padding = '2px 2px';
     playBtn.style.color = 'rgb(121 121 121)';
     playBtn.style.cursor = 'pointer';
@@ -196,4 +204,422 @@ if (document.readyState === 'loading') {
     document.addEventListener('DOMContentLoaded', initializeExtension);
 } else {
     initializeExtension();
+}
+
+function initCoyoteDeviceBtn() {
+    // 创建Coyote设备按钮
+    const deviceBtn = document.createElement('button');
+    deviceBtn.textContent = '设备信息';
+    deviceBtn.style.position = 'fixed';
+    deviceBtn.style.top = '10px';
+    deviceBtn.style.left = '100px';
+    deviceBtn.style.zIndex = '9997';
+    deviceBtn.style.padding = '5px 10px';
+    deviceBtn.style.backgroundColor = '#28a745';
+    deviceBtn.style.color = '#fff';
+    deviceBtn.style.border = 'none';
+    deviceBtn.style.borderRadius = '5px';
+    deviceBtn.style.cursor = 'pointer';
+    document.body.appendChild(deviceBtn);
+
+    // 创建设备面板
+    const devicePanel = document.createElement('div');
+    devicePanel.id = 'coyoteDevicePanel';
+    devicePanel.style.position = 'fixed';
+    devicePanel.style.top = '50px';
+    devicePanel.style.left = '10px';
+    devicePanel.style.zIndex = '9999';
+    devicePanel.style.padding = '15px';
+    devicePanel.style.backgroundColor = 'rgba(255, 255, 255, 0.85)';
+    devicePanel.style.border = '1px solid #ddd';
+    devicePanel.style.borderRadius = '5px';
+    devicePanel.style.boxShadow = '0 2px 10px rgba(0,0,0,0.1)';
+    devicePanel.style.display = 'none';
+    devicePanel.style.minWidth = '200px';
+    devicePanel.style.maxWidth = '400px';
+
+    // 设备电量显示
+    const batteryInfo = document.createElement('div');
+    batteryInfo.id = 'batteryInfo';
+    batteryInfo.textContent = '设备电量: -';
+    batteryInfo.style.marginBottom = '10px';
+    batteryInfo.style.fontSize = '14px';
+    devicePanel.appendChild(batteryInfo);
+
+    // 电源强度控制区域
+    const powerControl = document.createElement('div');
+    powerControl.style.display = 'flex';
+    powerControl.style.justifyContent = 'space-around';
+    powerControl.style.height = '160px';
+
+    // A通道电源强度
+    const aChannel = document.createElement('div');
+    aChannel.style.display = 'flex';
+    aChannel.style.flexDirection = 'column';
+    aChannel.style.alignItems = 'center';
+    aChannel.style.height = '100%';
+    aChannel.style.justifyContent = 'flex-end';
+
+    const aLabel = document.createElement('div');
+    aLabel.textContent = 'A电源强度';
+    aLabel.style.fontSize = '12px';
+    aLabel.style.marginBottom = '5px';
+    aChannel.appendChild(aLabel);
+
+    const aSlider = document.createElement('input');
+    aSlider.type = 'range';
+    aSlider.min = '0';
+    aSlider.max = '100';
+    aSlider.value = '0';
+    aSlider.style.width = '100px';
+    aSlider.style.height = '120px';
+    aSlider.style.transform = 'rotate(270deg)';
+    aSlider.style.margin = '20px 0';
+    aChannel.appendChild(aSlider);
+
+    const aValue = document.createElement('div');
+    aValue.textContent = '0%';
+    aValue.style.fontSize = '12px';
+    aValue.style.marginTop = '5px';
+    aChannel.appendChild(aValue);
+
+    // A通道开关按钮
+    const aPowerBtn = document.createElement('button');
+    aPowerBtn.textContent = '开始';
+    aPowerBtn.id = 'aPowerBtn';
+    aPowerBtn.style.marginTop = '5px';
+    aPowerBtn.style.padding = '3px 8px';
+    aPowerBtn.style.backgroundColor = '#28a745';
+    aPowerBtn.style.color = '#fff';
+    aPowerBtn.style.border = 'none';
+    aPowerBtn.style.borderRadius = '3px';
+    aPowerBtn.style.fontSize = '10px';
+    aPowerBtn.style.cursor = 'pointer';
+    aChannel.appendChild(aPowerBtn);
+
+    powerControl.appendChild(aChannel);
+
+    // B通道电源强度
+    const bChannel = document.createElement('div');
+    bChannel.style.display = 'flex';
+    bChannel.style.flexDirection = 'column';
+    bChannel.style.alignItems = 'center';
+    bChannel.style.height = '100%';
+    bChannel.style.justifyContent = 'flex-end';
+
+    const bLabel = document.createElement('div');
+    bLabel.textContent = 'B电源强度';
+    bLabel.style.fontSize = '12px';
+    bLabel.style.marginBottom = '5px';
+    bChannel.appendChild(bLabel);
+
+    const bSlider = document.createElement('input');
+    bSlider.type = 'range';
+    bSlider.min = '0';
+    bSlider.max = '100';
+    bSlider.value = '0';
+    bSlider.style.width = '100px';
+    bSlider.style.height = '120px';
+    bSlider.style.transform = 'rotate(270deg)';
+    bSlider.style.margin = '20px 0';
+    bChannel.appendChild(bSlider);
+
+    const bValue = document.createElement('div');
+    bValue.textContent = '0%';
+    bValue.style.fontSize = '12px';
+    bValue.style.marginTop = '5px';
+    bChannel.appendChild(bValue);
+
+    // B通道开关按钮
+    const bPowerBtn = document.createElement('button');
+    bPowerBtn.textContent = '开始';
+    bPowerBtn.id = 'bPowerBtn';
+    bPowerBtn.style.marginTop = '5px';
+    bPowerBtn.style.padding = '3px 8px';
+    bPowerBtn.style.backgroundColor = '#28a745';
+    bPowerBtn.style.color = '#fff';
+    bPowerBtn.style.border = 'none';
+    bPowerBtn.style.borderRadius = '3px';
+    bPowerBtn.style.fontSize = '10px';
+    bPowerBtn.style.cursor = 'pointer';
+    bChannel.appendChild(bPowerBtn);
+
+    powerControl.appendChild(bChannel);
+    devicePanel.appendChild(powerControl);
+
+    // 同步开关
+    const syncControl = document.createElement('div');
+    syncControl.style.display = 'flex';
+    syncControl.style.justifyContent = 'center';
+    syncControl.style.alignItems = 'center';
+    syncControl.style.marginBottom = '15px';
+
+    const syncLabel = document.createElement('span');
+    syncLabel.textContent = '单独';
+    syncLabel.style.fontSize = '12px';
+    syncLabel.style.marginRight = '5px';
+    syncControl.appendChild(syncLabel);
+
+    const syncSwitch = document.createElement('label');
+    syncSwitch.style.position = 'relative';
+    syncSwitch.style.display = 'inline-block';
+    syncSwitch.style.width = '40px';
+    syncSwitch.style.height = '20px';
+
+    const syncInput = document.createElement('input');
+    syncInput.type = 'checkbox';
+    syncInput.checked = true; // 设置默认选中状态
+    syncInput.style.opacity = '0';
+    syncInput.style.width = '0';
+    syncInput.style.height = '0';
+    syncSwitch.appendChild(syncInput);
+    
+    const syncSlider = document.createElement('span');
+    syncSlider.style.position = 'absolute';
+    syncSlider.style.cursor = 'pointer';
+    syncSlider.style.top = '0';
+    syncSlider.style.left = '0';
+    syncSlider.style.right = '0';
+    syncSlider.style.bottom = '0';
+    syncSlider.style.backgroundColor = '#2196F3'; // 默认激活状态的背景色
+    syncSlider.style.transition = '.4s';
+    syncSlider.style.borderRadius = '20px';
+    syncSwitch.appendChild(syncSlider);
+    
+    syncSlider.innerHTML = '<span style="position: absolute; content: \"\"; height: 16px; width: 16px; left: 2px; bottom: 2px; background-color: white; transition: .4s; border-radius: 50%; transform: translateX(20px);"></span>'; // 默认激活状态的位置
+    syncControl.appendChild(syncSwitch);
+
+    const syncLabel2 = document.createElement('span');
+    syncLabel2.textContent = '同步';
+    syncLabel2.style.fontSize = '12px';
+    syncLabel2.style.marginLeft = '5px';
+    syncControl.appendChild(syncLabel2);
+
+    devicePanel.appendChild(syncControl);
+
+    // 快速添加按钮
+    const quickAddBtn = document.createElement('button');
+    quickAddBtn.textContent = '快速编辑';
+    quickAddBtn.style.display = 'block';
+    quickAddBtn.style.margin = '0 auto';
+    quickAddBtn.style.padding = '8px 16px';
+    quickAddBtn.style.backgroundColor = '#007bff';
+    quickAddBtn.style.color = '#fff';
+    quickAddBtn.style.border = 'none';
+    quickAddBtn.style.borderRadius = '5px';
+    quickAddBtn.style.cursor = 'pointer';
+    devicePanel.appendChild(quickAddBtn);
+
+    document.body.appendChild(devicePanel);
+
+    // 切换面板显示/隐藏
+    deviceBtn.addEventListener('click', () => {
+        const panel = document.getElementById('coyoteDevicePanel');
+        if (panel.style.display === 'none') {
+            panel.style.display = 'block';
+        } else {
+            panel.style.display = 'none';
+        }
+    });
+
+    // 同步开关事件
+    syncInput.addEventListener('change', function () {
+        if (this.checked) {
+            syncSlider.style.backgroundColor = '#2196F3';
+            syncSlider.querySelector('span').style.transform = 'translateX(20px)';
+        } else {
+            syncSlider.style.backgroundColor = '#ccc';
+            syncSlider.querySelector('span').style.transform = 'translateX(0)';
+        }
+    });
+
+    // A通道滑块事件
+    aSlider.addEventListener('input', function () {
+        if (aPowerOn === false) {
+            aSlider.value = 0;
+            message('请先开启A通道');
+            return false;
+        }
+        aValue.textContent = this.value + '%';
+        let channel = 'A';
+        if (syncInput.checked) {
+            channel = 'both';
+            bSlider.value = this.value;
+            bValue.textContent = this.value + '%';
+        }
+        callRemoteMethod('setPower', { channel, power: this.value / 100 }).then((response) => {
+
+        });
+    });
+
+    // B通道滑块事件
+    bSlider.addEventListener('input', function () {
+        if (bPowerOn === false) {
+            bSlider.value = 0;
+            message('请先开启B通道');
+            return false;
+        }
+        bValue.textContent = this.value + '%';
+        let channel = 'B';
+        if (syncInput.checked) {
+            channel = 'both';
+            aSlider.value = this.value;
+            aValue.textContent = this.value + '%';
+        }
+        callRemoteMethod('setPower', { channel, power: this.value / 100 }).then((response) => {
+
+        });
+    });
+
+    // A通道开关按钮事件
+    let aPowerOn = false;
+    aPowerBtn.addEventListener('click', () => {
+        aPowerOn = !aPowerOn;
+        let channel = 'A';
+        if (aPowerOn) {
+            // 如果同步开关打开，同时开启B通道
+            if (syncInput.checked) {
+                bPowerOn = true;
+                channel = 'both';
+            }
+            // 调用开启A通道的方法
+            callRemoteMethod('togglePower', { channel, play: aPowerOn }).then((response) => {
+                if (response?.code === '000') {
+                    aPowerBtn.textContent = '停止';
+                    aPowerBtn.style.backgroundColor = '#dc3545';
+                    if (syncInput.checked) {
+                        bPowerBtn.textContent = '停止';
+                        bPowerBtn.style.backgroundColor = '#dc3545';
+                    }
+                }
+            }).catch((error) => {
+                aPowerOn = false;
+                if (syncInput.checked) {
+                    bPowerOn = false;
+                }
+            });
+        } else {
+            // 如果同步开关打开，同时开启B通道
+            if (syncInput.checked) {
+                bPowerOn = false;
+                channel = 'both';
+            }
+
+            // 调用关闭A通道的方法
+            callRemoteMethod('togglePower', { channel, play: aPowerOn }).then((response) => {
+                if (response?.code === '000') {
+                    aPowerBtn.textContent = '开始';
+                    aPowerBtn.style.backgroundColor = '#28a745';
+                    if (syncInput.checked) {
+                        bPowerBtn.textContent = '开始';
+                        bPowerBtn.style.backgroundColor = '#28a745';
+                    }
+                }
+            }).catch((error) => {
+                aPowerOn = false;
+                if (syncInput.checked) {
+                    bPowerOn = false;
+                }
+            });
+        }
+    });
+
+    // B通道开关按钮事件
+    let bPowerOn = false;
+    bPowerBtn.addEventListener('click', () => {
+        bPowerOn = !bPowerOn;
+        let channel = 'B';
+        if (bPowerOn) {
+            // 如果同步开关打开，同时开启A通道
+            if (syncInput.checked) {
+                aPowerOn = true;
+                channel = 'both';
+            }
+            callRemoteMethod('togglePower', { channel, play: bPowerOn }).then((response) => {
+                if (response?.code === '000') {
+                    bPowerBtn.textContent = '停止';
+                    bPowerBtn.style.backgroundColor = '#dc3545';
+                    if (syncInput.checked) {
+                        aPowerBtn.textContent = '停止';
+                        aPowerBtn.style.backgroundColor = '#dc3545';
+                    }
+                }
+            }).catch((error) => {
+                bPowerOn = false;
+                if (syncInput.checked) {
+                    aPowerOn = false;
+                }
+            });
+        } else {
+            // 如果同步开关打开，同时关闭A通道
+            if (syncInput.checked) {
+                aPowerOn = false;
+                channel = 'both';
+            }
+            // 调用关闭B通道的方法
+            callRemoteMethod('togglePower', { channel, play: bPowerOn }).then((response) => {
+                if (response?.code === '000') {
+                    bPowerBtn.textContent = '开始';
+                    bPowerBtn.style.backgroundColor = '#28a745';
+                    if (syncInput.checked) {
+                        aPowerBtn.textContent = '开始';
+                        aPowerBtn.style.backgroundColor = '#28a745';
+                    }
+                }
+            }).catch((error) => {
+                bPowerOn = false;
+                if (syncInput.checked) {
+                    aPowerOn = false;
+                }
+            });
+        }
+    });
+
+    // 快速添加按钮事件
+    quickAddBtn.addEventListener('click', () => {
+        const powerA = aSlider.value;
+        const powerB = bSlider.value;
+        if (bookId && currentPage) {
+            // 调用快速添加脚本方法
+            callRemoteMethod('quickAdd', {
+                bookId,
+                bookName,
+                pageNo: currentPage,
+                powerA: powerA / 100,
+                powerB: powerB / 100
+            }).then((response) => {
+                if (response?.msg === 'success') {
+                    message('✅快速添加脚本成功');
+                }
+            });
+        }
+    });
+}
+
+function loadDeviceBattery() {
+    // 模拟加载设备电量
+    const batteryInfo = document.getElementById('batteryInfo');
+
+    // 调用远程方法获取设备电量
+    callRemoteMethod('getBattery').then((response) => {
+        if (response?.code === '002') {
+            message('❌设备未连接');
+            return;
+        }
+        if (response?.code === '000') {
+            if (response?.data !== undefined) {
+                batteryInfo.textContent = `设备电量: ${response.data}`;
+            } else {
+                batteryInfo.textContent = '设备电量: -';
+            }
+            // 每60秒加载一次设备电量
+            setTimeout(() => {
+                loadDeviceBattery();
+            }, 60000);
+        }
+    }).catch(() => {
+        batteryInfo.textContent = '设备电量: -';
+    }).finally(() => {
+
+    });
 }

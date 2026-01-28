@@ -160,7 +160,7 @@ export default {
             },
             implPage: [
                 {
-                    label: '从x~y页', type: 'warning', value: 'setPowerIntensity',
+                    label: '从x~y页', type: 'warning', value: 'pageRegex',
                     form: {
                         title: '从x~y页',
                         items: [
@@ -648,17 +648,11 @@ this.setPlayerStatus('${item.channel}', ${item.isStart}${item.waitTime ? `, ${it
 this.setPowerIntensity('${channel}', ${this.powerA});`
                 });
             } else {
-                channel = 'A';
                 this.scriptList.push({
                     pageNo,
                     scriptContent: `// 1 ~ 100% 根据通道电源上限的百分比进行计算
-this.setPowerIntensity('${channel}', ${this.powerA});`
-                });
-                channel = 'B';
-                this.scriptList.push({
-                    pageNo,
-                    scriptContent: `// 1 ~ 100% 根据通道电源上限的百分比进行计算
-this.setPowerIntensity('${channel}', ${this.powerB});`
+this.setPowerIntensity('A', ${this.powerA});
+this.setPowerIntensity('B', ${this.powerB});`
                 });
             }
         },
