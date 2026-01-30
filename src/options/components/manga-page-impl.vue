@@ -4,10 +4,12 @@
         <el-row>
             <el-col :span="16">
                 <div class="table-container">
-                    <el-table id="scriptList" :data="scriptList" style="width: 100%" border max-height="500">
-                        <el-table-column label="行号" width="100">
+                    <el-table id="scriptList" :data="scriptList"  border >
+                        <el-table-column label="行号" width="100" class-name="drag-handle-column">
                             <template slot-scope="scope">
-                                {{ scope.$index + 1 }}
+                                <div class="drag-handle">
+                                    {{ scope.$index + 1 }}
+                                </div>
                             </template>
                         </el-table-column>
                         <el-table-column prop="pageNo" min-width="300" label="页码">
@@ -670,6 +672,7 @@ this.setPowerIntensity('B', ${this.powerB});`
                     animation: 150,
                     ghostClass: 'sortable-ghost', //拖拽样式
                     easing: 'cubic-bezier(1, 0, 0, 1)',
+                    handle: '.drag-handle', // 只能在行号列拖动
                     // 结束拖动事件
                     onEnd: (item) => {
                         // 更新脚本列表数据
@@ -701,6 +704,26 @@ this.setPowerIntensity('B', ${this.powerB});`
 <style>
 .manga-page-impl .script-content-column .cell {
     white-space: pre;
+}
+
+/* 拖拽手柄样式 */
+.manga-page-impl .drag-handle {
+    cursor: move;
+    cursor: grab;
+    user-select: none;
+    padding: 5px;
+    text-align: center;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.manga-page-impl .drag-handle:active {
+    cursor: grabbing;
+}
+
+.manga-page-impl .drag-handle-column .cell {
+    padding: 0;
 }
 
 /* 修复错误消息显示位置 */
