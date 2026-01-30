@@ -140,6 +140,7 @@
 import Sortable from 'sortablejs';
 import SelectOneWave from './select-one-wave.vue';
 import WaveUtil from '../../lib/WaveUtil.js';
+
 export default {
     name: 'MangaPageImpl',
     components: {
@@ -355,7 +356,7 @@ this.setPlayerStatus('${item.channel}', ${item.isStart}${item.waitTime ? `, ${it
                 pageNo: [{ required: true, message: '请输入页码', trigger: 'blur' },
                 {
                     message: '页码重复', validator: (rule, value, callback) => {
-                        if (this.addScriptItem.idx) {
+                        if (this.addScriptItem.idx != undefined) {
                             if (this.scriptList[this.addScriptItem.idx].pageNo === value) {
                                 callback();
                             }
@@ -551,9 +552,10 @@ this.setPlayerStatus('${item.channel}', ${item.isStart}${item.waitTime ? `, ${it
             this.$refs.addScriptForm.validate((valid) => {
                 if (valid) {
                     let addScriptItem = _.cloneDeep(this.addScriptItem);
+                    delete addScriptItem.idx;
                     // console.log('addScriptItem', addScriptItem);
-                    if (addScriptItem.idx !== undefined) {
-                        this.scriptList[addScriptItem.idx] = addScriptItem;
+                    if (this.addScriptItem.idx !== undefined) {
+                        this.scriptList[this.addScriptItem.idx] = addScriptItem;
                     } else {
                         this.scriptList.push(addScriptItem);
                     }
@@ -574,6 +576,7 @@ this.setPlayerStatus('${item.channel}', ${item.isStart}${item.waitTime ? `, ${it
                 type: 'warning'
             }).then(() => {
                 this.scriptList.splice(index, 1);
+                this.$emit('change', this.scriptList);
             });
         },
         modelTypeFilter(modelType) {
