@@ -1,13 +1,15 @@
 {
   "name": "coyote-webext",
-  "version": "0.1.0",
+  "version": "1.0.0",
   "private": true,
   "scripts": {
     "serve": "vue-cli-service serve",
     "build": "vue-cli-service build",
-    "build-debug": "vue-cli-service build --mode development",
+    "build-package": "vue-cli-service build && npm run package",
+    "build-debug": "vue-cli-service build --mode development && npm run package",
     "lint": "vue-cli-service lint",
-    "build-watch": "vue-cli-service build-watch"
+    "build-watch": "vue-cli-service build-watch",
+    "package": "powershell -Command \"$version = (Get-Content package.json | ConvertFrom-Json).version; $zipName = 'coyote-webext-' + $version + '.zip'; if (Test-Path $zipName) { Remove-Item $zipName }; Compress-Archive -Path dist/* -DestinationPath $zipName\""
   },
   "dependencies": {
     "core-js": "^3.8.3",

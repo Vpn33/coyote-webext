@@ -3,26 +3,28 @@
         <el-button @click="openAddScriptDialog">添加</el-button>
         <el-row>
             <el-col :span="16">
-                <el-table id="scriptList" :data="scriptList" style="width: 100%" border max-height="500">
-                    <el-table-column label="行号" width="100">
-                        <template slot-scope="scope">
-                            {{ scope.$index + 1 }}
-                        </template>
-                    </el-table-column>
-                    <el-table-column prop="pageNo" min-width="300" label="页码">
-                    </el-table-column>
-                    <el-table-column prop="scriptContent" min-width="400" label="脚本内容"
-                        class-name="script-content-column">
-                    </el-table-column>
-                    <el-table-column label="操作" width="200">
-                        <template slot-scope="scope">
-                            <el-button type="primary" @click="editItem(scope.row, scope.$index)">编辑</el-button>
-                            <el-button type="danger" @click="deleteItem(scope.row, scope.$index)">删除</el-button>
-                        </template>
-                    </el-table-column>
-                </el-table>
+                <div class="table-container">
+                    <el-table id="scriptList" :data="scriptList" style="width: 100%" border max-height="500">
+                        <el-table-column label="行号" width="100">
+                            <template slot-scope="scope">
+                                {{ scope.$index + 1 }}
+                            </template>
+                        </el-table-column>
+                        <el-table-column prop="pageNo" min-width="300" label="页码">
+                        </el-table-column>
+                        <el-table-column prop="scriptContent" min-width="400" label="脚本内容"
+                            class-name="script-content-column">
+                        </el-table-column>
+                        <el-table-column label="操作" width="200">
+                            <template slot-scope="scope">
+                                <el-button type="primary" @click="editItem(scope.row, scope.$index)">编辑</el-button>
+                                <el-button type="danger" @click="deleteItem(scope.row, scope.$index)">删除</el-button>
+                            </template>
+                        </el-table-column>
+                    </el-table>
+                </div>
             </el-col>
-            <el-col :span="8">
+            <el-col :span="8" class="quickset-row">
                 <el-row>
                     <el-col :span="12">
                         <div class="quickset-container">
@@ -766,5 +768,229 @@ this.setPowerIntensity('B', ${this.powerB});`
     display: flex;
     flex-direction: column;
     align-items: center;
+}
+
+/* 响应式样式 */
+@media (max-width: 768px) {
+    .manga-page-impl .table-container {
+        width: 100%;
+        overflow-x: auto;
+        -webkit-overflow-scrolling: touch;
+    }
+
+
+    /* 调整整体布局 */
+    .manga-page-impl .el-row {
+        flex-direction: column;
+    }
+
+    .manga-page-impl .el-col {
+        width: 100% !important;
+        margin-bottom: 20px;
+    }
+
+    /* 调整表格布局 */
+    .manga-page-impl .table-container {
+        width: 100%;
+        overflow-x: auto;
+        -webkit-overflow-scrolling: touch;
+        margin-bottom: 15px;
+    }
+
+    .manga-page-impl #scriptList {
+        max-height: 250px;
+    }
+
+    /* 调整 AB 通道电源强度条为水平排列 */
+    .manga-page-impl .el-row:nth-child(2) {
+        flex-direction: row;
+        margin-bottom: 10px !important;
+    }
+
+    .manga-page-impl .el-row:nth-child(2) .el-col {
+        width: 50% !important;
+        margin-bottom: 0;
+    }
+
+    .manga-page-impl .quickset-container {
+        flex-direction: column;
+        align-items: flex-start;
+        padding: 0 10px;
+        gap: 2px;
+    }
+
+    .manga-page-impl .quickset-name {
+        width: 100%;
+        margin-bottom: 2px;
+        font-size: 14px;
+    }
+
+    .manga-page-impl .quickset-slider {
+        width: 100% !important;
+        vertical: false !important;
+        height: auto !important;
+    }
+
+    /* 确保滑块为水平方向 */
+    .manga-page-impl .el-slider.is-vertical {
+        display: flex !important;
+        align-items: center;
+        width: 100% !important;
+        height: 30px !important;
+        flex-direction: row;
+    }
+
+    .manga-page-impl .el-slider.is-vertical .el-slider__runway {
+        flex: 1 !important;
+        height: 4px !important;
+        margin-right: 10px !important;
+        background-color: #e4e7ed !important;
+        position: relative !important;
+    }
+
+    .manga-page-impl .el-slider.is-vertical .el-slider__bar {
+        width: 100% !important;
+        height: 4px !important;
+        background-color: #409eff !important;
+        position: absolute !important;
+        left: 0 !important;
+        top: 0 !important;
+    }
+
+    .manga-page-impl .el-slider.is-vertical .el-slider__button {
+        margin-left: -7px !important;
+        margin-top: -5px !important;
+        width: 16px !important;
+        height: 16px !important;
+        background-color: #409eff !important;
+        border: 2px solid #fff !important;
+        box-shadow: 0 0 0 2px rgba(64, 158, 255, 0.2) !important;
+        z-index: 1 !important;
+    }
+
+    .manga-page-impl .el-slider.is-vertical .el-slider__input {
+        position: relative !important;
+        top: 0 !important;
+        left: 0 !important;
+        margin-top: 0 !important;
+        margin-left: 0 !important;
+        width: 60px !important;
+        max-width: 60px !important;
+        order: 2;
+    }
+
+    .manga-page-impl .el-slider.is-vertical .el-slider__input input {
+        width: 100% !important;
+    }
+
+    /* 调整底部按钮布局 */
+    .manga-page-impl .quickset-btn {
+        flex-direction: row;
+        justify-content: space-around;
+        margin-top: 10px;
+    }
+
+    .manga-page-impl .el-slider.is-vertical.el-slider--with-input {
+        padding-bottom: 10px;
+    }
+}
+
+/* 更小屏幕的适配 */
+@media (max-width: 480px) {
+
+    /* 调整 AB 通道电源强度条布局 */
+    .manga-page-impl .el-row:nth-child(2) {
+        flex-direction: column;
+        gap: 8px !important;
+    }
+
+    .manga-page-impl .el-row:nth-child(2) .el-col {
+        width: 100% !important;
+        margin-bottom: 0;
+    }
+
+    .manga-page-impl .quickset-container {
+        flex-direction: column;
+        align-items: flex-start;
+        padding: 0 10px;
+        gap: 2px;
+    }
+
+    .manga-page-impl .quickset-name {
+        width: 100%;
+        margin-bottom: 2px;
+        font-size: 14px;
+    }
+
+    .manga-page-impl .quickset-slider {
+        width: 100% !important;
+        vertical: false !important;
+        height: auto !important;
+    }
+
+    /* 确保滑块为水平方向 */
+    .manga-page-impl .el-slider.is-vertical {
+        display: flex !important;
+        align-items: center;
+        width: 100% !important;
+        height: 30px !important;
+        flex-direction: row;
+    }
+
+    .manga-page-impl .el-slider.is-vertical .el-slider__runway {
+        flex: 1 !important;
+        height: 4px !important;
+        margin-right: 10px !important;
+        background-color: #e4e7ed !important;
+        position: relative !important;
+    }
+
+    .manga-page-impl .el-slider.is-vertical .el-slider__bar {
+        width: 100% !important;
+        height: 4px !important;
+        background-color: #409eff !important;
+        position: absolute !important;
+        left: 0 !important;
+        top: 0 !important;
+    }
+
+    .manga-page-impl .el-slider.is-vertical .el-slider__button {
+        margin-left: -7px !important;
+        margin-top: -5px !important;
+        width: 16px !important;
+        height: 16px !important;
+        background-color: #409eff !important;
+        border: 2px solid #fff !important;
+        box-shadow: 0 0 0 2px rgba(64, 158, 255, 0.2) !important;
+        z-index: 1 !important;
+    }
+
+    .manga-page-impl .el-slider.is-vertical .el-slider__input {
+        position: relative !important;
+        top: 0 !important;
+        left: 0 !important;
+        margin-top: 0 !important;
+        margin-left: 0 !important;
+        width: 60px !important;
+        max-width: 60px !important;
+        order: 2;
+    }
+
+    .manga-page-impl .el-slider.is-vertical .el-slider__input input {
+        width: 100% !important;
+    }
+
+    /* 调整底部按钮布局 */
+    .manga-page-impl .quickset-btn {
+        flex-direction: column;
+        gap: 8px;
+    }
+
+    .manga-page-impl .quickset-row {
+        border: 1px solid #e4e7ed;
+        margin-top: 10px;
+        border-radius: 10%;
+        padding: 10px 0px;
+    }
 }
 </style>

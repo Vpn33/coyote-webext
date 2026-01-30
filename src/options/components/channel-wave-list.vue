@@ -1,6 +1,6 @@
 <template>
     <div v-if="channelWaveListDialogVisible">
-        <el-dialog title="请选择波形" :visible.sync="channelWaveListDialogVisible" width="50%" center append-to-body
+        <el-dialog title="请选择波形" :visible.sync="channelWaveListDialogVisible" width="80%" center append-to-body
             :close-on-click-modal="false" :before-close="channelWaveListDialogClose">
             <ctrl-item-list ref="ctrlItemList" :defaultCheckedIds="defaultCheckedIds" :show-checked="showChecked"
                 :max-height="maxHeight" :readonly="readonly"></ctrl-item-list>

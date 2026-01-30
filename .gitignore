@@ -23,3 +23,5 @@ pnpm-debug.log*
 *.sw?
 
 /pulse_files
+coyote-webext-1.0.0.zip
+coyote-webext-1.0.0.crx

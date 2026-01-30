@@ -92,3 +92,72 @@ export default {
     }
 }
 </script>
+
+<style scoped>
+/* 基础样式 */
+.el-form {
+    max-width: 100%;
+    padding: 15px;
+}
+
+.el-form-item {
+    margin-bottom: 15px;
+}
+
+/* 响应式样式 */
+@media (max-width: 768px) {
+    .el-form {
+        padding: 10px;
+    }
+    
+    .el-form-item {
+        margin-bottom: 12px;
+    }
+    
+    .el-form-item__label {
+        width: 100% !important;
+        margin-bottom: 8px;
+        text-align: left !important;
+    }
+    
+    .el-form-item__content {
+        margin-left: 0 !important;
+        width: 100% !important;
+    }
+    
+    .el-input {
+        width: 100% !important;
+    }
+    
+    .el-button {
+        margin-right: 10px;
+        margin-bottom: 10px;
+    }
+    
+    /* 确保 MangaPageImpl 组件在移动设备上正确显示 */
+    :deep(.manga-page-impl) {
+        width: 100% !important;
+    }
+    
+    /* 调整底部按钮布局 */
+    .el-form-item:last-child {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 10px;
+        margin-top: 20px;
+    }
+}
+
+/* 更小屏幕的适配 */
+@media (max-width: 480px) {
+    .el-form {
+        padding: 8px;
+    }
+    
+    .el-button {
+        flex: 1 1 calc(50% - 5px);
+        min-width: calc(50% - 5px);
+        margin-right: 0;
+    }
+}
+</style>

@@ -354,7 +354,7 @@
             </div>
         </div>
         <WaveSaver ref="waveSaver" :item="editWaveItem"></WaveSaver>
-        <ChannelWaveList ref="channelWaveList" @getCheckedWaveList="getCheckedWaveList"></ChannelWaveList>
+        <ChannelWaveList ref="channelWaveList" :readonly="true" @getCheckedWaveList="getCheckedWaveList"></ChannelWaveList>
     </div>
 </template>
 
@@ -3225,6 +3225,8 @@ this.setPowerIntensity('B', ${request.powerB});`;
     margin-left: 10px;
 }
 
+
+
 /* 日志区域样式 */
 .log-card .el-card__body {
     padding: 10px;
@@ -3376,5 +3378,177 @@ this.setPowerIntensity('B', ${request.powerB});`;
 .wave-player .playManga-active-row,
 .wave-player .el-table--enable-row-hover .el-table__body tr:hover>td.el-table__cell {
     background-color: #d9faff;
+}
+
+/* 响应式样式调整 */
+@media (max-width: 768px) {
+    .el-col {
+        width: 100% !important;
+        flex: 0 0 100% !important;
+        max-width: 100% !important;
+    }
+    
+    .form-item {
+        flex-wrap: wrap !important;
+        align-items: flex-start !important;
+    }
+    
+    .form-item-label {
+        width: 100% !important;
+        margin-bottom: 5px !important;
+        text-align: left !important;
+    }
+    
+    .slider {
+        flex: 1 1 100% !important;
+        margin-left: 0 !important;
+        margin-bottom: 10px !important;
+        width: 100% !important;
+    }
+    
+    /* 修复滑块和输入框重叠问题 */
+    .form-item {
+        flex-direction: row !important;
+        align-items: center !important;
+        flex-wrap: nowrap !important;
+        width: 100% !important;
+    }
+    
+    .form-item-label {
+        width: 20px !important;
+        margin-bottom: 0 !important;
+        margin-right: 10px !important;
+        flex-shrink: 0 !important;
+    }
+    
+    .slider {
+        flex: 1 !important;
+        margin-left: 0 !important;
+        margin-bottom: 0 !important;
+    }
+    
+    /* 更具体的滑块样式覆盖 */
+    .wave-player .el-slider {
+        width: 100% !important;
+        display: flex !important;
+        align-items: center !important;
+        height: 40px !important;
+        position: relative !important;
+    }
+    
+    .wave-player .el-slider__runway {
+        flex: 1 !important;
+        margin-right: 10px !important;
+        width: auto !important;
+        position: static !important;
+    }
+    
+    .wave-player .el-slider__input {
+        position: static !important;
+        margin-left: 10px !important;
+        margin-top: 0 !important;
+        width: 60px !important;
+        z-index: 1 !important;
+        flex-shrink: 0 !important;
+    }
+    
+    .wave-player .el-slider__input .el-input {
+        width: 100% !important;
+    }
+    
+    .wave-player .el-slider.is-vertical {
+        height: 150px !important;
+    }
+    
+    /* 确保滑块和输入框在移动设备上正确显示 */
+    @media (max-width: 480px) {
+        .form-item {
+            flex-direction: column !important;
+            align-items: flex-start !important;
+        }
+        
+        .form-item-label {
+            width: 100% !important;
+            margin-bottom: 8px !important;
+        }
+        
+        .slider {
+            width: 100% !important;
+        }
+        
+        .wave-player .el-slider {
+            width: 100% !important;
+            display: block !important;
+            height: 60px !important;
+            position: relative !important;
+        }
+        
+        .wave-player .el-slider__runway {
+            width: calc(100% - 80px) !important;
+            margin-right: 0 !important;
+            position: absolute !important;
+            top: 0 !important;
+            left: 0 !important;
+        }
+        
+        .wave-player .el-slider__input {
+            position: absolute !important;
+            right: 0 !important;
+            top: 0 !important;
+            margin-left: 0 !important;
+            margin-top: 0 !important;
+            width: 70px !important;
+        }
+        
+        /* 底部按钮响应式样式 */
+        .wave-btns {
+            margin-top: 15px !important;
+        }
+        
+        .wave-btns .el-col {
+            display: flex !important;
+            flex-wrap: wrap !important;
+            gap: 10px !important;
+        }
+        
+        .wave-btns .el-button {
+            flex: 1 1 calc(50% - 10px) !important;
+            min-width: calc(50% - 10px) !important;
+            margin: 0 !important;
+            text-align: center !important;
+        }
+    }
+    
+    .el-input-number {
+        width: 100% !important;
+        margin-bottom: 10px !important;
+    }
+    
+    .el-input-number .el-input {
+        width: 100% !important;
+    }
+    
+    .power-inline {
+        margin-left: 0 !important;
+        width: 100% !important;
+    }
+    
+    .channelPlayType,
+    .channelPlayTime {
+        display: block !important;
+        margin-left: 0 !important;
+        margin-top: 10px !important;
+        position: static !important;
+        width: 100% !important;
+    }
+    
+    .charter-items {
+        flex-direction: column !important;
+    }
+    
+    .charter-item {
+        width: 100% !important;
+        margin: 0.5rem 0 !important;
+    }
 }
 </style>

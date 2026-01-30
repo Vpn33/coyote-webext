@@ -1,8 +1,8 @@
 {
     "manifest_version": 3,
-    "name": "chrome-ext",
-    "description": "chrome extension",
-    "version": "0.0.1",
+    "name": "coyote-webext",
+    "description": "Coyote V3 蓝牙控制器。用于通过Web方式控制Coyote V3 蓝牙设备，播放波形、播放漫画脚本等。",
+    "version": "1.0.0",
     "options_page": "options.html",
     "action": {
         "default_title": "Coyote Webext",
