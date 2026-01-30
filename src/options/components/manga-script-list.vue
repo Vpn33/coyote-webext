@@ -1,8 +1,17 @@
 <template>
     <div>
         <h2 class="h5 mb-2">漫画脚本列表</h2>
-        <div class="table-actions mb-2">
-            <el-button type="primary" @click="showImportDialog">导入文件</el-button>
+        <div class="table-actions mb-2" style="display: flex; gap: 10px; align-items: center;">
+            <el-button type="primary" @click="showImportDialog">导入 JSON 文本</el-button>
+            <el-upload
+                action=""
+                :auto-upload="false"
+                :on-change="handleFileUpload"
+                accept=".json"
+                :show-file-list="false"
+            >
+                <el-button type="info">从文件导入</el-button>
+            </el-upload>
             <el-button type="success" @click="exportSelected" :disabled="selectedRows.length === 0">导出文件</el-button>
         </div>
         <el-table :data="mangaList" style="width: 100%" @selection-change="handleSelectionChange">
@@ -196,6 +205,75 @@ export default {
             link.download = filename;
             link.click();
             URL.revokeObjectURL(url);
+        },
+        handleFileUpload(file) {
+            const reader = new FileReader();
+            reader.onload = (e) => {
+                try {
+                    const fileContent = e.target.result;
+                    // 清理JSON文本
+                    let cleanedJson = fileContent;
+                    
+                    // 1. 移除多余的逗号（在 ] 或 } 前的逗号）
+                    cleanedJson = cleanedJson.replace(/,\s*(\]|\})/g, '$1');
+                    
+                    // 2. 处理空白字符，保留双引号内的内容
+                    const quoteRegex = /"([^"\\]|\\.)*"/g;
+                    const placeholders = [];
+                    cleanedJson = cleanedJson.replace(quoteRegex, (match) => {
+                        placeholders.push(match);
+                        return `__PLACEHOLDER_${placeholders.length - 1}__`;
+                    });
+                    
+                    // 3. 清理不在双引号内的空白字符
+                    cleanedJson = cleanedJson.replace(/\s+/g, ' ').trim();
+                    
+                    // 4. 恢复双引号内的内容
+                    placeholders.forEach((placeholder, index) => {
+                        cleanedJson = cleanedJson.replace(`__PLACEHOLDER_${index}__`, placeholder);
+                    });
+                    
+                    // 5. 尝试解析JSON
+                    const importedData = JSON.parse(cleanedJson);
+                    
+                    // 验证数据格式
+                    if (!Array.isArray(importedData)) {
+                        this.$message.error('JSON格式错误，应为数组');
+                        return;
+                    }
+                    
+                    // 验证每个元素的bookId
+                    const invalidItems = importedData.filter(item => !item.bookId);
+                    if (invalidItems.length > 0) {
+                        this.$message.error('导入失败：存在bookId为空的项');
+                        return;
+                    }
+                    
+                    // 检查重复ID
+                    const existingIds = new Set(this.mangaList.map(item => item.bookId));
+                    const duplicateItems = importedData.filter(item => existingIds.has(item.bookId));
+                    
+                    if (duplicateItems.length > 0) {
+                        this.$confirm(`发现${duplicateItems.length}个重复ID，是否覆盖？`, '提示', {
+                            confirmButtonText: '确定',
+                            cancelButtonText: '取消',
+                            type: 'warning'
+                        }).then(() => {
+                            this.processImport(importedData);
+                        }).catch(() => {
+                            this.$message.info('已取消导入');
+                        });
+                    } else {
+                        this.processImport(importedData);
+                    }
+                } catch (error) {
+                    this.$message.error(`文件解析失败：${error.message}`);
+                }
+            };
+            reader.onerror = () => {
+                this.$message.error('文件读取失败，请重试');
+            };
+            reader.readAsText(file.raw);
         }
     },
 }
