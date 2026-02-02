@@ -535,6 +535,7 @@ export default {
                 a: null, // A通道电源强度
                 b: null, // B通道电源强度
             }, // 上次播放的漫画脚本电源强度
+            flatPowerDiffMin: 5, // 平滑电源强度变化最小差值 5
             flatPowerIntensityInterval: 500, // 平滑电源强度变化时间间隔 500ms变化一次
             flatPowerIntensityInv: null,
             tempPlayerInfo: null, // 临时播放器信息
@@ -2940,7 +2941,7 @@ this.setPowerIntensity('B', ${request.powerB});`;
                     let tempA = Math.round(this.aPowerLimit * intensity);
                     // 如果电源强度变化大于等于10，则平滑设置电源强度 每0.5秒变化1次
                     const powerDiff = Math.abs(tempA - newA);
-                    if (powerDiff >= 10) {
+                    if (powerDiff >= this.flatPowerDiffMin) {
                         this.flatPowerIntensity.a = tempA;
                         if (this.powerSame === true) {
                             this.flatPowerIntensity.b = tempA;
@@ -2960,7 +2961,7 @@ this.setPowerIntensity('B', ${request.powerB});`;
                     let tempB = Math.round(this.bPowerLimit * intensity);
                     // 如果电源强度变化大于等于10，则平滑设置电源强度 每0.5秒变化1次
                     const powerDiff = Math.abs(tempB - newB);
-                    if (powerDiff >= 10) {
+                    if (powerDiff >= this.flatPowerDiffMin) {
                         this.flatPowerIntensity.b = tempB;
                         if (this.powerSame === true) {
                             this.flatPowerIntensity.a = tempB;
@@ -2992,6 +2993,10 @@ this.setPowerIntensity('B', ${request.powerB});`;
             if (this.flatPowerIntensity.a === this.strengthA && this.flatPowerIntensity.b === this.strengthB) {
                 this.clearFlatPowerIntensity();
                 return;
+            }
+            // 如果没有设置平滑时间间隔 就使用默认值
+            if (!flatInterval) {
+                flatInterval = this.flatPowerIntensityInterval;
             }
             // 每0.5秒变化一次
             this.flatPowerIntensityInv = setTimeout(() => {
@@ -3161,7 +3166,7 @@ this.setPowerIntensity('B', ${request.powerB});`;
             }
             if (delayTime) {
                 setTimeout(() => {
-                    this.setFlatPowerIntensity(channel, intensity);
+                    this.setFlatPowerIntensity(channel, intensity, flatInterval);
                 }, delayTime);
                 return;
             }
@@ -3387,25 +3392,25 @@ this.setPowerIntensity('B', ${request.powerB});`;
         flex: 0 0 100% !important;
         max-width: 100% !important;
     }
-    
+
     .form-item {
         flex-wrap: wrap !important;
         align-items: flex-start !important;
     }
-    
+
     .form-item-label {
         width: 100% !important;
         margin-bottom: 5px !important;
         text-align: left !important;
     }
-    
+
     .slider {
         flex: 1 1 100% !important;
         margin-left: 0 !important;
         margin-bottom: 10px !important;
         width: 100% !important;
     }
-    
+
     /* 修复滑块和输入框重叠问题 */
     .form-item {
         flex-direction: row !important;
@@ -3413,20 +3418,20 @@ this.setPowerIntensity('B', ${request.powerB});`;
         flex-wrap: nowrap !important;
         width: 100% !important;
     }
-    
+
     .form-item-label {
         width: 20px !important;
         margin-bottom: 0 !important;
         margin-right: 10px !important;
         flex-shrink: 0 !important;
     }
-    
+
     .slider {
         flex: 1 !important;
         margin-left: 0 !important;
         margin-bottom: 0 !important;
     }
-    
+
     /* 更具体的滑块样式覆盖 */
     .wave-player .el-slider {
         width: 100% !important;
@@ -3435,14 +3440,14 @@ this.setPowerIntensity('B', ${request.powerB});`;
         height: 40px !important;
         position: relative !important;
     }
-    
+
     .wave-player .el-slider__runway {
         flex: 1 !important;
         margin-right: 10px !important;
         width: auto !important;
         position: static !important;
     }
-    
+
     .wave-player .el-slider__input {
         position: static !important;
         margin-left: 10px !important;
@@ -3451,38 +3456,38 @@ this.setPowerIntensity('B', ${request.powerB});`;
         z-index: 1 !important;
         flex-shrink: 0 !important;
     }
-    
+
     .wave-player .el-slider__input .el-input {
         width: 100% !important;
     }
-    
+
     .wave-player .el-slider.is-vertical {
         height: 150px !important;
     }
-    
+
     /* 确保滑块和输入框在移动设备上正确显示 */
     @media (max-width: 480px) {
         .form-item {
             flex-direction: column !important;
             align-items: flex-start !important;
         }
-        
+
         .form-item-label {
             width: 100% !important;
             margin-bottom: 8px !important;
         }
-        
+
         .slider {
             width: 100% !important;
         }
-        
+
         .wave-player .el-slider {
             width: 100% !important;
             display: block !important;
             height: 60px !important;
             position: relative !important;
         }
-        
+
         .wave-player .el-slider__runway {
             width: calc(100% - 80px) !important;
             margin-right: 0 !important;
@@ -3490,7 +3495,7 @@ this.setPowerIntensity('B', ${request.powerB});`;
             top: 0 !important;
             left: 0 !important;
         }
-        
+
         .wave-player .el-slider__input {
             position: absolute !important;
             right: 0 !important;
@@ -3499,18 +3504,18 @@ this.setPowerIntensity('B', ${request.powerB});`;
             margin-top: 0 !important;
             width: 70px !important;
         }
-        
+
         /* 底部按钮响应式样式 */
         .wave-btns {
             margin-top: 15px !important;
         }
-        
+
         .wave-btns .el-col {
             display: flex !important;
             flex-wrap: wrap !important;
             gap: 10px !important;
         }
-        
+
         .wave-btns .el-button {
             flex: 1 1 calc(50% - 10px) !important;
             min-width: calc(50% - 10px) !important;
@@ -3518,21 +3523,21 @@ this.setPowerIntensity('B', ${request.powerB});`;
             text-align: center !important;
         }
     }
-    
+
     .el-input-number {
         width: 100% !important;
         margin-bottom: 10px !important;
     }
-    
+
     .el-input-number .el-input {
         width: 100% !important;
     }
-    
+
     .power-inline {
         margin-left: 0 !important;
         width: 100% !important;
     }
-    
+
     .channelPlayType,
     .channelPlayTime {
         display: block !important;
@@ -3541,11 +3546,11 @@ this.setPowerIntensity('B', ${request.powerB});`;
         position: static !important;
         width: 100% !important;
     }
-    
+
     .charter-items {
         flex-direction: column !important;
     }
-    
+
     .charter-item {
         width: 100% !important;
         margin: 0.5rem 0 !important;

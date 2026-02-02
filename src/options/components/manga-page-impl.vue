@@ -4,7 +4,7 @@
         <el-row>
             <el-col :span="16">
                 <div class="table-container">
-                    <el-table id="scriptList" :data="scriptList"  border >
+                    <el-table id="scriptList" :data="scriptList"  border max-height="500px">
                         <el-table-column label="行号" width="100" class-name="drag-handle-column">
                             <template slot-scope="scope">
                                 <div class="drag-handle">
