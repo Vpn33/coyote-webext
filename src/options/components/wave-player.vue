@@ -354,7 +354,8 @@
             </div>
         </div>
         <WaveSaver ref="waveSaver" :item="editWaveItem"></WaveSaver>
-        <ChannelWaveList ref="channelWaveList" :readonly="true" @getCheckedWaveList="getCheckedWaveList"></ChannelWaveList>
+        <ChannelWaveList ref="channelWaveList" :readonly="true" @getCheckedWaveList="getCheckedWaveList">
+        </ChannelWaveList>
     </div>
 </template>
 
@@ -529,6 +530,7 @@ export default {
             waChartMaxCnt: 500, // 波形图像显示最大项
             pwChartMaxCnt: 100, // 电源图像显示最大项
 
+            mangaTabId: null, // 当前播放的漫画脚本tabId
             playManga: null, // 当前播放的漫画脚本
             playMangaCurrentPageNo: '2', // 当前播放的漫画脚本页码
             flatPowerIntensity: {
@@ -1156,8 +1158,21 @@ export default {
                 });
         },
 
-        // 发送强度命令
+        // 发送强度命令 
         sendStrengthCommand(newA, newB) {
+            try {
+                if (this.mangaTabId) {
+                    chrome.tabs.sendMessage(this.mangaTabId, {
+                        action: 'updatePowerIntensity',
+                        data: {
+                            powerA: Math.round((newA / this.aPowerLimit) * 100),
+                            powerB: Math.round((newB / this.bPowerLimit) * 100),
+                        }
+                    });
+                }
+            } catch (error) {
+                // 发送失败
+            }
             return this.sendBLEData(newA, newB);
         },
         generateNomalPlayBatch() {
@@ -1207,117 +1222,124 @@ export default {
             }
         },
 
-        // 波形测试滑块事件处理函数
+        // A通道波形频率改变
         onAWaveFreq1Change() {
-            if (!this.bleConnected) {
+            if (!this.bleConnected && !this.testConnectBLE) {
                 return;
             }
             this.clearCacheRegenerate();
             this.log(`A通道波形频率已更新: ${this.aWaveFreq1}`);
+            this.sendFrequencyBalance(this.aFreqBalance, this.bFreqBalance);
         },
 
+        // A通道波形强度改变
         onAWaveIntensity1Change() {
-            if (!this.bleConnected) {
+            if (!this.bleConnected && !this.testConnectBLE) {
                 return;
             }
             this.clearCacheRegenerate();
             this.log(`A通道波形强度已更新: ${this.aWaveIntensity1}`);
+            this.sendIntensityBalance(this.aIntensityBalance, this.bIntensityBalance);
         },
 
         onBWaveFreq1Change() {
-            if (!this.bleConnected) {
+            if (!this.bleConnected && !this.testConnectBLE) {
                 return;
             }
             this.clearCacheRegenerate();
             this.log(`B通道波形频率已更新: ${this.bWaveFreq1}`);
+            this.sendFrequencyBalance(this.aFreqBalance, this.bFreqBalance);
         },
 
         onBWaveIntensity1Change() {
-            if (!this.bleConnected) {
+            if (!this.bleConnected && !this.testConnectBLE) {
                 return;
             }
             this.clearCacheRegenerate();
             this.log(`B通道波形强度已更新: ${this.bWaveIntensity1}`);
+            this.sendIntensityBalance(this.aIntensityBalance, this.bIntensityBalance);
         },
 
         // 新增的控制项事件处理函数
         onAFreqBalanceChange() {
-            if (!this.bleConnected) {
+            if (!this.bleConnected && !this.testConnectBLE) {
                 return;
             }
             this.log(`A通道频率平衡已更新: ${this.aFreqBalance}`);
-            // 只有设备连接时才发送参数
-            if (this.writeCharacteristic) {
-                // 发送频率平衡参数
-                this.sendFrequencyBalance(this.aFreqBalance, this.bFreqBalance);
-            }
+            // 发送频率平衡参数
+            this.sendFrequencyBalance(this.aFreqBalance, this.bFreqBalance);
         },
 
         onBFreqBalanceChange() {
-            if (!this.bleConnected) {
+            if (!this.bleConnected && !this.testConnectBLE) {
                 return;
             }
             this.log(`B通道频率平衡已更新: ${this.bFreqBalance}`);
-            // 只有设备连接时才发送参数
-            if (this.writeCharacteristic) {
-                // 发送频率平衡参数
-                this.sendFrequencyBalance(this.aFreqBalance, this.bFreqBalance);
-            }
+            // 发送频率平衡参数
+            this.sendFrequencyBalance(this.aFreqBalance, this.bFreqBalance);
         },
 
         onAIntensityBalanceChange() {
-            if (!this.bleConnected) {
+            if (!this.bleConnected && !this.testConnectBLE) {
                 return;
             }
             this.log(`A通道强度平衡已更新: ${this.aIntensityBalance}`);
-            // 只有设备连接时才发送参数
-            if (this.writeCharacteristic) {
-                // 发送强度平衡参数
-                this.sendIntensityBalance(this.aIntensityBalance, this.bIntensityBalance);
-            }
+            // 发送强度平衡参数
+            this.sendIntensityBalance(this.aIntensityBalance, this.bIntensityBalance);
         },
 
         onBIntensityBalanceChange() {
-            if (!this.bleConnected) {
+            if (!this.bleConnected && !this.testConnectBLE) {
                 return;
             }
             this.log(`B通道强度平衡已更新: ${this.bIntensityBalance}`);
-            // 只有设备连接时才发送参数
-            if (this.writeCharacteristic) {
-                // 发送强度平衡参数
-                this.sendIntensityBalance(this.aIntensityBalance, this.bIntensityBalance);
-            }
+            // 发送强度平衡参数
+            this.sendIntensityBalance(this.aIntensityBalance, this.bIntensityBalance);
+
         },
 
         onAPowerLimitChange() {
-            if (!this.bleConnected) {
+            if (!this.bleConnected && !this.testConnectBLE) {
                 return;
             }
-            this.log(`A通道电源上限已更新: ${this.aPowerLimit}`);
-            // 只有设备连接时才发送参数
-            if (this.writeCharacteristic) {
-                // 发送电源上限参数
-                this.sendPowerLimit(this.aPowerLimit, this.bPowerLimit);
+            let channel = 'A';
+            if (this.powerSame === true) {
+                this.bPowerLimit = this.aPowerLimit;
+                channel = 'both';
             }
+            this.log(`A通道电源上限已更新: ${this.aPowerLimit}`);
+
+            // 发送电源上限参数
+            this.sendPowerLimit(this.aPowerLimit, this.bPowerLimit);
+            // 上限改变同时要变化强度
+            this.setPowerIntensity(channel, this.strengthA);
+
         },
 
         onBPowerLimitChange() {
-            if (!this.bleConnected) {
+            if (!this.bleConnected && !this.testConnectBLE) {
                 return;
             }
-            this.log(`B通道电源上限已更新: ${this.bPowerLimit}`);
-            // 只有设备连接时才发送参数
-            if (this.writeCharacteristic) {
-                // 发送电源上限参数
-                this.sendPowerLimit(this.aPowerLimit, this.bPowerLimit);
+            let channel = 'B';
+            if (this.powerSame === true) {
+                this.aPowerLimit = this.bPowerLimit;
+                channel = 'both';
             }
+            this.log(`B通道电源上限已更新: ${this.bPowerLimit}`);
+
+            // 发送电源上限参数
+            this.sendPowerLimit(this.aPowerLimit, this.bPowerLimit);
+
+            // 上限改变同时要变化强度
+            this.setPowerIntensity(channel, this.strengthB);
+
         },
 
         // 发送频率平衡参数
         sendFrequencyBalance(aFreq, bFreq) {
             if (!this.writeCharacteristic) {
                 this.log('设备未连接，无法发送频率平衡参数');
-                return Promise.reject('设备未连接');
+                return;
             }
 
             this.log(`发送频率平衡参数: A=${aFreq}, B=${bFreq}`);
@@ -1337,7 +1359,7 @@ export default {
         sendIntensityBalance(aIntensity, bIntensity) {
             if (!this.writeCharacteristic) {
                 this.log('设备未连接，无法发送强度平衡参数');
-                return Promise.reject('设备未连接');
+                return;
             }
 
             this.log(`发送强度平衡参数: A=${aIntensity}, B=${bIntensity}`);
@@ -1357,7 +1379,7 @@ export default {
         sendPowerLimit(aLimit, bLimit) {
             if (!this.writeCharacteristic) {
                 this.log('设备未连接，无法发送电源上限参数');
-                return Promise.reject('设备未连接');
+                return;
             }
 
             this.log(`发送电源上限参数: A=${aLimit}, B=${bLimit}`);
@@ -1482,6 +1504,29 @@ export default {
                     const failedCount = results.filter(r => !r.success).length;
                     this.log(`批量发送完成: 成功 ${successfulCount} 条, 失败 ${failedCount} 条`);
                     this.log(`当前缓存队列剩余数据: ${this.nomalPlayCache.length} 条`);
+
+                    // 更新播放时间并设置标志
+                    if (this.aChannelPlaying) {
+                        //  已发送的条 * 100毫秒 / 1000秒 = 通道已播放时间
+                        this.channelAPlayTime += sendPromises.length / 10;
+                        if (this.channelAPlayTime >= this.channelPlayTime.a) {
+                            // 通道A播放时间到了或超过了，需要计算下个波形下标
+                            this.channelAPlayWaitingNext = true;
+                            // 更新剩余时间，减去完整的周期数
+                            this.channelAPlayTime %= this.channelPlayTime.a;
+                        }
+                    }
+                    if (this.bChannelPlaying) {
+                        //  已发送的条 * 100毫秒 / 1000秒 = 通道已播放时间
+                        this.channelBPlayTime += sendPromises.length / 10;
+                        if (this.channelBPlayTime >= this.channelPlayTime.b) {
+                            // 通道B播放时间到了或超过了，需要计算下个波形下标
+                            this.channelBPlayWaitingNext = true;
+                            // 更新剩余时间，减去完整的周期数
+                            this.channelBPlayTime %= this.channelPlayTime.b;
+                        }
+                    }
+
                     // 无论是否成功，都继续下一批数据的发送
                     if (this.aChannelPlaying || this.bChannelPlaying) {
                         this.generateChannelPlayBatch();
@@ -1489,23 +1534,6 @@ export default {
                 })
                 .catch(error => {
                     this.log('批量发送过程中发生错误: ' + error.message);
-                }).finally(() => {
-                    if (this.aChannelPlaying) {
-                        //  已发送的条 * 100毫秒 / 1000秒 = 通道已播放时间
-                        this.channelAPlayTime += sendPromises.length / 10;
-                        if (this.channelAPlayTime % this.channelPlayTime.a == 0) {
-                            // 通道A播放时间到了，需要计算下个波形下标
-                            this.channelAPlayWaitingNext = true;
-                        }
-                    }
-                    if (this.bChannelPlaying) {
-                        //  已发送的条 * 100毫秒 / 1000秒 = 通道已播放时间
-                        this.channelBPlayTime += sendPromises.length / 1000;
-                        if (this.channelBPlayTime % this.channelPlayTime.b == 0) {
-                            // 通道B播放时间到了，需要计算下个波形下标
-                            this.channelBPlayWaitingNext = true;
-                        }
-                    }
                 });
         },
         sendBLEData(optStrengthA, optStrengthB, optBuffer) {
@@ -1901,18 +1929,28 @@ export default {
             let tempBChannelV3ModelList = [];
             // 如果通道处于播放状态
             if (this.aChannelPlaying) {
-                if (this.channelAPlayWaitingNext === true) {
-                    // 重置等待切换
-                    this.channelAPlayWaitingNext = false;
-                    // 清空缓存
-                    this.aChannelV3ModelList = [];
-                    // 重置播放时间
-                    this.channelAPlayTime = 0;
-                    // 计算播放下一个索引
-                    this.aChannelPlayIdx = this.getNextPlayChannelIdx(this.channelPlayType.a, this.aChannelPlayIdx, this.aChannelList);
-                }
                 // 获取当前A通道的波形数据
                 currentACtrlItem = this.aChannelList[this.aChannelPlayIdx];
+
+                if (this.channelAPlayWaitingNext === true) {
+                    let dur = currentACtrlItem.duration;
+                    if (currentACtrlItem.minRuration > 0) {
+                        dur = currentACtrlItem.minRuration * currentACtrlItem.duration;
+                    }
+                    dur = dur / 1000;
+                    if (this.channelAPlayTime >= dur) {
+                        // 重置等待切换
+                        this.channelAPlayWaitingNext = false;
+                        // 清空缓存
+                        this.aChannelV3ModelList = [];
+                        // 重置播放时间
+                        this.channelAPlayTime = 0;
+                        // 计算播放下一个索引
+                        this.aChannelPlayIdx = this.getNextPlayChannelIdx(this.channelPlayType.a, this.aChannelPlayIdx, this.aChannelList);
+                        // 获取当前A通道的波形数据
+                        currentACtrlItem = this.aChannelList[this.aChannelPlayIdx];
+                    }
+                }
                 if (this.aChannelV3ModelList.length <= 0) {
                     this.aChannelV3ModelList = currentACtrlItem.getV3ModelList();
                 }
@@ -1927,19 +1965,28 @@ export default {
                 }
             }
             if (this.bChannelPlaying) {
-                if (this.channelBPlayWaitingNext === true) {
-                    // 重置等待切换
-                    this.channelBPlayWaitingNext = false;
-                    // 清空缓存
-                    this.bChannelV3ModelList = [];
-                    // 重置播放时间
-                    this.channelBPlayTime = 0;
-                    // 计算播放下一个索引
-                    this.bChannelPlayIdx = this.getNextPlayChannelIdx(this.channelPlayType.b, this.bChannelPlayIdx, this.bChannelList);
-                }
-
                 // 获取当前B通道的波形数据
                 currentBCtrlItem = this.bChannelList[this.bChannelPlayIdx];
+                if (this.channelBPlayWaitingNext === true) {
+                    let dur = currentBCtrlItem.duration;
+                    if (currentBCtrlItem.minRuration > 0) {
+                        dur = currentBCtrlItem.minRuration * currentBCtrlItem.duration;
+                    }
+                    dur = dur / 1000;
+                    if (this.channelBPlayTime >= dur) {
+                        // 重置等待切换
+                        this.channelBPlayWaitingNext = false;
+                        // 清空缓存
+                        this.bChannelV3ModelList = [];
+                        // 重置播放时间
+                        this.channelBPlayTime = 0;
+                        // 计算播放下一个索引
+                        this.bChannelPlayIdx = this.getNextPlayChannelIdx(this.channelPlayType.b, this.bChannelPlayIdx, this.bChannelList);
+                        // 获取当前B通道的波形数据
+                        currentBCtrlItem = this.bChannelList[this.bChannelPlayIdx];
+                    }
+                }
+
                 if (this.bChannelV3ModelList.length <= 0) {
                     this.bChannelV3ModelList = currentBCtrlItem.getV3ModelList();
                 }
@@ -2517,13 +2564,12 @@ export default {
             }
         },
         initExtendsMessage() {
-            chrome.tabs?.query({ active: true, currentWindow: true }, (tabs) => {
-                if (tabs && tabs[0]) {
-                    this.tabId = tabs[0].id;
-                }
-            });
+
             // 初始化扩展消息
             chrome.runtime?.onMessage.addListener((request, sender, sendResponse) => {
+                if (sender.tab.id !== this.mangaTabId) {
+                    this.mangaTabId = sender.tab.id;
+                }
                 // 漫画脚本加载
                 if (request.action === 'load') {
                     this.log('触发了脚本load', request);
@@ -3302,7 +3348,7 @@ this.setPowerIntensity('B', ${request.powerB});`;
 
 .playlist-table {
     padding: 0px 5px;
-    height: 400px;
+    height: 450px;
     display: flex;
     flex-direction: column;
 }
@@ -3311,6 +3357,7 @@ this.setPowerIntensity('B', ${request.powerB});`;
     margin: 5px 0px;
     border: 1px solid #fac000;
     flex: 1;
+    max-height: calc(100% - 40px);
 }
 
 .playlist-table .el-table__body-wrapper {

@@ -1,4 +1,5 @@
 import WaveUtil from './WaveUtil.js';
+import V2Model from './V2Model.js';
 
 /**
  * 控制器组件类

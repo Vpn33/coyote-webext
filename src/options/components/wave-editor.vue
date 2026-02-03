@@ -17,8 +17,11 @@
           <el-option label="X4" :value="4"></el-option>
         </el-select>
       </el-form-item>
+      <el-form-item label="最小播放次数">
+        <el-slider v-model="localItem.minRuration" class="min-duration-slider" :show-tooltip="false" :min="1" :max="100" :step="1" show-input :show-input-controls="false"></el-slider>
+      </el-form-item>
       <el-form-item label="波形总时长">
-        {{ totalTimeStr }}
+        {{ totalTimeStr + '秒'}}{{  localItem.minRuration > 0 ? '（最小播放时长：' + (localItem.minRuration * totalTimeStr).toFixed(1) + '秒）' : ''}}
       </el-form-item>
       <el-form-item label="双通道波形">
         <el-switch v-model="localItem.doubleChannel" @change="toggleDoubleChannel"></el-switch>
@@ -75,7 +78,7 @@ export default {
   data: function () {
     return {
       restTimeStr: '0秒',
-      totalTimeStr: '0秒',
+      totalTimeStr: '0',
       localItem: null, // 使用本地变量存储item的副本，避免直接修改prop
     }
   },
@@ -86,7 +89,7 @@ export default {
       // 0 - 100 除10后向上取整 * 100变为毫秒
       let restTime = Math.ceil(parseFloat((this.localItem.restTime || 0) / 10)) * 100;
       this.localItem.totalTime = duration + restTime;
-      this.totalTimeStr = (this.localItem.totalTime / 1000).toFixed(1) + '秒';
+      this.totalTimeStr = (this.localItem.totalTime / 1000).toFixed(1);
     },
     getChannelDurationTime() {// 获取某个通道的小结时长
       // 如果是单通道 就只用stageList
@@ -179,4 +182,8 @@ export default {
 }
 </script>
 
-<style></style>
+<style>
+.min-duration-slider .el-slider__input.el-input-number.is-without-controls .el-input {
+  width: 100%;
+}
+</style>
