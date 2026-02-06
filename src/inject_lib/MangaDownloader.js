@@ -1,6 +1,12 @@
 let bookId = null;
 let bookName = null;
 let currentPage = null;
+// 电源开关状态
+let aPowerOn = false;
+let bPowerOn = false;
+// 存储滑块的当前值，用于在电源关闭时恢复
+let currentAValue = 0;
+let currentBValue = 0;
 // 页面加载完成后初始化
 function initializeExtension() {
     if (!bookId) {
@@ -16,6 +22,9 @@ function initializeExtension() {
 
     // 初始化Coyote设备按钮
     initCoyoteDeviceBtn();
+
+    // 初始化消息监听
+    initCoyoteWebextMessage();
 
     // 加载脚本
     loadScript();
@@ -34,11 +43,36 @@ function initClosePage() {
     });
 }
 function initCoyoteWebextMessage() {
-    // chrome.runtime.onMessage.addListener((request, sender, sendResponse) => {
-    //     if (request.action === 'noneScript') {
-
-    //     }
-    // });
+    // 监听来自扩展的消息
+    chrome.runtime.onMessage.addListener((request, sender, sendResponse) => {
+        if (request.action === 'updatePowerIntensity') {
+            // 更新电源强度
+            const { powerA, powerB } = request.data;
+            if (powerA !== undefined) {
+                const aSlider = document.querySelector('input[type="range"]');
+                if (aSlider) {
+                    aSlider.value = powerA;
+                    currentAValue = powerA;
+                    const aValue = aSlider.parentElement.querySelector('div:nth-child(3)');
+                    if (aValue) {
+                        aValue.textContent = (powerA) + '%';
+                    }
+                }
+            }
+            if (powerB !== undefined) {
+                const sliders = document.querySelectorAll('input[type="range"]');
+                if (sliders.length > 1) {
+                    const bSlider = sliders[1];
+                    bSlider.value = powerB;
+                    currentBValue = powerB;
+                    const bValue = bSlider.parentElement.querySelector('div:nth-child(3)');
+                    if (bValue) {
+                        bValue.textContent = (powerB) + '%';
+                    }
+                }
+            }
+        }
+    });
 }
 function initWatchPage() {
     // 使用MutationObserver监听页面变化 分页信息会根据这个值进行变化
@@ -373,7 +407,7 @@ function initCoyoteDeviceBtn() {
     syncInput.style.width = '0';
     syncInput.style.height = '0';
     syncSwitch.appendChild(syncInput);
-    
+
     const syncSlider = document.createElement('span');
     syncSlider.style.position = 'absolute';
     syncSlider.style.cursor = 'pointer';
@@ -385,7 +419,7 @@ function initCoyoteDeviceBtn() {
     syncSlider.style.transition = '.4s';
     syncSlider.style.borderRadius = '20px';
     syncSwitch.appendChild(syncSlider);
-    
+
     syncSlider.innerHTML = '<span style="position: absolute; content: \"\"; height: 16px; width: 16px; left: 2px; bottom: 2px; background-color: white; transition: .4s; border-radius: 50%; transform: translateX(20px);"></span>'; // 默认激活状态的位置
     syncControl.appendChild(syncSwitch);
 
@@ -433,19 +467,25 @@ function initCoyoteDeviceBtn() {
         }
     });
 
+
     // A通道滑块事件
-    aSlider.addEventListener('input', function () {
+    aSlider.addEventListener('input', function (event) {
         if (aPowerOn === false) {
-            aSlider.value = 0;
+            // 电源未开启，恢复之前的值
+            this.value = currentAValue;
+            aValue.textContent = currentAValue + '%';
             message('请先开启A通道');
-            return false;
+            return;
         }
+        // 更新当前值
+        currentAValue = this.value;
         aValue.textContent = this.value + '%';
         let channel = 'A';
         if (syncInput.checked) {
             channel = 'both';
             bSlider.value = this.value;
             bValue.textContent = this.value + '%';
+            currentBValue = this.value;
         }
         callRemoteMethod('setPower', { channel, power: this.value / 100 }).then((response) => {
 
@@ -453,18 +493,23 @@ function initCoyoteDeviceBtn() {
     });
 
     // B通道滑块事件
-    bSlider.addEventListener('input', function () {
+    bSlider.addEventListener('input', function (event) {
         if (bPowerOn === false) {
-            bSlider.value = 0;
+            // 电源未开启，恢复之前的值
+            this.value = currentBValue;
+            bValue.textContent = currentBValue + '%';
             message('请先开启B通道');
-            return false;
+            return;
         }
+        // 更新当前值
+        currentBValue = this.value;
         bValue.textContent = this.value + '%';
         let channel = 'B';
         if (syncInput.checked) {
             channel = 'both';
             aSlider.value = this.value;
             aValue.textContent = this.value + '%';
+            currentAValue = this.value;
         }
         callRemoteMethod('setPower', { channel, power: this.value / 100 }).then((response) => {
 
@@ -472,7 +517,6 @@ function initCoyoteDeviceBtn() {
     });
 
     // A通道开关按钮事件
-    let aPowerOn = false;
     aPowerBtn.addEventListener('click', () => {
         aPowerOn = !aPowerOn;
         let channel = 'A';
@@ -525,7 +569,6 @@ function initCoyoteDeviceBtn() {
     });
 
     // B通道开关按钮事件
-    let bPowerOn = false;
     bPowerBtn.addEventListener('click', () => {
         bPowerOn = !bPowerOn;
         let channel = 'B';
