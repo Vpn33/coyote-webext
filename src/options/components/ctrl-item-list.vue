@@ -42,7 +42,7 @@
                 </el-table-column>
             </el-table>
         </div>
-        <wave-saver ref="waveSaver" :item.sync="editWaveItem"></wave-saver>
+        <wave-saver ref="waveSaver" :item.sync="editWaveItem" @save="handleWaveSave"></wave-saver>
     </div>
 </template>
 <script>
@@ -177,6 +177,9 @@ export default {
             }).catch(() => {
             });
 
+        },
+        handleWaveSave() {
+            this.loadCtrlItemData();
         },
         loadCtrlItemData() {
             console.log('开始加载波形数据')

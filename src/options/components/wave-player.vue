@@ -2563,6 +2563,33 @@ export default {
                 this.tempPlayerInfo = null;
             }
         },
+        initWebMessage() {
+            // 初始化扩展消息
+            chrome.runtime?.onMessage.addListener((request, sender, sendResponse) => {
+                if (request.type === 'waveChange') {
+                    this.log('检测到波形变化', request);
+                    // 从编辑器中保存后，需要重新获取选中的波形
+                    this.getCheckedWaveIds();
+                    this.log('重新加载脚本列表');
+                }
+                if (request.type === 'mangaChange') {
+                    this.log('检测到脚本变化', request);
+                    if (this.playManga && this.playManga.bookId === request.data.bookId) {
+                        // 从编辑器中保存后，需要重新获取选中的波形
+                        // 漫画脚本加载
+                        const mangaList = MyStorage.mangaList();
+                        let mangaScript = null;
+                        if (mangaList && mangaList.length > 0) {
+                            // 漫画脚本加载
+                            mangaScript = _.find(mangaList, { bookId: request.bookId });
+                        }
+
+                        this.playManga = mangaScript;
+                        this.log('重新加载播放脚本：', this.playManga);
+                    }
+                }
+            });
+        },
         initExtendsMessage() {
 
             // 初始化扩展消息
@@ -3239,6 +3266,7 @@ this.setPowerIntensity('B', ${request.powerB});`;
         this.getCheckedWaveIds();
         this.getChannelPlayType();
         this.getChannelPlayTime();
+        this.initWebMessage();
         this.initExtendsMessage();
     },
     beforeDestroy() {

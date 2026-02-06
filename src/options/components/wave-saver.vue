@@ -1,7 +1,7 @@
 <template>
     <div v-if="editorDialogVisible">
-        <el-dialog title="波形编辑器" :visible.sync="editorDialogVisible" width="50%" fullscreen :close-on-click-modal="false"
-            :before-close="editorDialogClose">
+        <el-dialog title="波形编辑器" :visible.sync="editorDialogVisible" width="50%" fullscreen
+            :close-on-click-modal="false" :before-close="editorDialogClose">
             <WaveEditor ref="waveEditor" :item="editWaveItem"></WaveEditor>
             <span slot="footer" class="dialog-footer">
                 <el-button @click="editorDialogClose">取 消</el-button>
@@ -82,7 +82,9 @@ export default {
                 }).then(() => {
                     this.saveWave();
                     this.editorDialogClose();
-                }).catch(() => {
+                    this.$emit('save');
+                }).catch((err) => {
+                    console.log(err);
                 });
             } else {
                 if (MyStorage.checkWaveName(this.editWaveItem.name)) {
@@ -94,6 +96,7 @@ export default {
                 }
                 this.saveWave();
                 this.editorDialogClose();
+                this.$emit('save');
             }
         },
         checkWaveInfo() {
@@ -129,6 +132,11 @@ export default {
                 s.hz = [s.hzMin, s.hzMax];
             });
             MyStorage.saveToWaves(data);
+            chrome.runtime?.sendMessage({
+                type: 'waveChange',
+                data
+            });
+            
         },
         openSaveAsDialog() {
             this.saveAsDialog = true;
@@ -155,8 +163,12 @@ export default {
                 });
                 return;
             }
+            this.editWaveItem.id = null;
             this.saveWave(this.waveAsName);
             this.saveAsDialogClose();
+            this.editorDialogClose();
+            // 波形列表刷新
+            this.$emit('save');
         },
         initItem() {
             if (this.item) {
