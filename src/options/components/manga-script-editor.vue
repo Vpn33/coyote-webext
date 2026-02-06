@@ -62,6 +62,11 @@ export default {
                             mangaList[exist] = this.mangaScript;
                             MyStorage.saveMangaList(mangaList);
                             this.$message.success('漫画脚本保存成功');
+                            // 通知player脚本更新
+                            chrome.runtime?.sendMessage({
+                                type: 'mangaChange',
+                                data: this.mangaScript
+                            });
                         }).catch(() => {
                             
                         });
@@ -70,6 +75,11 @@ export default {
                     mangaList.push(this.mangaScript);
                     MyStorage.saveMangaList(mangaList);
                     this.$message.success('漫画脚本保存成功');
+                    // 通知player脚本更新
+                    chrome.runtime?.sendMessage({
+                        type: 'mangaChange',
+                        data: this.mangaScript
+                    });
                 } else {
                     console.log('校验失败');
                 }

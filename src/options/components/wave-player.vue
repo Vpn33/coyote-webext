@@ -2581,11 +2581,10 @@ export default {
                         let mangaScript = null;
                         if (mangaList && mangaList.length > 0) {
                             // 漫画脚本加载
-                            mangaScript = _.find(mangaList, { bookId: request.bookId });
+                            mangaScript = _.find(mangaList, { bookId: request.data.bookId });
+                            this.playManga = mangaScript;
+                            this.log('重新加载播放脚本：', this.playManga);
                         }
-
-                        this.playManga = mangaScript;
-                        this.log('重新加载播放脚本：', this.playManga);
                     }
                 }
             });
