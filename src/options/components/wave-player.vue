@@ -1161,12 +1161,30 @@ export default {
         // 发送强度命令 
         sendStrengthCommand(newA, newB) {
             try {
+                if (newA < 0) {
+                    newA = 0;
+                    this.strengthA = newA;
+                }
+                if (newB < 0) {
+                    newB = 0;
+                    this.strengthB = newB;
+                }
+                if (newA > this.aPowerLimit) {
+                    newA = this.aPowerLimit;
+                    this.strengthA = newA;
+                }
+                if (newB > this.bPowerLimit) {
+                    newB = this.bPowerLimit;
+                    this.strengthB = newB;
+                }
                 if (this.mangaTabId) {
+                    let sendA = (newA / this.aPowerLimit) * 100;
+                    let sendB = (newB / this.bPowerLimit) * 100;
                     chrome.tabs.sendMessage(this.mangaTabId, {
                         action: 'updatePowerIntensity',
                         data: {
-                            powerA: Math.round((newA / this.aPowerLimit) * 100),
-                            powerB: Math.round((newB / this.bPowerLimit) * 100),
+                            powerA: Math.round(sendA),
+                            powerB: Math.round(sendB),
                         }
                     });
                 }
