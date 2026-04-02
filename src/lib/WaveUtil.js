@@ -378,5 +378,57 @@ export default {
 
         return stage;
     },
-};
+
+    // 将CtrlItem导出为pulse文件格式
+    exportCtrlItemToPulse(ctrlItem) {
+        if (!ctrlItem) {
+            return null;
+        }
+
+        // 构建基本信息部分
+        let pulseContent = `Dungeonlab+pulse:`;
+
+        // 构建小节部分
+        const stages = ctrlItem.getStageList();
+        if (stages && stages.length > 0) {
+            const sectionParts = [];
+            
+            for (const stage of stages) {
+                // 构建小节基本信息
+                let hz1, hz2;
+                if (stage.hzGradient === 1) {
+                    hz1 = this.HZ_SLIDER.indexOf(stage.hzMax);
+                    hz2 = this.HZ_SLIDER.indexOf(stage.hzMin);
+                } else {
+                    hz1 = this.HZ_SLIDER.indexOf(stage.hzMax);
+                    hz2 = this.HZ_SLIDER.indexOf(stage.hzMin);
+                }
+                
+                // 如果找不到频率值，使用0作为默认值
+                hz1 = hz1 === -1 ? 0 : hz1;
+                hz2 = hz2 === -1 ? 0 : hz2;
+                
+                const stageInfo = `${hz1},${hz2},${stage.stageTime},${stage.hzType},${stage.enabled ? 1 : 0}`;
+                
+                // 构建元数据部分
+                const metaParts = [];
+                if (stage.metas && stage.metas.length > 0) {
+                    for (const meta of stage.metas) {
+                        // 确保y和z值存在
+                        const y = meta.y !== undefined ? meta.y : 0;
+                        const z = meta.z !== undefined ? meta.z : 1;
+                        metaParts.push(`${y.toFixed(2)}-${z}`);
+                    }
+                }
+                
+                const stageMetas = metaParts.join(',');
+                sectionParts.push(`${stageInfo}/${stageMetas}`);
+            }
+            
+            pulseContent += sectionParts.join('+section+');
+        }
+        
+        return pulseContent;
+    },
+}; 
 

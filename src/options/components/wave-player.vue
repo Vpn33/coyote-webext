@@ -306,6 +306,7 @@
                             <div class="play-manga-info">
                                 <span>漫画ID：{{ playManga.bookId }}</span>
                                 <span>漫画名称：{{ playManga.bookName }}</span>
+                                <span>播放倍率：{{ playManga.playRate }}</span>
                                 <el-table :data="playManga.scriptList" border :row-class-name="playMangaTableRowActive"
                                     @row-dblclick="playMangaPage">
                                     <el-table-column prop="pageNo" label="页码" min-width="10%">
@@ -1329,9 +1330,6 @@ export default {
 
             // 发送电源上限参数
             this.sendPowerLimit(this.aPowerLimit, this.bPowerLimit);
-            // 上限改变同时要变化强度
-            this.setPowerIntensity(channel, this.strengthA);
-
         },
 
         onBPowerLimitChange() {
@@ -1347,9 +1345,6 @@ export default {
 
             // 发送电源上限参数
             this.sendPowerLimit(this.aPowerLimit, this.bPowerLimit);
-
-            // 上限改变同时要变化强度
-            this.setPowerIntensity(channel, this.strengthB);
 
         },
 
@@ -2738,6 +2733,14 @@ this.setPowerIntensity('B', ${request.powerB});`;
                     }
                     return sendResponse({ code: '000' });
                 }
+                // 设置播放倍率 临时变化 不保存到脚本
+                if (request.action === 'setPlayRate') {
+                    this.log('触发了setPlayRate', request);
+                    if (this.playManga) {
+                        this.playManga.playRate = request.playRate;
+                    }
+                    return sendResponse({ code: '000' });
+                }
             });
         },
         isNum(param) {
@@ -3021,6 +3024,10 @@ this.setPowerIntensity('B', ${request.powerB});`;
                 }, delayTime);
                 return;
             }
+            // 如果有播放倍率 就计算新的倍率
+            if (this.playManga?.playRate && this.playManga.playRate !== 1) {
+                intensity *= this.playManga.playRate;
+            }
             // 漫画脚本触发电源强度改变
             let newA = this.strengthA;
             let newB = this.strengthB;
@@ -3260,15 +3267,29 @@ this.setPowerIntensity('B', ${request.powerB});`;
                 }, delayTime);
                 return;
             }
+            // 如果有播放倍率 就计算新的倍率
+            if (this.playManga?.playRate && this.playManga.playRate !== 1) {
+                intensity *= this.playManga.playRate;
+            }
             // 每X毫秒 平滑的电源变化
             if ('A' === channel || 'both' === channel) {
                 if (true === this.aChannelPlaying) {
-                    this.flatPowerIntensity.a = this.strengthA + intensity;
+                    let tempA = Math.round(this.aPowerLimit * intensity);
+                    tempA = this.strengthA + tempA;
+                    if (tempA > this.aPowerLimit) {
+                        tempA = this.aPowerLimit;
+                    }
+                    this.flatPowerIntensity.a = tempA;
                 }
             }
             if ('B' === channel || 'both' === channel) {
                 if (true === this.bChannelPlaying) {
-                    this.flatPowerIntensity.b = this.strengthB + intensity;
+                    let tempB = Math.round(this.bPowerLimit * intensity);
+                    tempB = this.strengthB + tempB;
+                    if (tempB > this.bPowerLimit) {
+                        tempB = this.bPowerLimit;
+                    }
+                    this.flatPowerIntensity.b = tempB;
                 }
             }
             // 清除旧的定时器 重新设置新的定时器

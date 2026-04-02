@@ -431,6 +431,68 @@ function initCoyoteDeviceBtn() {
 
     devicePanel.appendChild(syncControl);
 
+    // 播放倍率输入框
+    const floatInputContainer = document.createElement('div');
+    floatInputContainer.style.display = 'flex';
+    floatInputContainer.style.flexDirection = 'column';
+    floatInputContainer.style.alignItems = 'center';
+    floatInputContainer.style.marginBottom = '15px';
+
+    const floatInputLabel = document.createElement('span');
+    floatInputLabel.textContent = '播放倍率';
+    floatInputLabel.style.fontSize = '12px';
+    floatInputLabel.style.marginBottom = '5px';
+    floatInputContainer.appendChild(floatInputLabel);
+
+    const floatInput = document.createElement('input');
+    floatInput.type = 'text';
+    floatInput.placeholder = '请输入浮点数，最多两位小数';
+    floatInput.style.padding = '5px 10px';
+    floatInput.style.border = '1px solid #ddd';
+    floatInput.style.borderRadius = '3px';
+    floatInput.style.fontSize = '12px';
+    floatInput.style.width = '150px';
+    floatInputContainer.appendChild(floatInput);
+
+    devicePanel.appendChild(floatInputContainer);
+
+    // 为播放倍率输入框添加事件监听器，限制输入格式
+    floatInput.addEventListener('input', function (event) {
+        // 获取输入值
+        let value = this.value;
+        
+        // 移除非数字、负号和小数点以外的字符
+        value = value.replace(/[^-0-9.]/g, '');
+        
+        // 确保只有一个负号，且在开头
+        const negativeSignCount = (value.match(/-/g) || []).length;
+        if (negativeSignCount > 1) {
+            value = value.replace(/-/g, '');
+            value = '-' + value;
+        } else if (negativeSignCount === 1 && value.indexOf('-') !== 0) {
+            value = value.replace(/-/g, '');
+        }
+        
+        // 确保只有一个小数点
+        const decimalPointCount = (value.match(/\./g) || []).length;
+        if (decimalPointCount > 1) {
+            const parts = value.split('.');
+            value = parts[0] + '.' + parts.slice(1).join('');
+        }
+        
+        // 限制小数点后最多两位
+        if (value.includes('.')) {
+            const parts = value.split('.');
+            if (parts[1].length > 2) {
+                value = parts[0] + '.' + parts[1].substring(0, 2);
+            }
+        }
+        
+        // 更新输入值
+        this.value = value;
+        sendMsg({action: 'setPlayRate', playRate: value});
+    });
+
     // 快速添加按钮
     const quickAddBtn = document.createElement('button');
     quickAddBtn.textContent = '快速编辑';

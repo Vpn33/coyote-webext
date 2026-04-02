@@ -1,11 +1,14 @@
 <template>
-    <div>
+    <div class="manga-script-editor">
         <el-form ref="form" :model="mangaScript" label-width="80px" :rules="mangaRules">
             <el-form-item label="漫画id" prop="bookId">
                 <el-input v-model="mangaScript.bookId" placeholder="请输入漫画id" />
             </el-form-item>
             <el-form-item label="漫画名称" prop="bookName">
                 <el-input v-model="mangaScript.bookName" placeholder="请输入漫画名称" />
+            </el-form-item>
+            <el-form-item label="播放倍率" prop="playRate">
+                <el-input-number class="playRate" v-model="mangaScript.playRate" :precision="2" :step="0.1" controls-position="right"></el-input-number>
             </el-form-item>
             <el-form-item label="漫画脚本" prop="scriptList">
                 <MangaPageImpl ref="mangaPageImpl" v-model="mangaScript.scriptList" @change="changeScriptList" />
@@ -28,13 +31,18 @@ export default {
     },
     data() {
         return {
-            mangaScript: {},
+            mangaScript: {
+                playRate: 1
+            },
             mangaRules: {
                 bookId: [
                     { required: true, message: '请输入漫画id', trigger: 'blur' }
                 ],
                 bookName: [
                     { required: true, message: '请输入漫画名称', trigger: 'blur' }
+                ],
+                playRate: [
+                    { required: true, message: '请输入播放倍率', trigger: 'blur' }
                 ],
                 scriptList: [
                     { required: true, message: '请输入一条漫画脚本', trigger: 'blur' }
@@ -97,11 +105,16 @@ export default {
     },
     mounted() {
         // 组件挂载时从Vuex获取当前编辑的脚本内容
-        this.mangaScript = this.$store.state.editMangaScript || {};
+        this.mangaScript = this.$store.state.editMangaScript || {playRate: 1};
         // console.log(this.mangaScript);
     }
 }
 </script>
+<style>
+.manga-script-editor .playRate div.el-input{
+    width: 100%;
+}
+</style>
 
 <style scoped>
 /* 基础样式 */
@@ -170,4 +183,5 @@ export default {
         margin-right: 0;
     }
 }
+
 </style>

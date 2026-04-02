@@ -30,13 +30,16 @@
                         <span>{{scope.row.stageList.filter(stage => stage.enabled).length}}个</span>
                     </template>
                 </el-table-column>
-                <el-table-column label="操作" min-width="150" align="center" fixed="right" v-if="!readonly">
+                <el-table-column label="操作" min-width="200" align="center" fixed="right" v-if="!readonly">
                     <template slot-scope="scope">
                         <el-button type="primary" size="small" @click="editWave(scope.row)">
                             编辑
                         </el-button>
                         <el-button type="danger" size="small" @click="delWave(scope.row, scope.$index)">
                             删除
+                        </el-button>
+                        <el-button type="success" size="small" @click="exportWave(scope.row)">
+                            导出Pulse
                         </el-button>
                     </template>
                 </el-table-column>
@@ -52,6 +55,7 @@ import WaveStage from '../../lib/WaveStage.js'
 import WaveMeta from '../../lib/WaveMeta.js'
 import WaveSaver from './wave-saver';
 import MyStorage from '@/lib/MyStorage';
+import WaveUtil from '@/lib/WaveUtil';
 import { readonly } from 'vue';
 
 export default {
@@ -274,6 +278,33 @@ export default {
                     }
                 })
             })
+        },
+        exportWave(waveItem) {
+            if (!waveItem) {
+                return;
+            }
+            
+            // 使用WaveUtil将CtrlItem转换为pulse文件格式
+            const pulseContent = WaveUtil.exportCtrlItemToPulse(waveItem);
+            
+            if (pulseContent) {
+                // 创建Blob对象
+                const blob = new Blob([pulseContent], { type: 'text/plain' });
+                // 创建下载链接
+                const url = URL.createObjectURL(blob);
+                // 创建下载元素
+                const a = document.createElement('a');
+                a.href = url;
+                a.download = `${waveItem.name}.pulse`;
+                // 模拟点击下载
+                a.click();
+                // 释放URL对象
+                URL.revokeObjectURL(url);
+                
+                this.$message.success('波形导出成功');
+            } else {
+                this.$message.error('波形导出失败');
+            }
         }
     }
 }

@@ -225,7 +225,7 @@ this.setPowerIntensity('${item.channel}', ${item.intensity / 100}${item.waitTime
                             },
                         ],
                         codeTemplate: (item) => {
-                            return `// 平滑的设置通道电源强度加减
+                            return `// 平滑的设置通道电源强度 加减百分比
 this.setFlatPowerIntensity('${item.channel}', ${item.intensity}, ${item.flatInterval}${item.waitTime ? `, ${item.waitTime}` : ''});`
                         },
                     },
